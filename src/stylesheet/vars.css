@@ -1,0 +1,20 @@
+:root {
+  /* fonts */
+  --main-font: 'HelveticaNeueCyr', sans-serif;
+  --main-font-size: 15px;
+
+  /*colors*/
+  --input-text-color: rgb(40, 40, 40);
+  --category-text-color: rgb(185, 195, 200);
+  --card-white-color: rgb(255, 255, 255);
+  --main-color: rgb(242, 243, 247);
+  --blue-color: rgb(21, 57, 90);
+  --hard-color: rgb(219, 8, 55);
+  --normal-color: rgb(36, 212, 12);
+  --easy-color: rgb(0, 215, 255);
+  --family-color: rgb(252, 132, 44);
+  --learning-color: rgb(245, 212, 16);
+  --leisure-color: rgb(169, 58, 188);
+}
+
+
