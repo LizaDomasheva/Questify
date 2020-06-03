@@ -1,14 +1,19 @@
 import React from 'react';
+
+import Header from './components/header/Header'
+
 import Card from './components/card/Card'
 import CardChallenge from './components/card/CardChallenge'
+
 
 
 function App() {
   return (
     <div >
-      <h1>App</h1>
+      <Header />
       <Card/>
       <CardChallenge/>
+
     </div>
   );
 }
