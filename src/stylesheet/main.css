@@ -52,12 +52,12 @@ button:focus {
 
 @media (min-width: 768px) {
   .container {
-    width: 90%;
+    width: 85%;
   }
 }
 
 @media (min-width: 1280px) {
   .container {
-    width: 90%;
+    width: 85%;
   }
 }
