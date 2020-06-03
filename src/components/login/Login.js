@@ -1,25 +1,30 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import * as session from '../../redux/operations';
+
 import styles from './Login.module.css';
-import axios from 'axios';
+// import axios from 'axios';
 
 const initialState = {
   nickname: '',
 };
 
-const loginURL = 'https://questify.goit.co.ua/api/login';
+// const loginURL = 'https://develop-questify.goit.co.ua/api/auth';
 
-const Login = () => {
+const Login = ({ history }) => {
   const [state, setState] = useState(initialState);
-
+  const dispatch = useDispatch();
   const submitHandler = e => {
     e.preventDefault();
 
-    axios
-      .post(loginURL, { nickname: state.nickname })
-      .then(response => console.log('response = ', response.data.data))
-      .catch(err => console.log('error = ', err));
-
+    // axios
+    //   .post(loginURL, { nickname: state.nickname })
+    //   .then(response => console.log('response = ', response.data.data.user))
+    //   .catch(err => console.log('error = ', err));
+    dispatch(session.getUser({ ...state }));
+    console.log(session.getUser());
     setState(initialState);
+    history.push('/dashboard');
   };
 
   const changeHandler = ({ target: { name, value } }) => {

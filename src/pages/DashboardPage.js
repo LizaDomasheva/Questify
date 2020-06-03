@@ -1,3 +1,16 @@
 import React from 'react';
+import Header from '../components/header/Header';
+import Card from '../components/card/Card';
+import CardChallenge from '../components/card/CardChallenge';
 
-export const DashboardPage = () => <h1>DashboardPage</h1>;
+const DashboardPage = () => {
+  return (
+    <>
+      <Header />
+      <Card />
+      <CardChallenge />
+    </>
+  );
+};
+
+export default DashboardPage;

@@ -13,7 +13,7 @@
     padding-top: 125px;
     width: 106px;
     height: 100%;
-    background-image: url(../../assets/images/logo/logo-dark.svg);
+    background-image: url(../../assets/images/login/logo-dark.svg);
     background-size: 106px;
     background-repeat: no-repeat;
     background-position: bottom;
@@ -115,8 +115,9 @@
     .back {
         background-image: url(../../assets/images/login/4.png);
         background-size: cover;
-        margin-left: -6%;
-        margin-bottom: -10%;
+        background-position: center;
+        /* margin-left: -6%; */
+        /* margin-bottom: -10%; */
         padding-bottom: 50px;
         height: 100%;
         margin-left: -10%;

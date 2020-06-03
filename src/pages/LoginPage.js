@@ -1,19 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Login from '../components/login/Login';
+import { useHistory } from 'react-router-dom';
 // import styles from './LoginPage.module.css';
 
-class LoginPage extends Component {
-  state = {
-    nickName: '',
-  };
+const LoginPage = () => {
+  const history = useHistory();
 
-  render() {
-    return (
-      <main>
-        <Login />
-      </main>
-    );
-  }
-}
+  return (
+    <main>
+      <Login history={history} />
+    </main>
+  );
+};
 
 export default LoginPage;
