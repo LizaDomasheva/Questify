@@ -4,6 +4,7 @@ import styled from './card.module.css'
 
 const CardChallenge = () => {
     return (
+    <div className={styled.card_list}>
         <li className={styled.card_background}>
         <div className={styled.card_header}>
         <div className={styled.card_select}>Easy
@@ -14,7 +15,7 @@ const CardChallenge = () => {
         <div className={styled.card_container}>
             <p className={styled.card_challenge}>Challenge</p>
             <h2 className={styled.card_title}>Title</h2>
-            <div className={styled.date}>
+            <div className={styled.date_challenge}>
                 <input className={styled.card_input__date} type="text" value="02.06.2020 10:13 PM"/>
                 <button className={styled.card_btn__icon}></button>
                 {/* <div>Calendar</div> */}
@@ -30,6 +31,7 @@ const CardChallenge = () => {
             </div>            
         </div>
     </li>
+    </div>
     
 )};
 
