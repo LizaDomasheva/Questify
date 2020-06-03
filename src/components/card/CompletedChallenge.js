@@ -2,12 +2,12 @@ import React from 'react'
 import styled from './cardCompleted.module.css'
 
 
-export const CompletedModal = () => {
+export const CompletedChallenge = () => {
     return (
-        <div className={styled.card_list}>
-        <li className={styled.card_item}>
-            <div className={styled.card_header}>
-                <p className={styled.card_title}>Completed:
+        <>
+        <li className={styled.card_item__challenge}>
+            <div className={styled.card_header__challenge}>
+                <p className={styled.card_title__challenge}>Completed:
                     <a href="#" className={styled.title_ref}>Title</a>
                 </p>
                 <button className={styled.card_act}>Continue
@@ -15,5 +15,6 @@ export const CompletedModal = () => {
                 </button>
             </div>        
         </li>
-        </div>    
+        </>
+    
 )};
