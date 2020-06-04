@@ -50,14 +50,25 @@ button:focus {
   margin: 0 auto;
 }
 
+.header {
+  background-color: rgb(0, 54, 91);
+  box-shadow: 0px 2px 2px 0px rgba(0, 54, 91, 0.1);
+  height: 60px;
+}
+
 @media (min-width: 768px) {
   .container {
-    width: 90%;
+    width: 85%;
   }
+
+  .header {
+    height: 80px;
+}
+
 }
 
 @media (min-width: 1280px) {
   .container {
-    width: 90%;
+    width: 85%;
   }
 }

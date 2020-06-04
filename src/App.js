@@ -1,17 +1,22 @@
 import React from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
-import { DashboardPage } from './pages/DashboardPage';
-import  LoginPage from './pages/LoginPage';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
+
 
 function App() {
   return (
     <div>
-      <h1>App</h1>
       <Switch>
-        <Route path='/login' component={LoginPage} />
-        <Route path='/dashboard' component={DashboardPage} />
-        <Redirect to='/login' />
+        <Route exact path="/" component={LoginPage} />
+        <Route exact path="/dashboard" component={DashboardPage} />
+        <Redirect to="/" />
       </Switch>
+      {/* <Header />
+      <Card/>
+      <CardChallenge/>
+      <CompletedChallenge/>
+      <CompletedModal/> */}
     </div>
   );
 }
