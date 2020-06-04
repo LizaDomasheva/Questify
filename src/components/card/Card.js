@@ -5,6 +5,7 @@ import DatePicker from 'react-date-picker';
 // import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select'
 import styled from "./card.module.css";
+import { deleteCard } from "../../redux/dashboardOperations";
 
 
 const colourOptions = [
@@ -38,6 +39,11 @@ const dot = (color = '#ccc') => ({
 
 function Card() {
   const [value, onChange] = useState(new Date()) 
+
+  const deleteCard = () => {}
+
+  
+
   return (
     <div className={styled.card_list}>
       <li className={styled.card_border}>
@@ -94,7 +100,7 @@ function Card() {
 
                 <button className={styled.save}></button>
                 <div className={styled.strip}></div>
-                <button className={styled.delete}></button>
+                <button onClick={() => deleteCard()} className={styled.delete}></button>
                 <div className={styled.strip}></div>
                 <button className={styled.done}></button>
             </div>
