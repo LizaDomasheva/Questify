@@ -16,6 +16,9 @@ const colourOptions = [
 const selectOptions = [
   { value: 'easy', label: 'Easy', color: '#0ed6ff', isFixed: true },
   { value: 'normal', label: 'Normal', color: '#00d500'},
+  { value: 'hard', label: 'Hard', color: '#ff0335' },  
+  { value: 'easy', label: 'Easy', color: '#0ed6ff', isFixed: true },
+  { value: 'normal', label: 'Normal', color: '#00d500'},
   { value: 'hard', label: 'Hard', color: '#ff0335' },
 ];
 
