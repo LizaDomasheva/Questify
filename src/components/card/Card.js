@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import chroma from "chroma-js";
 import { css } from 'emotion';
 import DatePicker from 'react-date-picker';
-// import "react-datepicker/dist/react-datepicker.css";
 import Select from 'react-select'
 import styled from "./card.module.css";
 
@@ -17,7 +16,7 @@ const selectOptions = [
   { value: 'easy', label: 'Easy', color: '#0ed6ff', isFixed: true },
   { value: 'normal', label: 'Normal', color: '#00d500'},
   { value: 'hard', label: 'Hard', color: '#ff0335' },  
-  { value: 'easy', label: 'Easy', color: '#0ed6ff', isFixed: true },
+  { value: 'easy', label: 'Easy', color: '#0ed6ff',  },
   { value: 'normal', label: 'Normal', color: '#00d500'},
   { value: 'hard', label: 'Hard', color: '#ff0335' },
 ];
@@ -39,10 +38,27 @@ const dot = (color = '#ccc') => ({
 });
 
 
-function Card() {
-  const [value, onChange] = useState(new Date()) 
+
+
+function Card({todayCard}) {
+  const optionHandleChange =(props)=>{
+    setSelectOption(props)
+  }
+  
+  const handleChange =(props)=>{
+    setValue(props)
+    console.log('tempData', props)
+  }
+  const tempCard = todayCard
+    console.log('tempCard :>> ', tempCard.name);
+    const {dueDate, name, isPriority, group, difficulty}=tempCard
+    console.log('difficulty', difficulty)
+    let [value, setValue] = useState(new Date(dueDate)) 
+    let [selectOption, setSelectOption] = useState(difficulty.toLowerCase()) 
+    console.log('selectOption', selectOption)
+  
   return (
-    <div className={styled.card_list}>
+    <>
       <li className={styled.card_border}>
         <div className={styled.card_header}>
               <Select
@@ -50,28 +66,26 @@ function Card() {
                 label="Single select"
                 options={colourOptions}
                 styles={colourStyles}
+                onChange={optionHandleChange}
+                // value={{value:selectOption}}         
               />
             
-          <div className={styled.star_icon}></div>
+  {isPriority && <div className={styled.star_icon}></div>}
         </div>
         <div className={styled.card_wrapper}>
             <div className={styled.card_container}>
-            <input
+            <input 
                 className={styled.card_input}
                 type="text"
                 placeholder="Enter quest name"
                 name="text"
+                value={name}
                 required
             />
             <div className={styled.date}>
-                {/* <input
-                // className={styled.card_input__date}
-                type="text"
-                
-                /> */}
-                {/* <button className={styled.card_btn__icon}> */}
-                <DatePicker onChange={onChange} value={value}/>
-                {/* </button> */}
+          
+                <DatePicker className={styled.date_picker} selected={value} value={value}
+                      onChange={handleChange}/>
             </div>
             </div>
             <div className={styled.card_block}>
@@ -104,10 +118,9 @@ function Card() {
             </div>
         </div>
       </li>            
-    </div>
+    </>
   );
-  
-};
+} 
 
 const colourStyles = {
   control: styles => ({ ...styles, backgroundColor: 'white', border:'none' }),
@@ -141,6 +154,7 @@ const colourStyles = {
   placeholder: styles => ({ ...styles, ...dot() }),
   singleValue: (styles, { data }) => ({ ...styles, ...dot(data.color) }),
 };
+
 
 
 const Option = (props: OptionProps) => {

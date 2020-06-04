@@ -62,7 +62,12 @@
     background-repeat: no-repeat;
     width: 22px;
     height: 21px;
+    fill:red
 }
+
+/* .star_icon:hover {
+    fill:#00d7ff
+} */
 
 /* CardChallenge */
 .trophy_icon {
@@ -107,6 +112,12 @@
     background-color: initial;
 }
 
+.date_picker > div > button:nth-child(2) {
+    border: 1px solid red;
+    display: none;
+    /* visibility: hidden;
+    width: 0; */
+}
 /* CardChallenge */
 .card_challenge {
     font-size: 13px;
@@ -258,7 +269,3 @@ margin-bottom: 2px;
     }
   }
 
-
-.react-date-picker__inputGroup {
-    
-}
