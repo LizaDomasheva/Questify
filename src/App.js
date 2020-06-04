@@ -13,6 +13,11 @@ function App() {
         <Route exact path="/dashboard" component={DashboardPage} />
         <Redirect to="/" />
       </Switch>
+      {/* <Header />
+      <Card/>
+      <CardChallenge/>
+      <CompletedChallenge/>
+      <CompletedModal/> */}
     </div>
   );
 }
