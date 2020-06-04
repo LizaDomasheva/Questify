@@ -96,35 +96,15 @@
     border-bottom: 1px solid #00d7ff;
 }
 
-.card_input__date {
-    border: none;
-    outline: none;
-    text-align: center;
-    font-family: HelveticaNeueCyr,sans-serif;
-    font-size: 15px;
-    color: #b9c3c8;
-    cursor: pointer;
-    background-color: initial;
-}
-
-/* CardChallenge */
-.card_challenge {
-    font-size: 13px;
-    line-height: 11px;
-    color: #7b8aa4;
-    font-family: "HelveticaNeueCyr";
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 9px;
-}
-
-.card_title{
-font-size: 18px;
-letter-spacing: 1px;
-line-height: 21px;
-color: #ffffff;
-font-family: "HelveticaNeueCyr";
-font-weight: bold;
+.date div{
+   border: none;
+   box-shadow: none;
+   outline: none;
+   text-align: center;
+   font-family: HelveticaNeueCyr,sans-serif;
+   font-size: 15px;
+   color: #b9c3c8;
+   cursor: pointer;
 text-align: center;
 margin-bottom: 2px;
 }
@@ -259,6 +239,6 @@ margin-bottom: 2px;
   }
 
 
-.react-date-picker__inputGroup {
+.react-date-picker__inputGroup div{
     
 }
