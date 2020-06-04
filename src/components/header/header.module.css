@@ -49,6 +49,11 @@
     font-size: 0px;
 }
 
+.userText::first-letter {
+    text-transform: uppercase;
+}
+
+
 .trophy {
     background-image: url(../../assets/images/icons/trophy/trophy.png);
     width: 22px;
