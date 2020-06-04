@@ -22,9 +22,9 @@ const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
-  middleware: getDefaultMiddleware({
+  middleware: [...getDefaultMiddleware({
     serializableCheck: false,
-  }),
+  })],
 });
 
 export const persistor = persistStore(store);

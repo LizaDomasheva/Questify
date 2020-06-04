@@ -18,7 +18,9 @@ const filterDataTime = data => {
   let tomorrow = [];
   let allTheRest = [];
   let doneNew = [];
-  const filtredData = data.reduce((acc, item) => {
+
+  const filtredData = data.reduce((acc, itemNew) => {
+    const item = {...itemNew, isEdit: false}
     const formatData = easydate('YMd', {
       setDate: `${item.dueDate}`,
       timeZone: 'utc',
