@@ -5,6 +5,7 @@ import Card from '../components/card/Card';
 import CardChallenge from '../components/card/CardChallenge';
 import {CompletedChallenge} from '../components/card/CompletedChallenge';
 import {CompletedModal} from '../components/card/CompletedModal';
+import CreateQuestButton from '../components/createQuestButton/createQuestButton';
 
 const DashboardPage = ({nickname, todayCard}) => {
 
@@ -15,6 +16,7 @@ const DashboardPage = ({nickname, todayCard}) => {
       <CardChallenge />
       <CompletedChallenge/>
       <CompletedModal/> 
+      <CreateQuestButton/>
     </>
   );
 };

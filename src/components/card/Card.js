@@ -140,7 +140,7 @@ const colourStyles = {
 };
 
 
-const Option = (props: OptionProps) => {
+const Option = (props) => {
   const {
     children,
     className,
