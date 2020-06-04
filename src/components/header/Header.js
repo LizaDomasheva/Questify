@@ -1,11 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import css from "./header.module.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import css from './header.module.css';
 
-const Header = () => {
+const Header = ({ nickname }) => {
   const handleLogOut = () => {};
-
   const showChallengeCard = () => {};
+  let logoLetter = ''
+  if(nickname !== null) {
+    logoLetter = nickname.charAt(0).toUpperCase()
+  }
 
   return (
     <>
@@ -17,7 +20,7 @@ const Header = () => {
             {/* </Link> */}
             <div className={css.userWrap}>
               <div className={css.user}>
-                <span className={css.name}>I</span>
+                <span className={css.name}>{logoLetter}</span>
               </div>
               <p className={css.userText}>User's Quest Log</p>
             </div>
