@@ -88,3 +88,7 @@ export const postUser = () => (dispatch, getState) => {
     .catch(err => console.log('error = ', err));
   userSlice.actions.loginUser();
 };
+
+export const deleteCard = (id) => (dispatch) => {
+  axios.delete(`https://develop-questify.goit.co.ua/api/quests/${id}`)
+}
