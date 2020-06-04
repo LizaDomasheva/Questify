@@ -2,6 +2,8 @@ import React from "react";
 import styled from "./card.module.css";
 
 const Card = () => {
+
+  
   return (
     <div className={styled.card_list}>
       <li className={styled.card_border}>
