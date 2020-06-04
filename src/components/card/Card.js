@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "./card.module.css";
 
-const Card = () => {
+const Card = ({todayCard}) => {
+  console.log('todayCard :>> ', todayCard);
+  let tempCardName = [];
+  if (todayCard.length > 0) {
+   tempCardName = [todayCard[0].name, todayCard[0].dueDate]
+    console.log('tempCardName :>> ', tempCardName);
+  }
   return (
     <div className={styled.card_list}>
       <li className={styled.card_border}>
