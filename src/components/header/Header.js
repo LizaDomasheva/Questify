@@ -13,7 +13,7 @@ const Header = ({ nickname }) => {
   return (
     <>
       <div className={css.header}>
-        <div className={css.container}>
+        <div>
           <div className={css.wrap}>
             {/* <Link to='/'> */}
             <div className={css.logo}></div>
