@@ -31,8 +31,9 @@ function Card({ arr }) {
   };
   let star = isPriority ? styled.star_icon : styled.nostar_icon;
 
-  const changeColor = isPriority =>
-    isPriority ? styled.star_icon : styled.nostar_icon;
+  const changeColor = isPriority => {
+    return (star = isPriority ? styled.star_icon : styled.nostar_icon);
+  };
 
   const handleIsPriority = e => {
     console.log(e.target);
@@ -40,7 +41,8 @@ function Card({ arr }) {
     setCardState(prev => ({ ...prev, isPriority: !prev.isPriority }));
     console.log(isPriority);
     changeColor(cardState.isPriority);
-
+    console.log(cardState.isPriority);
+    const op = changeColor();
     // star = isPriority ? styled.star_icon : styled.nostar_icon;
   };
 
