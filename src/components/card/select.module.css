@@ -1,0 +1,100 @@
+.card_category  {
+    text-transform: uppercase;
+    font-family: HelveticaNeueCyr,sans-serif;
+    font-size: 11px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 0 60px 60px 0;
+    /* padding: 0 25px 0 0; */
+    border: none;
+    outline: none;
+    box-shadow: rgb(252, 242, 183) -22px 0px 0px 0px;
+    background-color: rgb(252, 242, 183);
+}
+
+.stuff_category {
+    box-shadow: rgb(236, 239, 241) -22px 0px 0px 0px;
+    background-color: rgb(236, 239, 241);
+
+}
+
+.learning_category {
+    box-shadow: rgb(252, 242, 183) -22px 0px 0px 0px;
+    background-color: rgb(252, 242, 183);
+}
+
+.health_category {
+    box-shadow: rgb(204, 247, 255) -22px 0px 0px 0px;
+    background-color: rgb(204, 247, 255);
+}
+
+.work_category {
+    box-shadow:rgb(211, 246, 206) -22px 0px 0px 0px;
+    background-color: rgb(211, 246, 206);
+}
+
+.leisure_category {
+    box-shadow: rgb(238, 216, 242) -22px 0px 0px 0px;
+    background-color: rgb(238, 216, 242);
+}
+
+.productivity_category {
+    box-shadow: rgb(209, 225, 246) -22px 0px 0px 0px;
+    background-color: rgb(209, 225, 246);
+}
+
+.social_category {
+    box-shadow: rgb(233, 192, 203) -22px 0px 0px 0px;
+    background-color: rgb(233, 192, 203);
+}
+
+.sport_category {
+    box-shadow:rgb(186, 241, 229) -22px 0px 0px 0px;
+    background-color: rgb(186, 241, 229);
+}
+
+
+.card_list {
+    width: 100px;
+    list-style: none;
+    padding: 0 12px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+
+.card_select {
+    font-family: HelveticaNeueCyr,sans-serif;
+    font-size: 15px;
+    color: #b6c4ca;
+}
+
+.card_select:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #0ed6ff;
+}
+
+.card_select:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #00d500;
+}
+
+.card_select:before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #ff0335;
+} 
