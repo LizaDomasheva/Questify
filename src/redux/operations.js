@@ -30,7 +30,6 @@ const filterDataTime = data => {
     switch (data) {
       case 'Today ':
         if (!item.done) {
-          console.log('item :>> ', item);
           today.push(item);
         }
         return (acc = { ...acc, today: today });
@@ -51,7 +50,7 @@ const filterDataTime = data => {
         return (acc = { ...acc, allTheRest: allTheRest });
     }
   }, {});
-  console.log('filtredData :>> ', filtredData);
+
   return filtredData;
 };
 
@@ -63,11 +62,11 @@ export const getUser = nickname => (dispatch, getState) => {
   axios
     .post(loginURL, nickname)
     .then(response => {
-      console.log('response = ', response.data.data.tasks);
+      // console.log('response = ', response.data.data.tasks);
       dispatch(userSlice.actions.loginUser(response.data.data.user));
       const filterDone = filterDataDone(response.data.data.tasks);
       const filterTime = filterDataTime(response.data.data.tasks);
-      console.log('filterTime :>> ', filterTime);
+      // console.log('filterTime :>> ', filterTime);
       dispatch(dashboardSlice.actions.filterCardReducer(filterDone));
       dispatch(dashboardSlice.actions.filterCardReducerToday(filterTime));
     })
@@ -75,11 +74,11 @@ export const getUser = nickname => (dispatch, getState) => {
 };
 
 export const postUser = () => (dispatch, getState) => {
-  console.log(getState());
+  // console.log(getState());
   const token = selectors.getToken(getState());
-  console.log(token);
+  // console.log(token);
   const name = selectors.getUser(getState());
-  console.log(typeof name);
+  // console.log(typeof name);
   // if (!nickname) {
   //   return;
   // }
@@ -100,7 +99,7 @@ export const postUser = () => (dispatch, getState) => {
       options,
     )
     .then(response => {
-      console.log('response = ', response);
+      // console.log('response = ', response);
 
       dispatch(userSlice.actions.refreshUser(response.data.data.success));
     })

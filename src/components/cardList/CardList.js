@@ -23,7 +23,6 @@ const CardList = ({ arr, challengeSendToUser }) => {
       isPriority,
       dueDate,
     }));
-    console.log('cardState.name', cardState);
   };
   const findId = e => {
     if (!e.target.closest('li').children) {
@@ -32,7 +31,7 @@ const CardList = ({ arr, challengeSendToUser }) => {
     const li = e.target.closest('li');
     const id = li.dataset.id;
     const findCard = arr.find(item => item._id === id);
-    console.log('findCard', findCard);
+
     changeCard(findCard);
   };
 

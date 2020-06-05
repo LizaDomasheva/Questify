@@ -20,15 +20,28 @@ function Card({ arr }) {
     dueDate: new Date(dueDate),
     isEdit: isEdit || null,
   };
-  console.log(initialState);
+
   const [cardState, setCardState] = useState(initialState);
   const changeName = ({ target: { name, value } }) => {
     setCardState(prev => ({ ...prev, [name]: value }));
-    console.log(cardState);
   };
 
   const handleChange = props => {
     setCardState(prev => ({ ...prev, dueDate: props }));
+  };
+  let star = isPriority ? styled.star_icon : styled.nostar_icon;
+
+  const changeColor = isPriority =>
+    isPriority ? styled.star_icon : styled.nostar_icon;
+
+  const handleIsPriority = e => {
+    console.log(e.target);
+    console.log(typeof isPriority);
+    setCardState(prev => ({ ...prev, isPriority: !prev.isPriority }));
+    console.log(isPriority);
+    changeColor(cardState.isPriority);
+
+    // star = isPriority ? styled.star_icon : styled.nostar_icon;
   };
 
   const dispatch = useDispatch();
@@ -50,9 +63,14 @@ function Card({ arr }) {
     <>
       <div className={styled.card_header}>
         <Select />
-
-        {isPriority && <div className={styled.star_icon}></div>}
+        {/* {isPriority ? (
+          <div className={styled.star_icon} onClick={handleIsPriority}></div>
+        ) : (
+          <div className={styled.nostar_icon} onClick={handleIsPriority}></div>
+        )} */}
+        <div className={star} onClick={handleIsPriority}></div>
       </div>
+
       <div className={styled.card_wrapper}>
         <div className={styled.card_container}>
           <input
