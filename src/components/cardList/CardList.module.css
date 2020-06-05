@@ -1,0 +1,117 @@
+.today {
+    display: grid;
+    grid-row-gap: 22px;
+    margin-bottom: 40px;
+    padding-top: 38px;
+}
+  
+.tomorrow {
+    display: grid;
+    grid-row-gap: 22px;
+    margin-bottom: 72px;
+}
+  
+.other {
+    display: grid;
+    grid-row-gap: 22px;
+    margin-bottom: 72px;
+}
+  
+.done {
+    display: grid;
+    grid-row-gap: 22px;
+    margin-bottom: 44px;
+}
+​
+@media all and (min-width: 768px) {
+    .container {
+      padding: 0 80px 0 80px;
+    }
+  
+    .today {
+      grid-template-areas:
+        'p p'
+        'card card';
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      grid-column-gap: 40px;
+      grid-row-gap: 28px;
+    }
+  
+    .tomorrow {
+      grid-template-areas:
+        'p p'
+        'card card';
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      grid-column-gap: 40px;
+    }
+  
+    .other {
+      grid-template-areas:
+        'p p'
+        'card card';
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      grid-column-gap: 40px;
+    }
+  
+    .done {
+      grid-template-areas:
+        'p p'
+        'card card';
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      grid-column-gap: 40px;
+      padding-bottom: 74px;
+    }
+  
+    .text {
+      grid-area: p;
+    }
+  }
+​
+  @media all and (min-width: 1280px) {
+    .container {
+      padding: 0 44px 0 44px;
+    }
+  
+    .today {
+      grid-template-areas:
+        'p p p'
+        'card card card';
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      grid-row-gap: 26px;
+    }
+  
+    .tomorrow {
+      grid-template-areas:
+        'p p p'
+        'card card card';
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      grid-row-gap: 26px;
+      margin-bottom: 66px;
+    }
+  
+    .alltherestlist {
+      grid-template-areas:
+        'p p p'
+        'card card card';
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      grid-row-gap: 26px;
+      margin-bottom: 66px;
+    }
+  
+    .done {
+      grid-template-areas:
+        'p p p'
+        'card card card';
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto;
+      grid-row-gap: 36px;
+      padding-bottom: 74px;
+    }
+  }
