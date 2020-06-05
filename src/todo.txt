@@ -1,1 +1,9 @@
 ToDo:
+- календарь
+- log out
+- дописать editCardReducer
+- отредактировать режим edit
+- стили
+- логин
+- challenge card 
+- persist
