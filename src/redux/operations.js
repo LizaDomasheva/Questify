@@ -6,7 +6,8 @@ import moment from 'moment';
 import * as selectors from './selectors';
 import { dashboardSlice } from './reducers/dashboardReducer';
 
-const loginURL = 'https://develop-questify.goit.co.ua/api/auth';
+// const loginURL = 'https://develop-questify.goit.co.ua/api/auth';
+const loginURL = 'https://questify.goit.co.ua/api/login';
 
 const filterDataDone = data => {
   const filtredData = data.filter(item => item.done);
