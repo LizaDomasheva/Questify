@@ -34,3 +34,10 @@ export const createCard = () => (dispatch, getState) => {
     })
     .catch((err) => console.warn(err));
 };
+
+export const changeCard = (_id, cardState) => (dispatch) => {
+  axios
+    .put(`https://questify.goit.co.ua/api/quests/${_id}`, cardState)
+    .then((response) => console.log("response", response.data.quest))
+    .catch((err) => console.warn(err));
+};

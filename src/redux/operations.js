@@ -1,20 +1,20 @@
-import { userSlice } from './reducers/userReducer';
-import axios from 'axios';
-import storage from 'redux-persist/lib/storage';
-import easydate from 'easydate';
-import moment from 'moment';
-import * as selectors from './selectors';
-import { dashboardSlice } from './reducers/dashboardReducer';
+import { userSlice } from "./reducers/userReducer";
+import axios from "axios";
+import storage from "redux-persist/lib/storage";
+import easydate from "easydate";
+import moment from "moment";
+import * as selectors from "./selectors";
+import { dashboardSlice } from "./reducers/dashboardReducer";
 
 // const loginURL = 'https://develop-questify.goit.co.ua/api/auth';
-const loginURL = 'https://questify.goit.co.ua/api/login';
+const loginURL = "https://questify.goit.co.ua/api/login";
 
-const filterDataDone = data => {
-  const filtredData = data.filter(item => item.done);
+const filterDataDone = (data) => {
+  const filtredData = data.filter((item) => item.done);
   return filtredData;
 };
 
-const filterDataTime = data => {
+const filterDataTime = (data) => {
   let today = [];
   let tomorrow = [];
   let allTheRest = [];
@@ -22,23 +22,23 @@ const filterDataTime = data => {
 
   const filtredData = data.reduce((acc, itemNew) => {
     const item = { ...itemNew, isEdit: false };
-    const formatData = easydate('YMd', {
+    const formatData = easydate("YMd", {
       setDate: `${item.dueDate}`,
-      timeZone: 'utc',
+      timeZone: "utc",
     });
     const data = moment().calendar(`${formatData}`).slice(0, 6);
     switch (data) {
-      case 'Today ':
+      case "Today ":
         if (!item.done) {
           today.push(item);
         }
         return (acc = { ...acc, today: today });
-      case 'Tomorr':
+      case "Tomorr":
         if (!item.done) {
           doneNew.push(item);
         }
         return (acc = { ...acc, doneNew: doneNew });
-      case 'Yester':
+      case "Yester":
         if (!item.done) {
           tomorrow.push(item);
         }
@@ -54,14 +54,14 @@ const filterDataTime = data => {
   return filtredData;
 };
 
-const setAuthToken = token => {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+const setAuthToken = (token) => {
+  axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 };
 
-export const getUser = nickname => (dispatch, getState) => {
+export const getUser = (nickname) => (dispatch, getState) => {
   axios
     .post(loginURL, nickname)
-    .then(response => {
+    .then((response) => {
       // console.log('response = ', response.data.data.tasks);
       dispatch(userSlice.actions.loginUser(response.data.data.user));
       const filterDone = filterDataDone(response.data.data.tasks);
@@ -70,7 +70,7 @@ export const getUser = nickname => (dispatch, getState) => {
       dispatch(dashboardSlice.actions.filterCardReducer(filterDone));
       dispatch(dashboardSlice.actions.filterCardReducerToday(filterTime));
     })
-    .catch(err => console.log('error = ', err));
+    .catch((err) => console.log("error = ", err));
 };
 
 export const postUser = () => (dispatch, getState) => {
@@ -92,18 +92,18 @@ export const postUser = () => (dispatch, getState) => {
 
   axios
     .post(
-      'https://develop-questify.goit.co.ua/api/user/me',
+      "https://develop-questify.goit.co.ua/api/user/me",
       {
-        nickname: 'nata',
+        nickname: "nata",
       },
-      options,
+      options
     )
-    .then(response => {
+    .then((response) => {
       // console.log('response = ', response);
 
       dispatch(userSlice.actions.refreshUser(response.data.data.success));
     })
-    .catch(err => console.log('error = ', err));
+    .catch((err) => console.log("error = ", err));
   userSlice.actions.refreshUser();
 };
 
