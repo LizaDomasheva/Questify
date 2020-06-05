@@ -20,8 +20,19 @@
 }
 /* //////////////////////// */
 
-.card_border:hover {
+/* .card_border:hover {
     border:1px solid #00d7ff;
+} */
+
+.card_active {
+    border: 2px solid #00d7ff;
+    width: 280px;
+    height: 265px;
+    /* border:1px solid rgb(194, 203, 207); */
+    border-radius: 11px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 3px 20px 0px rgba(0, 54, 91, 0.08);
+    margin-bottom: 25px; 
 }
 
 .card_header {

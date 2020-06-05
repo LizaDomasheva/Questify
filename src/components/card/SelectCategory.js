@@ -14,7 +14,6 @@ const SelectCategory = ({group}) => {
   //   setSelectOption(e.target.value)
   // }
 
-
     return(
 
  <select className={styled.card_category}>

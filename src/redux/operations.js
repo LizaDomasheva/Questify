@@ -18,7 +18,9 @@ const filterDataTime = data => {
   let tomorrow = [];
   let allTheRest = [];
   let doneNew = [];
-  const filtredData = data.reduce((acc, item) => {
+
+  const filtredData = data.reduce((acc, itemNew) => {
+    const item = {...itemNew, isEdit: false}
     const formatData = easydate('YMd', {
       setDate: `${item.dueDate}`,
       timeZone: 'utc',
@@ -88,3 +90,7 @@ export const postUser = () => (dispatch, getState) => {
     .catch(err => console.log('error = ', err));
   userSlice.actions.loginUser();
 };
+
+// export const deleteCard = (id) => (dispatch) => {
+//   axios.delete(`https://develop-questify.goit.co.ua/api/quests/${id}`)
+// }
