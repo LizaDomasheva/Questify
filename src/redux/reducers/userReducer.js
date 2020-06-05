@@ -7,6 +7,7 @@ export const userSlice = createSlice({
     nickname: null,
     dashboard: null,
     token: null,
+    success: false,
   },
   reducers: {
     loginUser: (state, { payload }) => ({
@@ -16,5 +17,8 @@ export const userSlice = createSlice({
       token: payload.token,
     }),
     logOutUser: (state, { payload }) => ({ ...state }),
+    refreshUser: (state, payload) => ({
+      nickname: payload.nickname,
+    }),
   },
 });

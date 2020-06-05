@@ -1,14 +1,16 @@
-import React from "react";
-import { connect, useDispatch } from "react-redux";
-import Header from "../components/header/Header";
-import CardList from "../components/cardList/CardList";
-import { useEffect, useState } from "react";
-import { getUser } from "../redux/operations";
-import { createCard } from "../redux/dashboardOperations";
+import React from 'react';
+import { connect, useDispatch } from 'react-redux';
+import Header from '../components/header/Header';
+import CardList from '../components/cardList/CardList';
+import { useEffect, useState } from 'react';
+import { getUser } from '../redux/operations';
+import { createCard } from '../redux/dashboardOperations';
+import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
+import styled from './DashboardPage.module.css'
 
 const DashboardPage = ({ nickname, todayCard, allTheRest }) => {
   const [editFlag, seteditFlag] = useState(false);
-  console.log("typeof(editFlag)", typeof editFlag);
+  console.log('typeof(editFlag)', typeof editFlag);
   const dispatch = useDispatch();
 
   const createNewCard = () => {
@@ -16,7 +18,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest }) => {
       dispatch(createCard());
       seteditFlag(true);
     }
-    console.log("editFlag", editFlag);
+    console.log('editFlag', editFlag);
   };
 
   useEffect(() => {
@@ -26,20 +28,25 @@ const DashboardPage = ({ nickname, todayCard, allTheRest }) => {
   return (
     <>
       <Header nickname={nickname} />
-      <h2>Today</h2>
+      <div className={styled.dashboard}>
+      <h3 className={styled.title}>TODAY</h3>
       {todayCard.length > 0 && <CardList arr={todayCard} />}
-      <h2>allTheRest</h2>
+      <h3 className={styled.title}>TOMORROW</h3>
+      <h3 className={styled.title}>DONE</h3>
+      <h3 className={styled.title}>ALL THE REST</h3>
       {allTheRest.length > 0 && <CardList arr={allTheRest} />}
-
+      </div>
       {/* <CardChallenge />
       <CompletedChallenge/>
       <CompletedModal/>  */}
-      <button onClick={() => createNewCard()}>CREATE NEW CARD</button>
-   </>
+      <CreateQuestButton onClick={createNewCard} />
+      {/* <button onClick={() => createNewCard()}>CREATE NEW CARD</button> */}
+    </>
+    // <button onClick={() => createNewCard()}>CREATE NEW CARD</button>
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   nickname: state.user.nickname,
   todayCard: state.dashboard.today,
   allTheRest: state.dashboard.allTheRest,
