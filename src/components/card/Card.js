@@ -5,8 +5,9 @@ import DatePicker from "react-date-picker";
 import Select from "react-select";
 import styled from "./card.module.css";
 import { useDispatch } from "react-redux";
-import SelectCategory from "./SelectCategory"
+import SelectCategory from "./SelectCategory";
 import { removeCard } from "../../redux/dashboardOperations";
+import DeleteQuestModal from './DeleteQuestModal'
 
 
 const initialState = {
@@ -45,12 +46,21 @@ function Card({ arr }) {
   // let [selectOption, setSelectOption] = useState(difficulty.toLowerCase());
   // console.log('selectOption', selectOption)
 
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
   const deleteCard = (_id) => {
-    dispatch(removeCard(_id))
+    dispatch(removeCard(_id));
   };
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = (e) => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <>
@@ -82,7 +92,7 @@ function Card({ arr }) {
         </div>
         <div className={styled.card_block}>
           <div className={styled.card_category}>
-            <SelectCategory group={group}/>
+            <SelectCategory group={group} />
           </div>
           <div className={styled.card_btn__create}>
             {/* <button className={styled.delete}></button> 
@@ -92,9 +102,17 @@ function Card({ arr }) {
             <button className={styled.save}></button>
             <div className={styled.strip}></div>
             <button
-              onClick={() => deleteCard(_id)}
+              // onClick={() => deleteCard(_id)}
+              onClick={() => showModal()}
               className={styled.delete}
             ></button>
+            {isModalOpen && (
+              <DeleteQuestModal
+                deleteCard={deleteCard}
+                id={_id}
+                closeModal={closeModal}
+              />
+            )}
             <div className={styled.strip}></div>
             <button className={styled.done}></button>
           </div>
@@ -103,6 +121,5 @@ function Card({ arr }) {
     </>
   );
 }
-
 
 export default Card;

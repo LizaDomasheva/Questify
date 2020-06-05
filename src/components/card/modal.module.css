@@ -1,0 +1,57 @@
+.wrap {
+    width: 280px;
+    height: 265px;
+    position: relative;
+    background: rgba(77, 77, 77, .5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 94%;
+    height: 94%;
+    border-radius: 10%;
+    margin: 0 auto;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.delete_box {
+    width: 240px;
+    height: 120px;
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 16px;
+    margin-top: 60px;
+}
+
+.title {
+    font-size: 20px;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.button_wrap {
+    margin-left: 44px;
+}
+
+.cancel {
+    font-weight: bold;
+    color: yellowgreen;
+    border: none;
+    background: none;
+    margin-right: 10px;
+}
+
+.delete {
+    font-weight: bold;
+    color: red;
+    border: none;
+    background: none;
+    margin-left: 10px;
+}
+
+@media (min-width: 1280px) {
+    .delete_box {
+        margin-top: 70px;
+    }
+}
