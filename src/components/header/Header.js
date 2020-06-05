@@ -13,7 +13,7 @@ const Header = ({ nickname }) => {
   return (
     <>
       <div className={css.header}>
-        <div>
+        <div >
           <div className={css.wrap}>
             {/* <Link to='/'> */}
             <div className={css.logo}></div>
@@ -22,7 +22,7 @@ const Header = ({ nickname }) => {
               <div className={css.user}>
                 <span className={css.name}>{logoLetter}</span>
               </div>
-              <p className={css.userText}>User's Quest Log</p>
+              <p className={css.userText}>{nickname}'s Quest Log</p>
             </div>
             <div className={css.iconsWrap}>
               <button
