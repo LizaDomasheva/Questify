@@ -7,24 +7,46 @@ import styled from "./card.module.css";
 import { useDispatch } from "react-redux";
 import SelectCategory from "./SelectCategory";
 import { removeCard } from "../../redux/dashboardOperations";
+<<<<<<< HEAD
 import DeleteQuestModal from "./DeleteQuestModal";
+=======
 
-function Card({ todayCard }) {
-  const optionHandleChange = (props) => {
-    setSelectOption(props);
-  };
+
+const initialState = {
+  name: null,
+  difficulty: null,
+  group: null,
+  isPriority: null,
+  dueDate: null,
+}
+
+function Card({ arr }) {
+  // const optionHandleChange = (props) => {
+  //   setSelectOption(props);
+  // };
+
+
+ const [cardState, setCardState] = useState(initialState);
+
+ const changeName = ({ target: { name, value } }) => {
+  setCardState((prev) => ({ ...prev, [name]: value }));
+};
+
+ 
+>>>>>>> ba6455757e1dcdb054ee4b3d08c0fe07bf462c50
+
 
   const handleChange = (props) => {
     setValue(props);
     // console.log('tempData', props)
   };
-  const tempCard = todayCard;
+  const tempCard = arr;
   // console.log("tempCard :>> ", tempCard.name);
   const { dueDate, name, isPriority, group, difficulty, _id } = tempCard;
   // console.log("id", _id);
   // console.log('difficulty', difficulty)
   let [value, setValue] = useState(new Date(dueDate));
-  let [selectOption, setSelectOption] = useState(difficulty.toLowerCase());
+  // let [selectOption, setSelectOption] = useState(difficulty.toLowerCase());
   // console.log('selectOption', selectOption)
 
   const dispatch = useDispatch();
@@ -56,10 +78,11 @@ function Card({ todayCard }) {
             className={styled.card_input}
             type="text"
             placeholder="Enter quest name"
-            name="text"
+            name="name"
             value={name}
             autoFocus
             required
+            onChange={changeName}
           />
           <div className={styled.date}>
             <DatePicker

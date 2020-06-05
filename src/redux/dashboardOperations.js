@@ -4,7 +4,7 @@ import { dashboardSlice } from "../redux/reducers/dashboardReducer";
 
 export const removeCard = (_id) => (dispatch) => {
   axios
-    .delete(`https://develop-questify.goit.co.ua/api/quests/${_id}`)
+    .delete(`https://questify.goit.co.ua/api/quests/${_id}`)
     .then((response) => {
       console.log("response-delete", response);
       if (response.data.success) {
@@ -19,7 +19,7 @@ export const createCard = () => (dispatch, getState) => {
   const userId = getUserId(getState());
   const newDate = new Date(Date.now());
   axios
-    .post("https://develop-questify.goit.co.ua/api/quests", {
+    .post("https://questify.goit.co.ua/api/quests", {
       userId: userId,
       name: " ",
       group: "STUFF",

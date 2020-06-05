@@ -5,7 +5,7 @@ import styled from "./card.module.css";
 
 
 
-function CardChallenge({todayCard}) {
+function CardChallenge({arr}) {
  
   
 const handleChange =(props)=>{
@@ -13,7 +13,7 @@ const handleChange =(props)=>{
     console.log('tempData', props)
   }
 
-  const tempCard = todayCard
+  const tempCard = arr
     const {dueDate, name, group}=tempCard
     // console.log('difficulty', difficulty)
     let [value, setValue] = useState(new Date(dueDate)) 
