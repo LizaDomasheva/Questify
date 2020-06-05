@@ -17,7 +17,7 @@ const initialState = {
   isPriority: null,
   dueDate: null,
 }
-
+git 
 function Card({ arr }) {
   // const optionHandleChange = (props) => {
   //   setSelectOption(props);
