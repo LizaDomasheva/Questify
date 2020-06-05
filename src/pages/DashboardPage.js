@@ -7,12 +7,13 @@ import CardChallenge from '../components/card/CardChallenge';
 import {CompletedChallenge} from '../components/card/CompletedChallenge';
 import {CompletedModal} from '../components/card/CompletedModal';
 
-const DashboardPage = ({nickname, todayCard}) => {
+const DashboardPage = ({nickname, todayCard, challengeSendToUser}) => {
 
   return (
     <>
       <Header nickname={nickname}/>
       {(todayCard.length > 0) && <CardList todayCard={todayCard}/>}
+   
       {/* <CardChallenge />
       <CompletedChallenge/>
       <CompletedModal/>  */}
@@ -22,7 +23,7 @@ const DashboardPage = ({nickname, todayCard}) => {
 
 const mapStateToProps = (state) => ({
   nickname: state.user.nickname,
-  todayCard:state.dashboard.done,
+  todayCard:state.dashboard.allTheRest,
 
 })
 
