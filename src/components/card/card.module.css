@@ -1,38 +1,55 @@
+.dashboard {
+    padding-top: 36px;
+}
+
+.title {
+    margin-bottom: 20px;
+    color: rgb(40, 40, 40);
+    text-transform: uppercase;
+    line-height: 0.733;
+    font-weight: 400;
+}
+
+
 .card_border {
     width: 280px;
     height: 265px;
-    border:1px solid rgb(194, 203, 207);
+    border: 1px solid rgb(194, 203, 207);
     border-radius: 11px;
     background-color: rgb(255, 255, 255);
     box-shadow: 0px 3px 20px 0px rgba(0, 54, 91, 0.08);
-    margin-bottom: 25px; 
-    
+    margin-bottom: 25px;
+}
+
+.card_list {
+    padding-top: 20px;
 }
 
 /* CardChallenge */
 .card_background {
     background-color: #20395a;
-    border:1px solid #20395a;
+    border: 1px solid #20395a;
     width: 280px;
     height: 265px;
     border-radius: 11px;
     margin-bottom: 25px;
 }
+
 /* //////////////////////// */
 
 .card_border:hover {
-    border:1px solid #00d7ff;
+    border: 1px solid #00d7ff;
 }
 
 .card_header {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 22px
 }
 
 .card_select {
-    font-family: HelveticaNeueCyr,sans-serif;
+    font-family: HelveticaNeueCyr, sans-serif;
     font-size: 15px;
     color: #b6c4ca;
 }
@@ -57,21 +74,27 @@
 } */
 
 .star_icon {
-    background-image:url(../../assets/images/icons/star/favourites-filled-star-symbol.svg);
+    background-image: url(../../assets/images/icons/star/favourites-filled-star-symbol.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 22px;
+    height: 21px;
+    fill: red
+}
+
+/* .star_icon:hover {
+    fill:#00d7ff
+} */
+
+/* CardChallenge */
+.trophy_icon {
+    background-image: url(../../assets/images/icons/trophy/trophy.svg);
     background-size: cover;
     background-repeat: no-repeat;
     width: 22px;
     height: 21px;
 }
 
-/* CardChallenge */
-.trophy_icon {
-    background-image:url(../../assets/images/icons/trophy/trophy.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 22px;
-    height: 21px;
-}
 /* ======================= */
 
 .card_container {
@@ -84,7 +107,7 @@
 .card_input {
     width: 250px;
     text-align: center;
-    font-family: HelveticaNeueCyr,sans-serif;
+    font-family: HelveticaNeueCyr, sans-serif;
     font-size: 23px;
     font-weight: 700;
     line-height: 28px;
@@ -100,11 +123,18 @@
     border: none;
     outline: none;
     text-align: center;
-    font-family: HelveticaNeueCyr,sans-serif;
+    font-family: HelveticaNeueCyr, sans-serif;
     font-size: 15px;
     color: #b9c3c8;
     cursor: pointer;
     background-color: initial;
+}
+
+.date_picker>div>button:nth-child(2) {
+    border: 1px solid red;
+    display: none;
+    /* visibility: hidden;
+    width: 0; */
 }
 
 /* CardChallenge */
@@ -118,16 +148,17 @@
     margin-bottom: 9px;
 }
 
-.card_title{
-font-size: 18px;
-letter-spacing: 1px;
-line-height: 21px;
-color: #ffffff;
-font-family: "HelveticaNeueCyr";
-font-weight: bold;
-text-align: center;
-margin-bottom: 2px;
+.card_title {
+    font-size: 18px;
+    letter-spacing: 1px;
+    line-height: 21px;
+    color: #ffffff;
+    font-family: "HelveticaNeueCyr";
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 2px;
 }
+
 /* ============================= */
 
 .card_btn__icon {
@@ -148,7 +179,7 @@ margin-bottom: 2px;
 
 .card_category {
     text-transform: uppercase;
-    font-family: HelveticaNeueCyr,sans-serif;
+    font-family: HelveticaNeueCyr, sans-serif;
     font-size: 11px;
     letter-spacing: 1px;
     color: #282828;
@@ -162,7 +193,7 @@ margin-bottom: 2px;
 }
 
 .card_block {
-    display:flex;
+    display: flex;
     justify-content: space-between;
     padding: 22px;
 }
@@ -188,7 +219,7 @@ margin-bottom: 2px;
 .start {
     text-transform: uppercase;
     color: #00d7ff;
-    font-family: HelveticaNeueCyr,sans-serif;
+    font-family: HelveticaNeueCyr, sans-serif;
     font-size: 18px;
     cursor: pointer;
     position: relative;
@@ -196,7 +227,7 @@ margin-bottom: 2px;
     background-color: initial;
 }
 
-.strip {    
+.strip {
     width: 2px;
     height: 30px;
     background-color: #e5e6e7;
@@ -228,20 +259,74 @@ margin-bottom: 2px;
 @media (min-width: 768px) {
     .card_list {
         display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;   
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: wrap;
     }
 
-  }
-  
-  @media (min-width: 1280px) {
+    .card_border {
+        margin-right: 80px;
+    }
+
+    .doneFigure {
+        position: relative;
+    }
+
+    .doneFigure::after {
+        content: '';
+        position: absolute;
+        left: 70px;
+        bottom: 3px;
+        border: 7px solid transparent;
+        border-bottom: 7px solid var(--easy-color);
+    }
+
+    .doneLine {
+        /* position: relative; */
+        position: absolute;
+        height: 1px;
+        background-image: linear-gradient(90deg, rgb(185, 195, 200), rgb(185, 195, 200) 75%, transparent 75%, transparent 100%);
+        background-size: 10px 1px;
+        border: none;
+        width: 80%;
+        margin-left: 100px;
+        margin-top: 10px;
+        bottom: 5px;
+
+    }
+
+    .doneLine::before {
+        /* content: '';
+        position: absolute;
+        height: 1px;
+  background-image: linear-gradient(90deg, #000, #000 75%, transparent 75%, transparent 100%);
+  background-size: 20px 1px;
+  border: none; */
+        /* border: 3px dashed rgb(185, 195, 200);
+        border-width: 0.5px;
+        border-color: rgb(185, 195, 200);
+        border-style: dashed;
+        opacity: 0.502;
+        left: 100px;
+        top: 5px;
+        width: 80%; */
+    }
+
+}
+
+@media (min-width: 1280px) {
+    .card_list {
+        display: flex;
+        width: 100%;
+    }
+
     .card_border {
         width: 315px;
         height: 292px;
     }
 
     .card_list {
-        justify-content: space-between;          
+        justify-content: flex-start;
     }
 
     .card_wrapper {
@@ -251,14 +336,9 @@ margin-bottom: 2px;
     .date_challenge {
         margin-bottom: 42px;
     }
-    
+
     .card_background {
         width: 315px;
         height: 292px;
     }
-  }
-
-
-.react-date-picker__inputGroup {
-    
 }

@@ -1,7 +1,7 @@
 .createButton {
     position: fixed;
     bottom: 20px;
-    right: 20px;
+    right: 10%;
   
     width: 50px;
     height: 50px;
@@ -22,7 +22,7 @@
   }
   
   .passive__button {
-    background-color: #96999b;
+    background-color: var(--easy-color);
   }
   
   .createButton:hover {
@@ -31,4 +31,11 @@
   
   .createButton:active {
     box-shadow: inset 2px 2px 2px 2px hsla(0, 0%, 0%, 0.2);
+  }
+
+
+  @media (min-width: 768px) {
+    .createButton {
+      right: 10%px;
+    }
   }
