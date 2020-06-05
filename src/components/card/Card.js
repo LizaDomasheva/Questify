@@ -9,36 +9,29 @@ import SelectCategory from './SelectCategory';
 import { removeCard } from '../../redux/dashboardOperations';
 import DeleteQuestModal from './DeleteQuestModal';
 
-const initialState = {
-  name: null,
-  difficulty: null,
-  group: null,
-  isPriority: null,
-  dueDate: null,
-};
-
+// const [cardName, setCardState] = useState({name: null})
 function Card({ arr }) {
+  const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
+  const initialState = {
+    name: name,
+    difficulty: difficulty,
+    group: group,
+    isPriority: isPriority,
+    dueDate: new Date(dueDate),
+    isEdit: isEdit || null,
+  };
+  console.log(initialState);
   const [cardState, setCardState] = useState(initialState);
-
   const changeName = ({ target: { name, value } }) => {
     setCardState(prev => ({ ...prev, [name]: value }));
+    console.log(cardState);
   };
 
   const handleChange = props => {
-    setValue(props);
-    // console.log('tempData', props)
+    setCardState(prev => ({ ...prev, dueDate: props }));
   };
-  const tempCard = arr;
-  // console.log("tempCard :>> ", tempCard.name);
-  const { dueDate, name, isPriority, group, difficulty, _id } = tempCard;
-  // console.log("id", _id);
-  // console.log('difficulty', difficulty)
-  let [value, setValue] = useState(new Date(dueDate));
-  // let [selectOption, setSelectOption] = useState(difficulty.toLowerCase());
-  // console.log('selectOption', selectOption)
 
   const dispatch = useDispatch();
-
   const deleteCard = _id => {
     dispatch(removeCard(_id));
   };
@@ -67,7 +60,7 @@ function Card({ arr }) {
             type="text"
             placeholder="Enter quest name"
             name="name"
-            value={name}
+            value={cardState.name}
             autoFocus
             required
             onChange={changeName}
@@ -75,8 +68,8 @@ function Card({ arr }) {
           <div className={styled.date}>
             <DatePicker
               className={styled.date_picker}
-              selected={value}
-              value={value}
+              selected={cardState.dueDate}
+              value={cardState.dueDate}
               onChange={handleChange}
             />
           </div>
