@@ -21,7 +21,7 @@ const filterDataTime = data => {
   let doneNew = [];
 
   const filtredData = data.reduce((acc, itemNew) => {
-    const item = {...itemNew, isEdit: false}
+    const item = { ...itemNew, isEdit: false };
     const formatData = easydate('YMd', {
       setDate: `${item.dueDate}`,
       timeZone: 'utc',
@@ -30,16 +30,18 @@ const filterDataTime = data => {
     switch (data) {
       case 'Today ':
         if (!item.done) {
-        console.log('item :>> ', item);
-        today.push(item)}
+          today.push(item);
+        }
         return (acc = { ...acc, today: today });
       case 'Tomorr':
         if (!item.done) {
-        doneNew.push(item)}
+          doneNew.push(item);
+        }
         return (acc = { ...acc, doneNew: doneNew });
       case 'Yester':
         if (!item.done) {
-        tomorrow.push(item)}
+          tomorrow.push(item);
+        }
         return (acc = { ...acc, tomorrow: tomorrow });
       default:
         if (!item.done) {
@@ -48,7 +50,7 @@ const filterDataTime = data => {
         return (acc = { ...acc, allTheRest: allTheRest });
     }
   }, {});
-  console.log('filtredData :>> ', filtredData);
+
   return filtredData;
 };
 
@@ -56,40 +58,53 @@ const setAuthToken = token => {
   axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 };
 
-export const getUser = nickname => dispatch => {
+export const getUser = nickname => (dispatch, getState) => {
   axios
     .post(loginURL, nickname)
     .then(response => {
-      console.log('response = ', response.data.data.tasks);
+      // console.log('response = ', response.data.data.tasks);
       dispatch(userSlice.actions.loginUser(response.data.data.user));
       const filterDone = filterDataDone(response.data.data.tasks);
       const filterTime = filterDataTime(response.data.data.tasks);
-      console.log('filterTime :>> ', filterTime);
+      // console.log('filterTime :>> ', filterTime);
       dispatch(dashboardSlice.actions.filterCardReducer(filterDone));
       dispatch(dashboardSlice.actions.filterCardReducerToday(filterTime));
     })
     .catch(err => console.log('error = ', err));
-  userSlice.actions.loginUser();
 };
-console.log(storage.getItem('user'));
 
 export const postUser = () => (dispatch, getState) => {
+  // console.log(getState());
   const token = selectors.getToken(getState());
+  // console.log(token);
+  const name = selectors.getUser(getState());
+  // console.log(typeof name);
+  // if (!nickname) {
+  //   return;
+  // }
+  // userSlice.actions.refreshUser();
+  // setAuthToken(token);
+  const options = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 
-  if (!token) {
-    return;
-  }
-
-  setAuthToken(token);
   axios
-    .post('https://develop-questify.goit.co.ua//api/user/me')
+    .post(
+      'https://develop-questify.goit.co.ua/api/user/me',
+      {
+        nickname: 'nata',
+      },
+      options,
+    )
     .then(response => {
-      console.log('response = ', response.data.data.user);
-      //   setAuthToken(response.data.data.user.token);
-      dispatch(userSlice.actions.loginUser(response.data.data.user));
+      // console.log('response = ', response);
+
+      dispatch(userSlice.actions.refreshUser(response.data.data.success));
     })
     .catch(err => console.log('error = ', err));
-  userSlice.actions.loginUser();
+  userSlice.actions.refreshUser();
 };
 
 // export const deleteCard = (id) => (dispatch) => {

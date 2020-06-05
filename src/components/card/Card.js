@@ -1,58 +1,59 @@
-import React, { useState } from "react";
-import chroma from "chroma-js";
-import { css } from "emotion";
-import DatePicker from "react-date-picker";
-import Select from "react-select";
-import styled from "./card.module.css";
-import { useDispatch } from "react-redux";
-import SelectCategory from "./SelectCategory";
-import { removeCard } from "../../redux/dashboardOperations";
-import DeleteQuestModal from './DeleteQuestModal'
+import React, { useState } from 'react';
+import chroma from 'chroma-js';
+import { css } from 'emotion';
+import DatePicker from 'react-date-picker';
+import Select from 'react-select';
+import styled from './card.module.css';
+import { useDispatch } from 'react-redux';
+import SelectCategory from './SelectCategory';
+import { removeCard } from '../../redux/dashboardOperations';
+import DeleteQuestModal from './DeleteQuestModal';
 
-
-const initialState = {
-  name: null,
-  difficulty: null,
-  group: null,
-  isPriority: null,
-  dueDate: null,
-}
-git 
+// const [cardName, setCardState] = useState({name: null})
 function Card({ arr }) {
-  // const optionHandleChange = (props) => {
-  //   setSelectOption(props);
-  // };
-
-
- const [cardState, setCardState] = useState(initialState);
-
- const changeName = ({ target: { name, value } }) => {
-  setCardState((prev) => ({ ...prev, [name]: value }));
-};
-
- 
-
-  const handleChange = (props) => {
-    setValue(props);
+  const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
+  const initialState = {
+    name: name,
+    difficulty: difficulty,
+    group: group,
+    isPriority: isPriority,
+    dueDate: new Date(dueDate),
+    isEdit: isEdit || null,
   };
-  const tempCard = arr;
-  // console.log("tempCard :>> ", tempCard.name);
-  const { dueDate, name, isPriority, group, difficulty, _id } = tempCard;
-  // console.log("id", _id);
-  // console.log('difficulty', difficulty)
-  let [value, setValue] = useState(new Date(dueDate));
-  // let [selectOption, setSelectOption] = useState(difficulty.toLowerCase());
-  // console.log('selectOption', selectOption)
+
+  const [cardState, setCardState] = useState(initialState);
+  const changeName = ({ target: { name, value } }) => {
+    setCardState(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleChange = props => {
+    setCardState(prev => ({ ...prev, dueDate: props }));
+  };
+  let star = isPriority ? styled.star_icon : styled.nostar_icon;
+
+  const changeColor = isPriority => {
+    return (star = isPriority ? styled.star_icon : styled.nostar_icon);
+  };
+
+  const handleIsPriority = e => {
+    console.log(e.target);
+    console.log(typeof isPriority);
+    setCardState(prev => ({ ...prev, isPriority: !prev.isPriority }));
+    console.log(isPriority);
+    changeColor(cardState.isPriority);
+    console.log(cardState.isPriority);
+    const op = changeColor();
+    // star = isPriority ? styled.star_icon : styled.nostar_icon;
+  };
 
   const dispatch = useDispatch();
-
-  const deleteCard = (_id) => {
+  const deleteCard = _id => {
     dispatch(removeCard(_id));
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = (e) => {
+  const showModal = e => {
     setIsModalOpen(true);
   };
 
@@ -64,9 +65,14 @@ function Card({ arr }) {
     <>
       <div className={styled.card_header}>
         <Select />
-
-        {isPriority && <div className={styled.star_icon}></div>}
+        {/* {isPriority ? (
+          <div className={styled.star_icon} onClick={handleIsPriority}></div>
+        ) : (
+          <div className={styled.nostar_icon} onClick={handleIsPriority}></div>
+        )} */}
+        <div className={star} onClick={handleIsPriority}></div>
       </div>
+
       <div className={styled.card_wrapper}>
         <div className={styled.card_container}>
           <input
@@ -74,7 +80,7 @@ function Card({ arr }) {
             type="text"
             placeholder="Enter quest name"
             name="name"
-            value={name}
+            value={cardState.name}
             autoFocus
             required
             onChange={changeName}
@@ -82,8 +88,8 @@ function Card({ arr }) {
           <div className={styled.date}>
             <DatePicker
               className={styled.date_picker}
-              selected={value}
-              value={value}
+              selected={cardState.dueDate}
+              value={cardState.dueDate}
               onChange={handleChange}
             />
           </div>
@@ -102,8 +108,7 @@ function Card({ arr }) {
             <button
               // onClick={() => deleteCard(_id)}
               onClick={() => showModal()}
-              className={styled.delete}
-            ></button>
+              className={styled.delete}></button>
             {isModalOpen && (
               <DeleteQuestModal
                 deleteCard={deleteCard}

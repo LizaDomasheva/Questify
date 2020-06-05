@@ -1,0 +1,11 @@
+.title {
+    margin-bottom: 20px;
+    color: rgb(40, 40, 40);
+    text-transform: uppercase;
+    line-height: 0.733;
+    font-weight: 400;
+}
+
+.dashboard {
+    padding-top: 36px;
+}
