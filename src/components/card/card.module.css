@@ -107,12 +107,65 @@
     background-color: initial;
 }
 
+.date_picker > div{
+    border: none;
+}
+
+.date_picker > div> div> input {
+    border: none;
+    outline: none;
+    text-align: center;
+    font-family: HelveticaNeueCyr,sans-serif;
+    font-size: 15px;
+    color: #b9c3c8;
+    cursor: pointer;
+}
+
+.date_picker > div> div> span{
+    color: #b9c3c8;
+}
+
+.date_picker > span> div {
+    position: absolute;
+    width: 250px;
+    padding: 4px;
+    margin-top: 1px;
+    z-index: 99999!important;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+    border: 1px solid #f9f9f9;
+}
+
+.date_picker > span> div> div> div> div> div> div> div> button .calendar__tile--now {
+ background: green;
+
+}
+
+
+
 .date_picker > div > button:nth-child(2) {
+    display: none;
     border: 1px solid red;
     /* display: none; */
     visibility: hidden;
     width: 0;
 }
+
+.date_picker > div > button:nth-child(3) {
+    border: none;
+    background-image: url(../../assets/images/icons/calendar/baseline-date_range-24px.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 17px;
+    outline: none;
+}
+
+.date_picker > div > button> svg{
+    display: none;  
+}
+
+
 /* CardChallenge */
 .card_challenge {
     font-size: 13px;
@@ -136,7 +189,7 @@ margin-bottom: 2px;
 }
 /* ============================= */
 
-.card_btn__icon {
+/* .card_btn__icon {
     width: 16px;
     height: 17px;
     outline: none;
@@ -150,7 +203,7 @@ margin-bottom: 2px;
     background-image: url(../../assets/images/icons/calendar/baseline-date_range-24px.svg);
     background-size: cover;
     background-repeat: no-repeat;
-}
+} */
 
 .card_block {
     display:flex;
