@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import SelectCategory from './SelectCategory';
 import { removeCard } from '../../redux/dashboardOperations';
 import DeleteQuestModal from './DeleteQuestModal';
+import easydate from 'easydate';
 
 // const [cardName, setCardState] = useState({name: null})
 function Card({ arr }) {
@@ -17,7 +18,7 @@ function Card({ arr }) {
     difficulty: difficulty,
     group: group,
     isPriority: isPriority,
-    dueDate: new Date(dueDate),
+    dueDate: easydate('Y/M/d', {setDate:dueDate}),
     isEdit: isEdit || null,
   };
 
@@ -28,6 +29,11 @@ function Card({ arr }) {
 
   const handleChange = props => {
     setCardState(prev => ({ ...prev, dueDate: props }));
+    console.log('cardState :>> ', easydate('Y/M/d', {setDate:dueDate}));
+    // Sat Jun 06 2020 00:00:00 GMT+0300 (Восточная Европа, летнее время)
+    // 2020-10-07T07:47:24.242Z
+    // 2014/02/08
+    // easydate('d/M/y', {setDate: '2016-10-01T00:00:00.000Z', timeZone: 'utc'})
   };
   let star = isPriority ? styled.star_icon : styled.nostar_icon;
 
