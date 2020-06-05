@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import styles from './CreateQuestButton.module.css';
 
 function CreateQuestButton({ handleClick, isOpen }) {
+  console.log('handleClick :>> ', handleClick);
     return (
       <button 
       // className={styles.createButton}

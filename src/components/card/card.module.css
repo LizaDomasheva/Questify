@@ -22,7 +22,7 @@
 }
 
 .card_list {
-    padding-top: 20px;
+    /* padding-top: 20px; */
 }
 
 /* CardChallenge */
@@ -39,6 +39,20 @@
 
 .card_border:hover {
     border: 1px solid #00d7ff;
+    /* .card_border:hover {
+    border:1px solid #00d7ff;
+} */
+}
+
+.card_active {
+    border: 2px solid #00d7ff;
+    width: 280px;
+    height: 265px;
+    /* border:1px solid rgb(194, 203, 207); */
+    border-radius: 11px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 3px 20px 0px rgba(0, 54, 91, 0.08);
+    margin-bottom: 25px;
 }
 
 .card_header {
@@ -258,14 +272,22 @@
 
 @media (min-width: 768px) {
     .card_list {
-        display: flex;
+        display: block;
+        /* display: flex; */
         width: 100%;
-        justify-content: flex-start;
-        flex-wrap: wrap;
+        /* justify-content: space-between; */
+        /* flex-wrap: wrap; */
     }
 
     .card_border {
-        margin-right: 80px;
+        display: inline-block;
+        /* margin-right: 100px; */
+        width: 282px;
+        margin-right: 88px;
+    }
+
+    .card_border:nth-child(even) {
+        margin-right: 0px;
     }
 
     .doneFigure {
@@ -315,18 +337,31 @@
 }
 
 @media (min-width: 1280px) {
+    .title {
+        margin-bottom: 22px;
+    }
+
     .card_list {
-        display: flex;
-        width: 100%;
+        /* display: flex;
+        width: 100%; */
+    }
+
+    .card_border:nth-child(even) {
+        margin-right: 70px;
     }
 
     .card_border {
         width: 315px;
         height: 292px;
+        margin-right: 70px;
+    }
+
+    .card_border:nth-child(3n+3) {
+        margin-right: 0px;
     }
 
     .card_list {
-        justify-content: flex-start;
+        justify-content: space-between;
     }
 
     .card_wrapper {
