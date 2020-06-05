@@ -134,18 +134,7 @@
     border: 1px solid #f9f9f9;
 }
 
-<<<<<<< HEAD
-.date_picker>span>div>div>div>div>div>div>div>button .calendar__tile--now {
-    background: green;
-
-}
-
-
-
-.date_picker>div>button:nth-child(2) {
-=======
 .date_picker > div > button:nth-child(2) {
->>>>>>> ba6455757e1dcdb054ee4b3d08c0fe07bf462c50
     display: none;
     border: 1px solid red;
     /* display: none; */

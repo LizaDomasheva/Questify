@@ -7,9 +7,7 @@ import styled from "./card.module.css";
 import { useDispatch } from "react-redux";
 import SelectCategory from "./SelectCategory";
 import { removeCard } from "../../redux/dashboardOperations";
-<<<<<<< HEAD
-import DeleteQuestModal from "./DeleteQuestModal";
-=======
+import DeleteQuestModal from './DeleteQuestModal'
 
 
 const initialState = {
@@ -33,7 +31,6 @@ function Card({ arr }) {
 };
 
  
->>>>>>> ba6455757e1dcdb054ee4b3d08c0fe07bf462c50
 
 
   const handleChange = (props) => {
