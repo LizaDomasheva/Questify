@@ -1,4 +1,23 @@
-.createButton {
+.Button {
+  border-radius: 50%;
+  background-color: rgb(255, 133, 28);
+  color: #fff;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+  border: none;
+  font-size: 40px;
+  position: fixed;
+  bottom: 0px;
+  right: 30px;
+  padding-bottom: 10px;
+}
+
+.Button:hover,
+.Button:focus {
+  background-color: rgb(0, 216, 255);
+}
+/* .createButton {
     position: fixed;
     bottom: 20px;
     right: 10%;
@@ -38,4 +57,4 @@
     .createButton {
       right: 10%px;
     }
-  }
+  } */
