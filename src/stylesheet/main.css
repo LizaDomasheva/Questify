@@ -54,6 +54,11 @@ button:focus {
   .container {
     width: 85%;
   }
+
+  /* .header {
+    height: 80px;
+} */
+
 }
 
 @media (min-width: 1280px) {
