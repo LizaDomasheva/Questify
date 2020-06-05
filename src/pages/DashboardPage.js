@@ -1,14 +1,14 @@
-import React from "react";
-import { connect, useDispatch } from "react-redux";
-import Header from "../components/header/Header";
-import CardList from "../components/cardList/CardList";
-import { useEffect, useState } from "react";
-import { getUser } from "../redux/operations";
-import { createCard } from "../redux/dashboardOperations";
+import React from 'react';
+import { connect, useDispatch } from 'react-redux';
+import Header from '../components/header/Header';
+import CardList from '../components/cardList/CardList';
+import { useEffect, useState } from 'react';
+import { getUser } from '../redux/operations';
+import { createCard } from '../redux/dashboardOperations';
 
 const DashboardPage = ({ nickname, todayCard, allTheRest }) => {
   const [editFlag, seteditFlag] = useState(false);
-  console.log("typeof(editFlag)", typeof editFlag);
+  console.log('typeof(editFlag)', typeof editFlag);
   const dispatch = useDispatch();
 
   const createNewCard = () => {
@@ -16,7 +16,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest }) => {
       dispatch(createCard());
       seteditFlag(true);
     }
-    console.log("editFlag", editFlag);
+    console.log('editFlag', editFlag);
   };
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   nickname: state.user.nickname,
   todayCard: state.dashboard.today,
   allTheRest: state.dashboard.allTheRest,
