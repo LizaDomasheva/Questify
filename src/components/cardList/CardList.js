@@ -6,7 +6,7 @@ import CardChallenge from '../card/CardChallenge';
 const CardList = ({todayCard}) => {
     return (
         <ul className={styled.card_list}>
-            {todayCard.map(card=><li key={card._id}>
+            {todayCard.map(card=><li data-id={card._id} key={card._id} className={card.isEdit ? styled.card_active : styled.card_border}>
                 <Card todayCard={card}/>
                 {/* {challengeSendToUser &&  
                 <CardChallenge todayCard={card}/> } */}
