@@ -4,19 +4,11 @@ import styled from '../card/select.module.css'
 
 
 
-const SelectCategory = ({group}) => {
-  // console.log('group', group)
-
-  // let [selectOption, setSelectOption] = useState(group) 
-  // console.log('selectOption', selectOption)
-
-  // const gethandleChange =(e)=>{
-  //   setSelectOption(e.target.value)
-  // }
+const SelectCategory = () => {
 
     return(
 
- <select className={styled.card_category}>
+ <select className={styled.card_category} >
     <option value="stuff">STUFF</option>
     <option value="learning" className={styled.learning_category}>LEARNING</option>
     <option value="health" className={styled.health_category}>HEALTH</option>
