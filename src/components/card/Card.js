@@ -15,6 +15,7 @@ const initialState = {
   group: null,
   isPriority: null,
   dueDate: null,
+  defaultSelectColor: 'card_category'
 }
 
 function Card({ arr }) {
@@ -28,9 +29,10 @@ function Card({ arr }) {
  const changeName = ({ target: { name, value } }) => {
   setCardState((prev) => ({ ...prev, [name]: value }));
 };
-
- 
-
+const onSelectChange = (value) => {
+  console.log(cardState)
+  setCardState((prev) => ({ ...prev, defaultSelectColor: value + '_category' }));
+}
 
   const handleChange = (props) => {
     setValue(props);
@@ -56,7 +58,6 @@ function Card({ arr }) {
     <>
       <div className={styled.card_header}>
         <Select />
-
         {isPriority && <div className={styled.star_icon}></div>}
       </div>
       <div className={styled.card_wrapper}>
@@ -82,7 +83,10 @@ function Card({ arr }) {
         </div>
         <div className={styled.card_block}>
           <div className={styled.card_category}>
-            <SelectCategory group={group}/>
+            <SelectCategory
+              defaultSelectColor={cardState.defaultSelectColor}
+              onSelectChange={event => onSelectChange(event.target.value)}
+              group={group}/>
           </div>
           <div className={styled.card_btn__create}>
             {/* <button className={styled.delete}></button> 
