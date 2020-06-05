@@ -65,7 +65,7 @@ const CardList = ({ arr, challengeSendToUser }) => {
     }));
   };
   const findId = e => {
-    if (!e.target.closest('li').children) {
+    if (!e.target.closest('li')) {
       return;
     }
     const li = e.target.closest('li');
