@@ -9,23 +9,40 @@ import SelectCategory from "./SelectCategory"
 import { removeCard } from "../../redux/dashboardOperations";
 
 
+const initialState = {
+  name: null,
+  difficulty: null,
+  group: null,
+  isPriority: null,
+  dueDate: null,
+}
 
-function Card({ todayCard }) {
-  const optionHandleChange = (props) => {
-    setSelectOption(props);
-  };
+function Card({ arr }) {
+  // const optionHandleChange = (props) => {
+  //   setSelectOption(props);
+  // };
+
+
+ const [cardState, setCardState] = useState(initialState);
+
+ const changeName = ({ target: { name, value } }) => {
+  setCardState((prev) => ({ ...prev, [name]: value }));
+};
+
+ 
+
 
   const handleChange = (props) => {
     setValue(props);
     // console.log('tempData', props)
   };
-  const tempCard = todayCard;
+  const tempCard = arr;
   // console.log("tempCard :>> ", tempCard.name);
   const { dueDate, name, isPriority, group, difficulty, _id } = tempCard;
   // console.log("id", _id);
   // console.log('difficulty', difficulty)
   let [value, setValue] = useState(new Date(dueDate));
-  let [selectOption, setSelectOption] = useState(difficulty.toLowerCase());
+  // let [selectOption, setSelectOption] = useState(difficulty.toLowerCase());
   // console.log('selectOption', selectOption)
 
 
@@ -48,10 +65,11 @@ function Card({ todayCard }) {
             className={styled.card_input}
             type="text"
             placeholder="Enter quest name"
-            name="text"
+            name="name"
             value={name}
             autoFocus
             required
+            onChange={changeName}
           />
           <div className={styled.date}>
             <DatePicker
