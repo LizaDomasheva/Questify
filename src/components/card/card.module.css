@@ -42,22 +42,6 @@
     padding: 22px
 }
 
-.card_select {
-    font-family: HelveticaNeueCyr,sans-serif;
-    font-size: 15px;
-    color: #b6c4ca;
-}
-
-.card_select::before {
-    content: "";
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 10px;
-    background-color: #0ed6ff;
-}
-
 /* .card_select_icon {
     background-image: url(../../assets/images/icons/dropdown/dropdown.svg);
     width: 12px;
@@ -161,6 +145,10 @@
 
 .date_picker > div > button:nth-child(2) {
     display: none;
+    border: 1px solid red;
+    /* display: none; */
+    visibility: hidden;
+    width: 0;
 }
 
 .date_picker > div > button:nth-child(3) {
@@ -216,21 +204,6 @@ margin-bottom: 2px;
     background-size: cover;
     background-repeat: no-repeat;
 } */
-
-.card_category {
-    text-transform: uppercase;
-    font-family: HelveticaNeueCyr,sans-serif;
-    font-size: 11px;
-    letter-spacing: 1px;
-    color: #282828;
-    width: 115PX;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 0 60px 60px 0;
-    padding: 0 25px 0 0;
-    box-shadow: rgb(209, 225, 246) -23px 0px 0px 0px;
-    background-color: rgb(209, 225, 246);
-}
 
 .card_block {
     display:flex;
