@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import chroma from "chroma-js";
-import { css } from "emotion";
-import DatePicker from "react-date-picker";
-import Select from "react-select";
-import styled from "./card.module.css";
-import { useDispatch } from "react-redux";
-import SelectCategory from "./SelectCategory";
-import { removeCard } from "../../redux/dashboardOperations";
-import DeleteQuestModal from './DeleteQuestModal'
-
+import React, { useState } from 'react';
+import chroma from 'chroma-js';
+import { css } from 'emotion';
+import DatePicker from 'react-date-picker';
+import Select from 'react-select';
+import styled from './card.module.css';
+import { useDispatch } from 'react-redux';
+import SelectCategory from './SelectCategory';
+import { removeCard } from '../../redux/dashboardOperations';
+import DeleteQuestModal from './DeleteQuestModal';
 
 const initialState = {
   name: null,
@@ -16,24 +15,16 @@ const initialState = {
   group: null,
   isPriority: null,
   dueDate: null,
-}
-
-function Card({ arr }) {
-  // const optionHandleChange = (props) => {
-  //   setSelectOption(props);
-  // };
-
-
- const [cardState, setCardState] = useState(initialState);
-
- const changeName = ({ target: { name, value } }) => {
-  setCardState((prev) => ({ ...prev, [name]: value }));
 };
 
- 
+function Card({ arr }) {
+  const [cardState, setCardState] = useState(initialState);
 
+  const changeName = ({ target: { name, value } }) => {
+    setCardState(prev => ({ ...prev, [name]: value }));
+  };
 
-  const handleChange = (props) => {
+  const handleChange = props => {
     setValue(props);
     // console.log('tempData', props)
   };
@@ -48,13 +39,13 @@ function Card({ arr }) {
 
   const dispatch = useDispatch();
 
-  const deleteCard = (_id) => {
+  const deleteCard = _id => {
     dispatch(removeCard(_id));
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = (e) => {
+  const showModal = e => {
     setIsModalOpen(true);
   };
 
@@ -104,8 +95,7 @@ function Card({ arr }) {
             <button
               // onClick={() => deleteCard(_id)}
               onClick={() => showModal()}
-              className={styled.delete}
-            ></button>
+              className={styled.delete}></button>
             {isModalOpen && (
               <DeleteQuestModal
                 deleteCard={deleteCard}
