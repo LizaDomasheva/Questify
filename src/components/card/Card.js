@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import chroma from 'chroma-js';
-import { css } from 'emotion';
 import DatePicker from 'react-date-picker';
-import Select from 'react-select';
+import Select from './Select';
 import styled from './card.module.css';
 import { useDispatch } from 'react-redux';
 import SelectCategory from './SelectCategory';
@@ -19,7 +17,8 @@ function Card({ arr }) {
     isPriority: isPriority,
     dueDate: new Date(dueDate),
     isEdit: isEdit || null,
-    defaultSelectColor: 'card_category'
+    defaultSelectColor: 'card_category',
+    defaultSelectGroupClr: 'card_item',
   };
 
   const [cardState, setCardState] = useState(initialState);
@@ -30,10 +29,17 @@ function Card({ arr }) {
 //  const changeName = ({ target: { name, value } }) => {
 //   setCardState((prev) => ({ ...prev, [name]: value }));
 // };
+
+const onSelectColor = (value) => {
+  setCardState((prev) =>  ({ ...prev, defaultSelectGroupClr: value + '_select' }));
+
+}
+
+
 const onSelectChange = (value) => {
-  console.log(cardState)
   setCardState((prev) => ({ ...prev, defaultSelectColor: value + '_category' }));
 }
+
   const handleChange = props => {
     setCardState(prev => ({ ...prev, dueDate: props }));
   };
@@ -72,7 +78,14 @@ const onSelectChange = (value) => {
   return (
     <>
       <div className={styled.card_header}>
-        <Select />
+        <div className={styled.card_item}>
+        <Select 
+         defaultSelectGroupClr={cardState.defaultSelectGroupClr}
+         onSelectColor={event => onSelectColor(event.target.value)}
+         difficulty={difficulty}/>
+         </div>
+      
+         
         {/* {isPriority ? (
           <div className={styled.star_icon} onClick={handleIsPriority}></div>
         ) : (

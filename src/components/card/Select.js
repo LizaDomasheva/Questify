@@ -4,13 +4,13 @@ import styled from '../card/select.module.css'
 
 
 
-const Select = ({difficulty}) => {
-  console.log('difficulty', difficulty)
+const Select = props => {
+ 
     return(
-<select className={styled.card_list} >
-    <option value="easy" className={styled.card_select}>Easy</option>
-    <option value="normal" className={styled.card_select}>Normal</option>
-    <option value="hard" className={styled.card_select}>Hard</option>
+<select className={styled[props.defaultSelectGroupClr]} onChange={props.onSelectColor}>
+  <option value="easy" className={styled.easy_select}>Easy</option>
+    <option value="normal" className={styled.normal_select}>Normal</option>
+    <option value="hard" className={styled.hard_select}>Hard</option>
 </select>
 )}
 
