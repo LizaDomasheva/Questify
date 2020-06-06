@@ -93,7 +93,6 @@
    height: 30px;
 }
 
-
 .card_item {
     width: 100px;
     list-style: none;
@@ -104,52 +103,76 @@
     outline: none;  
 }
 
+option:hover{
+    background-color: initial;
+}
+
+select.easy_select {
+    background-color: red;
+    font-family: HelveticaNeueCyr,sans-serif;
+    font-size: 15px;
+    color: #b6c4ca;
+    background: url('../../assets/images/icons/round/btn.svg');
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 5px;
+    width: 90px;
+    height: 25px;
+    padding-left: 20px;
+    border: none;
+    outline: none;
+
+}
+
 .easy_select{
     font-family: HelveticaNeueCyr,sans-serif;
     font-size: 15px;
     color: #b6c4ca;
+    background: url('../../assets/images/icons/round/btn.svg');
+    background-repeat: no-repeat;
+    background-size: 15px;
+    background-position: 5px;
+    width: 90px;
+    height: 25px;
+    padding-left: 20px;
+    border: none;
+    outline: none;
+
+    /* background-position: 0 1px;
+    padding-top: 15px; */
+
 }
 
-.easy_select::before {
-    position: absolute; 
-    content: "";
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 10px;
-    background-color: #0ed6ff;
-}
 
-.normal_select::before {
-    content: "";
-    display: inline-block;
-    width: 10px;
-    height: 10px;  
-    border-radius: 50%;
-    margin-right: 10px;
-    background-color: #00d500;
-}
+
 
 .normal_select{
     font-family: HelveticaNeueCyr,sans-serif;
     font-size: 15px;
     color: #b6c4ca;
+    background: url('../../assets/images/icons/round/green.svg');
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position: 5px;
+    width: 90px;
+    height: 25px;
+    padding-left: 20px;
+    border: none;
+    outline: none;
    
 }
-
-.hard_select::before {
-    content: "";
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 10px;
-    background-color: #ff0335;
-} 
 
 .hard_select {
     font-family: HelveticaNeueCyr,sans-serif;
     font-size: 15px;
-    color: #b6c4ca; 
+    color: #b6c4ca;
+    background: url('../../assets/images/icons/round/red.svg');
+    background-repeat: no-repeat;
+    background-size: 10px;
+    background-position: 5px;
+    width: 90px;
+    height: 25px;
+    padding-left: 20px;
+    border: none;
+    outline: none;
 }

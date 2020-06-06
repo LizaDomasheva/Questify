@@ -37,7 +37,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
       </section>
       <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
-      {/* {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : 'oooooooops!'} */}
+       {/* {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : 'oooooooops!'} */}
       </section>
       <section className={styled.dashboard}>
           <p className={styled.title}>DONE</p>
