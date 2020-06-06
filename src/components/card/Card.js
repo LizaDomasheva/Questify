@@ -27,30 +27,62 @@ function Card({ arr }) {
     defaultSelectGroupClr: 'card_item',
   };
 
+  const selectInitialState = {
+    defaultSelectColor: 'card_category',
+    defaultSelectGroupClr: 'card_item',
+  };
+
   const [cardState, setCardState] = useState(initialState);
+  const [selectState, setSelectState] = useState(selectInitialState);
   const changeName = ({ target: { name, value } }) => {
     setCardState(prev => ({ ...prev, [name]: value }));
   };
 
+  // const onSelectColor = value => {
+  //   setCardState(prev => ({
+  //     ...prev,
+  //     defaultSelectGroupClr: value + '_select',
+  //   }));
+  // };
+
+  // const onSelectChange = value => {
+  //   console.log('value :>> ', value);
+  //   setCardState(prev => ({
+  //     ...prev,
+  //     defaultSelectColor: value + '_category',
+  //   }));
+  // };
+
   const onSelectColor = value => {
+    console.log('valueColor :>> ', value);
+    setSelectState(() => ({ defaultSelectGroupClr: value + '_select' }));
     setCardState(prev => ({
       ...prev,
-      defaultSelectGroupClr: value + '_select',
+      // defaultSelectGroupClr: value + '_select',
+      group: value,
     }));
   };
 
   const onSelectChange = value => {
+    console.log('value :>> ', value);
+    setSelectState(() => ({ defaultSelectColor: value + '_category' }));
     setCardState(prev => ({
       ...prev,
-      defaultSelectColor: value + '_category',
+      // defaultSelectColor: value + '_category',
+      group: value,
     }));
   };
+
+  // const onSelectChange = e => {
+  //   console.log('e.target.value', e.target.value);
+  //   setCardState(prev => ({ ...prev, group: e.target.value }));
+  // };
 
   const handleChange = props => {
     setCardState(prev => ({ ...prev, dueDate: props }));
     console.log('dueDate', dueDate);
     console.log(
-      'dueDate',
+      'dueDateEasy',
       easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
     );
     // console.log("props", props);
@@ -80,11 +112,6 @@ function Card({ arr }) {
     console.log('click', 'click');
     dispatch(changeCard(_id, cardState));
   };
-
-  // const onSelectChange = e => {
-  //   console.log('e.target.value', e.target.value);
-  //   setCardState(prev => ({ ...prev, group: e.target.value }));
-  // };
 
   return (
     <>
@@ -135,10 +162,10 @@ function Card({ arr }) {
           <div className={styled.card_category}>
             <SelectCategory
               onSelectChange={onSelectChange}
-              defaultSelectColor={cardState.defaultSelectColor}
+              defaultSelectColor={selectState.defaultSelectColor}
               onSelectChange={event => onSelectChange(event.target.value)}
               // onSelectChange={onSelectChange}
-              group={group}
+              group={cardState.group}
             />
           </div>
           <div className={styled.card_btn__create}>
