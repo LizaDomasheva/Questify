@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-date-picker';
-import Select from './Select';
-import styled from './card.module.css';
-import { useDispatch } from 'react-redux';
-import SelectCategory from './SelectCategory';
-import { removeCard } from '../../redux/dashboardOperations';
-import DeleteQuestModal from './DeleteQuestModal';
+import React, { useState } from "react";
+import DatePicker from "react-date-picker";
+import Select from "./Select";
+import styled from "./card.module.css";
+import { useDispatch } from "react-redux";
+import SelectCategory from "./SelectCategory";
+import { removeCard, changeCard } from "../../redux/dashboardOperations";
+import DeleteQuestModal from "./DeleteQuestModal";
+import axios from "axios";
+import moment from "moment";
+import easydate from "easydate";
 
 // const [cardName, setCardState] = useState({name: null})
 function Card({ arr }) {
@@ -15,6 +18,7 @@ function Card({ arr }) {
     difficulty: difficulty,
     group: group,
     isPriority: isPriority,
+    // dueDate: easydate('Y/M/d', {setDate:dueDate}),
     dueDate: new Date(dueDate),
     isEdit: isEdit || null,
     defaultSelectColor: 'card_category',
@@ -23,7 +27,7 @@ function Card({ arr }) {
 
   const [cardState, setCardState] = useState(initialState);
   const changeName = ({ target: { name, value } }) => {
-    setCardState(prev => ({ ...prev, [name]: value }));
+    setCardState((prev) => ({ ...prev, [name]: value }));
   };
 
 //  const changeName = ({ target: { name, value } }) => {
@@ -35,45 +39,54 @@ const onSelectColor = (value) => {
 
 }
 
-
 const onSelectChange = (value) => {
   setCardState((prev) => ({ ...prev, defaultSelectColor: value + '_category' }));
 }
 
-  const handleChange = props => {
-    setCardState(prev => ({ ...prev, dueDate: props }));
-  };
-  let star = isPriority ? styled.star_icon : styled.nostar_icon;
 
-  const changeColor = isPriority => {
-    return (star = isPriority ? styled.star_icon : styled.nostar_icon);
-  };
-
-  const handleIsPriority = e => {
-    console.log(e.target);
-    console.log(typeof isPriority);
-    setCardState(prev => ({ ...prev, isPriority: !prev.isPriority }));
-    console.log(isPriority);
-    changeColor(cardState.isPriority);
-    console.log(cardState.isPriority);
-    const op = changeColor();
-    // star = isPriority ? styled.star_icon : styled.nostar_icon;
+  const handleChange = (props) => {
+    setCardState((prev) => ({ ...prev, dueDate: props }));
+    console.log("dueDate", dueDate);
+    console.log(
+      "dueDate",
+      easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })
+    );
+    
+  const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon ///перепроверить
+  const handleIsPriority = (e) => {
+    setCardState((prev) => ({ ...prev, isPriority: !prev.isPriority }));
   };
 
-  const dispatch = useDispatch();
-  const deleteCard = _id => {
-    dispatch(removeCard(_id));
-  };
+  // const dispatch = useDispatch();
+  // const deleteCard = (_id) => {
+  //   dispatch(removeCard(_id));
+  // };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = e => {
-    setIsModalOpen(true);
-  };
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // const showModal = (e) => {
+  //   setIsModalOpen(true);
+  // };
+
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
+
+  // const updateCard = () => {
+  //   console.log("click", "click");
+  //   dispatch(changeCard(_id, cardState));
+  // };
+
+  // const onSelectChange = (e) => {
+  //   console.log("e.target.value", e.target.value);
+  //   setCardState((prev) => ({ ...prev, group: e.target.value }));
+  // };
+
+  // const onSelectChangeColor = (value) => {
+  //   setCardState((prev) => ({ ...prev, defaultSelectColor: value + '_category' }));
+  // }
+
 
   return (
     <>
@@ -85,12 +98,6 @@ const onSelectChange = (value) => {
          difficulty={difficulty}/>
          </div>
       
-         
-        {/* {isPriority ? (
-          <div className={styled.star_icon} onClick={handleIsPriority}></div>
-        ) : (
-          <div className={styled.nostar_icon} onClick={handleIsPriority}></div>
-        )} */}
         <div className={star} onClick={handleIsPriority}></div>
       </div>
 
@@ -112,6 +119,7 @@ const onSelectChange = (value) => {
               selected={cardState.dueDate}
               value={cardState.dueDate}
               onChange={handleChange}
+              dateFormat="YYYY-MM-DD"
             />
           </div>
         </div>
@@ -120,6 +128,7 @@ const onSelectChange = (value) => {
             <SelectCategory
               defaultSelectColor={cardState.defaultSelectColor}
               onSelectChange={event => onSelectChange(event.target.value)}
+              // onSelectChange={onSelectChange}
               group={group}/>
           </div>
           <div className={styled.card_btn__create}>
@@ -127,17 +136,17 @@ const onSelectChange = (value) => {
                         <div className={styled.strip}></div>              
                         <button className={styled.start}>Start</button> */}
 
-            <button className={styled.save}></button>
+            {/* <button onClick={updateCard} className={styled.save}></button> */}
             <div className={styled.strip}></div>
             <button
-              // onClick={() => deleteCard(_id)}
-              onClick={() => showModal()}
-              className={styled.delete}></button>
-            {isModalOpen && (
+              // onClick={() => showModal()}
+              className={styled.delete}
+            ></button>
+            {/* {isModalOpen && ( */}
               <DeleteQuestModal
-                deleteCard={deleteCard}
-                id={_id}
-                closeModal={closeModal}
+                // deleteCard={deleteCard}
+                // id={_id}
+                // closeModal={closeModal}
               />
             )}
             <div className={styled.strip}></div>
@@ -147,6 +156,7 @@ const onSelectChange = (value) => {
       </div>
     </>
   );
-}
+            }
+          }
 
 export default Card;

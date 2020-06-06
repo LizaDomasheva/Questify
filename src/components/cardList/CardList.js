@@ -65,7 +65,7 @@ const CardList = ({ arr, challengeSendToUser }) => {
     }));
   };
   const findId = e => {
-    if (!e.target.closest('li').children) {
+    if (!e.target.closest('li')) {
       return;
     }
     const li = e.target.closest('li');
@@ -76,7 +76,7 @@ const CardList = ({ arr, challengeSendToUser }) => {
   };
 
   return (
-    <ul className={styled.card_list} onClick={findId}>
+    <ul onClick={findId}>
       {arr.map(card => (
         <li
           data-id={card._id}
