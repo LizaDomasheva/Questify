@@ -27,26 +27,29 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
 
   return (
     <>
+      <div className={styled.dashboard_wrapper}>
       <Header nickname={nickname} />
-      <div className={styled.dashboard}>
-      <h3 className={styled.title}>TODAY</h3>
-      {todayCard.length > 0 && <CardList arr={todayCard} />}
-      <h3 className={styled.title}>TOMORROW</h3>
+      <section className={styled.dashboard}>
+          <p className={styled.title}>TODAY</p>
+      {todayCard.length > 0 ? <CardList arr={todayCard}/> : <p className={styled.alert}>No quests or challenges for today</p>}
+      </section>
+      <section className={styled.dashboard}>
+          <p className={styled.title}>TOMORROW</p>
       {/* {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : 'oooooooops!'} */}
-      <h3 className={styled.title}>DONE</h3>
-      {done.length > 0 ? <CardList arr={done} /> : 'ooooooooops!'}
-      <h3 className={styled.title}>ALL THE REST</h3>
+      </section>
+      <section className={styled.dashboard}>
+          <p className={styled.title}>DONE</p>
+      {done.length > 0 ? <CardList arr={done} /> : <p className={styled.alert}>No quests or challenges for done</p>}
+      </section>
+      <section className={styled.dashboard}>
+          <p className={styled.title}>ALL THE REST</p>
       {allTheRest.length > 0 && <CardList arr={allTheRest} />}
-      </div>
-      {/* <CardChallenge />
-      <CompletedChallenge/>
-      <CompletedModal/>  */}
-      <CreateQuestButton onClick={createNewCard} />
-      {/* <button onClick={() => createNewCard()}>CREATE NEW CARD</button> */}
+      </section>
+    </div>
+    <CreateQuestButton onClick={createNewCard} />
     </>
-    // <button onClick={() => createNewCard()}>CREATE NEW CARD</button>
-  );
-};
+  )
+}
 
 const mapStateToProps = state => ({
   nickname: state.user.nickname,
