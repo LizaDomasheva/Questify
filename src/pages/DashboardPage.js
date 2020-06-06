@@ -27,20 +27,27 @@ const DashboardPage = ({ nickname, todayCard, allTheRest }) => {
 
   return (
     <>
+    <div className={styled.dashboard_wrapper}>
       <Header nickname={nickname} />
-      <div className={styled.dashboard}>
-      <h3 className={styled.title}>TODAY</h3>
-      {todayCard.length > 0 && <CardList arr={todayCard} />}
-      <h3 className={styled.title}>TOMORROW</h3>
-      <h3 className={styled.title}>DONE</h3>
-      <h3 className={styled.title}>ALL THE REST</h3>
+      <section className={styled.dashboard}>
+          <p className={styled.title}>TODAY</p>
+          {/* <p className={styled.alert}>No quests or challenges for today</p> */}
+      {todayCard.length > 0 ? <CardList arr={todayCard}/>:<p className={styled.alert}>No quests or challenges for today</p>}
+      </section>
+      <section className={styled.dashboard}>
+          <p className={styled.title}>TOMORROW</p>
+      </section>
+      <section className={styled.dashboard}>
+          <p className={styled.title}>DONE</p>
+      </section>
+      <section className={styled.dashboard}>
+          <p className={styled.title}>ALL THE REST</p>
       {allTheRest.length > 0 && <CardList arr={allTheRest} />}
-      </div>
-      {/* <CardChallenge />
-      <CompletedChallenge/>
-      <CompletedModal/>  */}
+      </section>
+    
       <CreateQuestButton onClick={createNewCard} />
       {/* <button onClick={() => createNewCard()}>CREATE NEW CARD</button> */}
+      </div>
     </>
     // <button onClick={() => createNewCard()}>CREATE NEW CARD</button>
   );

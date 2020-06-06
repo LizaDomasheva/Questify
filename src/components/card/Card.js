@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import chroma from 'chroma-js';
-import { css } from 'emotion';
 import DatePicker from 'react-date-picker';
-import Select from 'react-select';
 import styled from './card.module.css';
 import { useDispatch } from 'react-redux';
 import SelectCategory from './SelectCategory';
 import { removeCard } from '../../redux/dashboardOperations';
 import DeleteQuestModal from './DeleteQuestModal';
+import Select from './Select'
 
 // const [cardName, setCardState] = useState({name: null})
 function Card({ arr }) {
@@ -70,6 +68,7 @@ function Card({ arr }) {
         ) : (
           <div className={styled.nostar_icon} onClick={handleIsPriority}></div>
         )} */}
+      
         <div className={star} onClick={handleIsPriority}></div>
       </div>
 
