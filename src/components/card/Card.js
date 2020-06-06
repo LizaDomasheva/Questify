@@ -24,31 +24,78 @@ function Card({ arr }) {
     // dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: dueDate }),
     dueDate: new Date(dueDate),
     isEdit: isEdit || null,
-    done: false,
+    defaultSelectColor: 'card_category',
+    defaultSelectGroupClr: 'card_item',
+  };
+
+  const selectInitialState = {
+    defaultSelectColor: 'card_category',
+    defaultSelectGroupClr: 'card_item',
   };
 
   const [cardState, setCardState] = useState(initialState);
+  const [selectState, setSelectState] = useState(selectInitialState);
   const changeName = ({ target: { name, value } }) => {
-    setCardState((prev) => ({ ...prev, [name]: value }));
+    setCardState(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleChange = (props) => {
-    setCardState((prev) => ({ ...prev, dueDate: props }));
-    // console.log("dueDate", dueDate);
-    // console.log("cardState.dueDate", cardState.dueDate);
-    // console.log(
-    //   "dueDate",
-    //   easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })
-    // );
+  // const onSelectColor = value => {
+  //   setCardState(prev => ({
+  //     ...prev,
+  //     defaultSelectGroupClr: value + '_select',
+  //   }));
+  // };
+
+  // const onSelectChange = value => {
+  //   console.log('value :>> ', value);
+  //   setCardState(prev => ({
+  //     ...prev,
+  //     defaultSelectColor: value + '_category',
+  //   }));
+  // };
+
+  const onSelectColor = value => {
+    console.log('valueColor :>> ', value);
+    setSelectState(() => ({ defaultSelectGroupClr: value + '_select' }));
+    setCardState(prev => ({
+      ...prev,
+      // defaultSelectGroupClr: value + '_select',
+      group: value,
+    }));
+  };
+
+  const onSelectChange = value => {
+    console.log('value :>> ', value);
+    setSelectState(() => ({ defaultSelectColor: value + '_category' }));
+    setCardState(prev => ({
+      ...prev,
+      // defaultSelectColor: value + '_category',
+      group: value,
+    }));
+  };
+
+  // const onSelectChange = e => {
+  //   console.log('e.target.value', e.target.value);
+  //   setCardState(prev => ({ ...prev, group: e.target.value }));
+  // };
+
+  const handleChange = props => {
+    setCardState(prev => ({ ...prev, dueDate: props }));
+    console.log('dueDate', dueDate);
+    console.log(
+      'dueDateEasy',
+      easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
+    );
     // console.log("props", props);
   };
 
-  const handleIsPriority = (e) => {
-    setCardState((prev) => ({ ...prev, isPriority: !prev.isPriority }));
+  const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon; ///перепроверить
+  const handleIsPriority = e => {
+    setCardState(prev => ({ ...prev, isPriority: !prev.isPriority }));
   };
 
   const dispatch = useDispatch();
-  const deleteCard = (_id) => {
+  const deleteCard = _id => {
     dispatch(removeCard(_id));
   };
 
@@ -70,10 +117,10 @@ function Card({ arr }) {
     dispatch(changeCard(_id, correctCardData));
   };
 
-  const onSelectChange = (e) => {
-    // console.log("e.target.value", e.target.value);
-    setCardState((prev) => ({ ...prev, group: e.target.value }));
-  };
+  // const onSelectChange = (e) => {
+  //   // console.log("e.target.value", e.target.value);
+  //   setCardState((prev) => ({ ...prev, group: e.target.value }));
+  // };
 
   const isTaskDone = () => {
     setCardState((prev) => ({ ...prev, done: !prev.done }));
@@ -84,13 +131,24 @@ function Card({ arr }) {
   return (
     <>
       <div className={styled.card_header}>
-        <Select />
-        <div
+        <Select
+          defaultSelectGroupClr={cardState.defaultSelectGroupClr}
+          onSelectColor={event => onSelectColor(event.target.value)}
+          difficulty={difficulty}
+        />
+        {/* {isPriority ? (
+          <div className={styled.star_icon} onClick={handleIsPriority}></div>
+        ) : (
+          <div className={styled.nostar_icon} onClick={handleIsPriority}></div>
+        )} */}
+
+        <div className={star} onClick={handleIsPriority}></div>
+        {/* <div
           className={
             cardState.isPriority ? styled.star_icon : styled.nostar_icon
           }
           onClick={handleIsPriority}
-        ></div>{" "}
+        ></div>{" "} */}
       </div>
 
       <div className={styled.card_wrapper}>
@@ -117,7 +175,13 @@ function Card({ arr }) {
         </div>
         <div className={styled.card_block}>
           <div className={styled.card_category}>
-            <SelectCategory group={group} onSelectChange={onSelectChange} />
+            <SelectCategory
+              onSelectChange={onSelectChange}
+              defaultSelectColor={selectState.defaultSelectColor}
+              onSelectChange={event => onSelectChange(event.target.value)}
+              // onSelectChange={onSelectChange}
+              group={cardState.group}
+            />
           </div>
           <div className={styled.card_btn__create}>
             {/* <button className={styled.delete}></button> 

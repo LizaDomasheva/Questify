@@ -5,37 +5,38 @@ import { filterDataTime } from "./operations";
 import moment from "moment";
 import easydate from "easydate";
 
-export const removeCard = (_id) => (dispatch) => {
+export const removeCard = _id => dispatch => {
   axios
     .delete(`https://questify.goit.co.ua/api/quests/${_id}`)
-    .then((response) => {
-      console.log("response-delete", response);
+    .then(response => {
+      console.log('response-delete', response);
       if (response.data.success) {
-        console.log("id", _id);
+        console.log('id', _id);
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       }
     })
-    .catch((err) => console.warn(err));
+    .catch(err => console.warn(err));
 };
 
 export const createCard = () => (dispatch, getState) => {
   const userId = getUserId(getState());
   const newDate = new Date(Date.now());
   axios
-    .post("https://questify.goit.co.ua/api/quests", {
+    .post('https://questify.goit.co.ua/api/quests', {
       userId: userId,
-      name: " ",
-      group: "STUFF",
-      difficulty: "Easy",
+      name: ' ',
+      group: 'STUFF',
+      difficulty: 'Easy',
       dueDate: `${newDate}`,
       isPriority: true,
     })
-    .then((response) => {
+    .then(response => {
+      // console.log('response', response);
       const tempData = { ...response.data.quest, isEdit: true };
       dispatch(dashboardSlice.actions.addCardReducer(tempData));
       //   console.log("response", tempData);
     })
-    .catch((err) => console.warn(err));
+    .catch(err => console.warn(err));
 };
 
 // export const filterDataTimeTest = (data) => {
