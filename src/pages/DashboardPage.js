@@ -3,14 +3,15 @@ import { connect, useDispatch } from 'react-redux';
 import Header from '../components/header/Header';
 import CardList from '../components/cardList/CardList';
 import { useEffect, useState } from 'react';
-import { getUser } from '../redux/operations';
+import { postUser } from '../redux/operations';
 import { createCard } from '../redux/dashboardOperations';
 import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
-import styled from './DashboardPage.module.css'
+import styled from './DashboardPage.module.css';
 
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   const [editFlag, seteditFlag] = useState(false);
   console.log('typeof(editFlag)', typeof editFlag);
+  console.log('todayCard', todayCard);
   const dispatch = useDispatch();
 
   const createNewCard = () => {
@@ -22,21 +23,22 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   };
 
   useEffect(() => {
-    dispatch(getUser());
+    dispatch(postUser(nickname));
+    console.log('dash', nickname);
   }, []);
 
   return (
     <>
       <Header nickname={nickname} />
       <div className={styled.dashboard}>
-      <h3 className={styled.title}>TODAY</h3>
-      {todayCard.length > 0 && <CardList arr={todayCard} />}
-      <h3 className={styled.title}>TOMORROW</h3>
-      {/* {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : 'oooooooops!'} */}
-      <h3 className={styled.title}>DONE</h3>
-      {done.length > 0 ? <CardList arr={done} /> : 'ooooooooops!'}
-      <h3 className={styled.title}>ALL THE REST</h3>
-      {allTheRest.length > 0 && <CardList arr={allTheRest} />}
+        <h3 className={styled.title}>TODAY</h3>
+        {todayCard.length > 0 && <CardList arr={todayCard} />}
+        <h3 className={styled.title}>TOMORROW</h3>
+        {/* {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : 'oooooooops!'} */}
+        {/* <h3 className={styled.title}>DONE</h3>
+        {done.length > 0 ? <CardList arr={done} /> : 'ooooooooops!'} */}
+        <h3 className={styled.title}>ALL THE REST</h3>
+        {allTheRest.length > 0 && <CardList arr={allTheRest} />}
       </div>
       {/* <CardChallenge />
       <CompletedChallenge/>
@@ -53,7 +55,7 @@ const mapStateToProps = state => ({
   todayCard: state.dashboard.today,
   allTheRest: state.dashboard.allTheRest,
   tomorrow: state.dashboard.tomorrow,
-  done: state.dashboard.done
+  done: state.dashboard.done,
 });
 
 export default connect(mapStateToProps)(DashboardPage);
