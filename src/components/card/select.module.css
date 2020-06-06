@@ -8,8 +8,8 @@
     /* padding: 0 25px 0 0; */
     border: none;
     outline: none;
-    box-shadow: rgb(252, 242, 183) -22px 0px 0px 0px;
-    background-color: rgb(252, 242, 183);
+    box-shadow: rgb(255, 255, 255) -22px 0px 0px 0px;
+    background-color: rgb(255, 255, 255);
 }
 
 .stuff_category {
@@ -70,7 +70,7 @@
     color: #b6c4ca;
 }
 
-.card_select:before {
+.card_select:nth-child() {
     content: "";
     display: inline-block;
     width: 10px;

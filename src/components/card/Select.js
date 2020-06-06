@@ -5,7 +5,7 @@ import styled from '../card/select.module.css'
 
 const Select = () => {
     return(
-<select className={styled.card_list} >
+<select className={styled.card_select__list}>
     <option value="easy" className={styled.card_select}>Easy</option>
     <option value="normal" className={styled.card_select}>Normal</option>
     <option value="hard" className={styled.card_select}>Hard</option>
@@ -13,3 +13,4 @@ const Select = () => {
 )}
 
 export default Select;
+

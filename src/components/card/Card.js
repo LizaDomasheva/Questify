@@ -73,7 +73,9 @@ function Card({ arr }) {
   return (
     <>
       <div className={styled.card_header}>
+        <div className={styled.card_select__item}>
         <Select />
+        </div>
         {/* {isPriority ? (
           <div className={styled.star_icon} onClick={handleIsPriority}></div>
         ) : (
@@ -81,12 +83,6 @@ function Card({ arr }) {
         )} */}
       
         <div className={star} onClick={handleIsPriority}></div>
-        {/* <div
-          className={
-            cardState.isPriority ? styled.star_icon : styled.nostar_icon
-          }
-          onClick={handleIsPriority}
-        ></div>{" "} */}
       </div>
 
       <div className={styled.card_wrapper}>
