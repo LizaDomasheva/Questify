@@ -72,16 +72,12 @@ function Card({ arr }) {
     <>
       <div className={styled.card_header}>
         <Select />
-<<<<<<< HEAD
-        <div className={cardState.isPriority ? styled.star_icon :styled.nostar_icon} onClick={handleIsPriority}></div>
-=======
         <div
           className={
             cardState.isPriority ? styled.star_icon : styled.nostar_icon
           }
           onClick={handleIsPriority}
         ></div>{" "}
->>>>>>> b297b226b24032eaa9916e640256b53a0afcc397
       </div>
 
       <div className={styled.card_wrapper}>
