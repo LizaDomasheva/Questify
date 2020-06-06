@@ -48,6 +48,9 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>DONE</p>
+          <div className={styled.doneFigure}>
+            <div className={styled.doneLine}></div>
+          </div>
           {done.length > 0 ? (
             <CardList arr={done} />
           ) : (
