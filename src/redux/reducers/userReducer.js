@@ -16,7 +16,7 @@ export const userSlice = createSlice({
       dashboard: payload.dashboard,
       token: payload.token,
     }),
-    logOutUser: (state, { payload }) => ({ ...state }),
+    logOutUser: (state, { payload }) => ({ nickname: payload.nickname }),
     refreshUser: (state, payload) => ({
       nickname: payload.nickname,
     }),

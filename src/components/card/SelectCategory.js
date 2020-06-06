@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import styled from '../card/select.module.css'
 
-const SelectCategory = props => {
-
+const SelectCategory = (props) => {
     return(
       <select className={styled[props.defaultSelectColor]} onChange={props.onSelectChange} >
       <option value="stuff">STUFF</option>

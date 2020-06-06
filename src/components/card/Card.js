@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import DatePicker from "react-date-picker";
-import Select from "./Select";
-import styled from "./card.module.css";
-import { useDispatch } from "react-redux";
-import SelectCategory from "./SelectCategory";
-import { removeCard, changeCard } from "../../redux/dashboardOperations";
-import DeleteQuestModal from "./DeleteQuestModal";
-import axios from "axios";
-import moment from "moment";
-import easydate from "easydate";
+import React, { useState } from 'react';
+import chroma from 'chroma-js';
+import { css } from 'emotion';
+import DatePicker from 'react-date-picker';
+import Select from './Select';
+import styled from './card.module.css';
+import { useDispatch } from 'react-redux';
+import SelectCategory from './SelectCategory';
+import { removeCard, changeCard } from '../../redux/dashboardOperations';
+import DeleteQuestModal from './DeleteQuestModal';
+import axios from 'axios';
+import moment from 'moment';
+import easydate from 'easydate';
 
 // const [cardName, setCardState] = useState({name: null})
 function Card({ arr }) {
@@ -27,78 +29,84 @@ function Card({ arr }) {
 
   const [cardState, setCardState] = useState(initialState);
   const changeName = ({ target: { name, value } }) => {
-    setCardState((prev) => ({ ...prev, [name]: value }));
+    setCardState(prev => ({ ...prev, [name]: value }));
   };
 
-//  const changeName = ({ target: { name, value } }) => {
-//   setCardState((prev) => ({ ...prev, [name]: value }));
-// };
+  const onSelectColor = value => {
+    setCardState(prev => ({
+      ...prev,
+      defaultSelectGroupClr: value + '_select',
+    }));
+  };
 
-const onSelectColor = (value) => {
-  setCardState((prev) =>  ({ ...prev, defaultSelectGroupClr: value + '_select' }));
+  const onSelectChange = value => {
+    setCardState(prev => ({
+      ...prev,
+      defaultSelectColor: value + '_category',
+    }));
+  };
 
-}
-
-const onSelectChange = (value) => {
-  setCardState((prev) => ({ ...prev, defaultSelectColor: value + '_category' }));
-}
-
-
-  const handleChange = (props) => {
-    setCardState((prev) => ({ ...prev, dueDate: props }));
-    console.log("dueDate", dueDate);
+  const handleChange = props => {
+    setCardState(prev => ({ ...prev, dueDate: props }));
+    console.log('dueDate', dueDate);
     console.log(
-      "dueDate",
-      easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })
+      'dueDate',
+      easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
     );
-    
-  const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon ///перепроверить
-  const handleIsPriority = (e) => {
-    setCardState((prev) => ({ ...prev, isPriority: !prev.isPriority }));
+    // console.log("props", props);
   };
 
-  // const dispatch = useDispatch();
-  // const deleteCard = (_id) => {
-  //   dispatch(removeCard(_id));
+  const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon; ///перепроверить
+  const handleIsPriority = e => {
+    setCardState(prev => ({ ...prev, isPriority: !prev.isPriority }));
+  };
+
+  const dispatch = useDispatch();
+  const deleteCard = _id => {
+    dispatch(removeCard(_id));
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = e => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const updateCard = () => {
+    console.log('click', 'click');
+    dispatch(changeCard(_id, cardState));
+  };
+
+  // const onSelectChange = e => {
+  //   console.log('e.target.value', e.target.value);
+  //   setCardState(prev => ({ ...prev, group: e.target.value }));
   // };
-
-
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-
-  // const showModal = (e) => {
-  //   setIsModalOpen(true);
-  // };
-
-  // const closeModal = () => {
-  //   setIsModalOpen(false);
-  // };
-
-  // const updateCard = () => {
-  //   console.log("click", "click");
-  //   dispatch(changeCard(_id, cardState));
-  // };
-
-  // const onSelectChange = (e) => {
-  //   console.log("e.target.value", e.target.value);
-  //   setCardState((prev) => ({ ...prev, group: e.target.value }));
-  // };
-
-  // const onSelectChangeColor = (value) => {
-  //   setCardState((prev) => ({ ...prev, defaultSelectColor: value + '_category' }));
-  // }
-
 
   return (
     <>
       <div className={styled.card_header}>
-        <div className={styled.card_item}>
-        <Select 
-         defaultSelectGroupClr={cardState.defaultSelectGroupClr}
-         onSelectColor={event => onSelectColor(event.target.value)}
-         difficulty={difficulty}/>
-         </div>
-      
+        <Select
+          defaultSelectGroupClr={cardState.defaultSelectGroupClr}
+          onSelectColor={event => onSelectColor(event.target.value)}
+          difficulty={difficulty}
+        />
+        {/* {isPriority ? (
+          <div className={styled.star_icon} onClick={handleIsPriority}></div>
+        ) : (
+          <div className={styled.nostar_icon} onClick={handleIsPriority}></div>
+        )} */}
+
         <div className={star} onClick={handleIsPriority}></div>
+        {/* <div
+          className={
+            cardState.isPriority ? styled.star_icon : styled.nostar_icon
+          }
+          onClick={handleIsPriority}
+        ></div>{" "} */}
       </div>
 
       <div className={styled.card_wrapper}>
@@ -126,27 +134,29 @@ const onSelectChange = (value) => {
         <div className={styled.card_block}>
           <div className={styled.card_category}>
             <SelectCategory
+              onSelectChange={onSelectChange}
               defaultSelectColor={cardState.defaultSelectColor}
               onSelectChange={event => onSelectChange(event.target.value)}
               // onSelectChange={onSelectChange}
-              group={group}/>
+              group={group}
+            />
           </div>
           <div className={styled.card_btn__create}>
             {/* <button className={styled.delete}></button> 
                         <div className={styled.strip}></div>              
                         <button className={styled.start}>Start</button> */}
 
-            {/* <button onClick={updateCard} className={styled.save}></button> */}
+            <button onClick={updateCard} className={styled.save}></button>
             <div className={styled.strip}></div>
             <button
-              // onClick={() => showModal()}
+              onClick={() => showModal()}
               className={styled.delete}
             ></button>
-            {/* {isModalOpen && ( */}
+            {isModalOpen && (
               <DeleteQuestModal
-                // deleteCard={deleteCard}
-                // id={_id}
-                // closeModal={closeModal}
+                deleteCard={deleteCard}
+                id={_id}
+                closeModal={closeModal}
               />
             )}
             <div className={styled.strip}></div>
@@ -156,7 +166,6 @@ const onSelectChange = (value) => {
       </div>
     </>
   );
-            }
-          }
+}
 
 export default Card;

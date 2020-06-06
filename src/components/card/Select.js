@@ -2,8 +2,6 @@ import React from 'react'
 import styled from '../card/select.module.css'
 
 
-
-
 const Select = props => {
  
     return(
