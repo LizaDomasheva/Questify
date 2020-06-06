@@ -32,7 +32,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
       <h3 className={styled.title}>TODAY</h3>
       {todayCard.length > 0 && <CardList arr={todayCard} />}
       <h3 className={styled.title}>TOMORROW</h3>
-      {/* {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : 'oooooooops!'} */}
+      {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : 'oooooooops!'}
       <h3 className={styled.title}>DONE</h3>
       {done.length > 0 ? <CardList arr={done} /> : 'ooooooooops!'}
       <h3 className={styled.title}>ALL THE REST</h3>
