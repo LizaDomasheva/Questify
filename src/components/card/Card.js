@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import chroma from "chroma-js";
 import { css } from "emotion";
 import DatePicker from "react-date-picker";
-import Select from "react-select";
+import Select from "./Select";
 import styled from "./card.module.css";
 import { useDispatch } from "react-redux";
 import SelectCategory from "./SelectCategory";
@@ -39,6 +39,7 @@ function Card({ arr }) {
     // console.log("props", props);
   };
 
+  const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon ///перепроверить
   const handleIsPriority = (e) => {
     setCardState((prev) => ({ ...prev, isPriority: !prev.isPriority }));
   };
@@ -72,12 +73,19 @@ function Card({ arr }) {
     <>
       <div className={styled.card_header}>
         <Select />
-        <div
+        {/* {isPriority ? (
+          <div className={styled.star_icon} onClick={handleIsPriority}></div>
+        ) : (
+          <div className={styled.nostar_icon} onClick={handleIsPriority}></div>
+        )} */}
+      
+        <div className={star} onClick={handleIsPriority}></div>
+        {/* <div
           className={
             cardState.isPriority ? styled.star_icon : styled.nostar_icon
           }
           onClick={handleIsPriority}
-        ></div>{" "}
+        ></div>{" "} */}
       </div>
 
       <div className={styled.card_wrapper}>

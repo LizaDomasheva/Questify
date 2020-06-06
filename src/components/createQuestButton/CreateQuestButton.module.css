@@ -11,11 +11,13 @@
   bottom: 0px;
   right: 30px;
   padding-bottom: 10px;
+  box-shadow: 0 8px 20px 0 rgba(240,126,42,.35);
 }
 
 .Button:hover,
 .Button:focus {
   background-color: rgb(0, 216, 255);
+  
 }
 /* .createButton {
     position: fixed;
