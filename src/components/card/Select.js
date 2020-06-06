@@ -3,9 +3,7 @@ import styled from '../card/select.module.css'
 
 
 
-
-const Select = ({difficulty}) => {
-  console.log('difficulty', difficulty)
+const Select = () => {
     return(
 <select className={styled.card_list} >
     <option value="easy" className={styled.card_select}>Easy</option>
