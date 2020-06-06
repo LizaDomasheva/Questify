@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
+// import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Header from '../components/header/Header';
 import CardList from '../components/cardList/CardList';
-import { useEffect, useState } from 'react';
+// import { useEffect, useState } from 'react';
 import { postUser } from '../redux/operations';
 import { createCard } from '../redux/dashboardOperations';
 import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
 import styled from './DashboardPage.module.css';
 
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
+  const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);
   console.log('typeof(editFlag)', typeof editFlag);
   console.log('todayCard', todayCard);
@@ -29,24 +32,35 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
 
   return (
     <>
-      <Header nickname={nickname} />
-      <div className={styled.dashboard}>
-        <h3 className={styled.title}>TODAY</h3>
-        {todayCard.length > 0 && <CardList arr={todayCard} />}
-        <h3 className={styled.title}>TOMORROW</h3>
-        {/* {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : 'oooooooops!'} */}
-        {/* <h3 className={styled.title}>DONE</h3>
-        {done.length > 0 ? <CardList arr={done} /> : 'ooooooooops!'} */}
-        <h3 className={styled.title}>ALL THE REST</h3>
-        {allTheRest.length > 0 && <CardList arr={allTheRest} />}
+      <div className={styled.dashboard_wrapper}>
+        <Header nickname={nickname} history={history} />
+        <section className={styled.dashboard}>
+          <p className={styled.title}>TODAY</p>
+          {todayCard.length > 0 ? (
+            <CardList arr={todayCard} />
+          ) : (
+            <p className={styled.alert}>No quests or challenges for today</p>
+          )}
+        </section>
+        <section className={styled.dashboard}>
+          <p className={styled.title}>TOMORROW</p>
+          {/* {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : 'oooooooops!'} */}
+        </section>
+        <section className={styled.dashboard}>
+          <p className={styled.title}>DONE</p>
+          {done.length > 0 ? (
+            <CardList arr={done} />
+          ) : (
+            <p className={styled.alert}>No quests or challenges for done</p>
+          )}
+        </section>
+        <section className={styled.dashboard}>
+          <p className={styled.title}>ALL THE REST</p>
+          {allTheRest.length > 0 && <CardList arr={allTheRest} />}
+        </section>
       </div>
-      {/* <CardChallenge />
-      <CompletedChallenge/>
-      <CompletedModal/>  */}
       <CreateQuestButton onClick={createNewCard} />
-      {/* <button onClick={() => createNewCard()}>CREATE NEW CARD</button> */}
     </>
-    // <button onClick={() => createNewCard()}>CREATE NEW CARD</button>
   );
 };
 

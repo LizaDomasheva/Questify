@@ -1,9 +1,22 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import css from './header.module.css';
+import {userSlice} from '../../redux/reducers/userReducer';
 
-const Header = ({ nickname }) => {
-  const handleLogOut = () => {};
+
+const initialState = {
+  nickname: '',
+};
+
+const Header = ({ nickname, history }) => {
+  const [clearUser, setClearUser] = useState(initialState)
+  const dispatch = useDispatch()
+  const handleLogOut = () => {
+    dispatch(userSlice.actions.logOutUser({...clearUser}))
+    setClearUser(() => ({nickname: ''}))
+    history.push('/');
+  };
   const showChallengeCard = () => {};
   let logoLetter = ''
   if(nickname !== null) {

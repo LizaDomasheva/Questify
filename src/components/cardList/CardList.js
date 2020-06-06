@@ -76,7 +76,7 @@ const CardList = ({ arr, challengeSendToUser }) => {
   };
 
   return (
-    <ul className={styled.card_list} onClick={findId}>
+    <ul onClick={findId}>
       {arr.map(card => (
         <li
           data-id={card._id}
