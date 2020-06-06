@@ -9,7 +9,6 @@ import SelectCategory from './SelectCategory';
 import { removeCard } from '../../redux/dashboardOperations';
 import DeleteQuestModal from './DeleteQuestModal';
 
-// const [cardName, setCardState] = useState({name: null})
 function Card({ arr }) {
   const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
   const initialState = {
@@ -29,21 +28,9 @@ function Card({ arr }) {
   const handleChange = props => {
     setCardState(prev => ({ ...prev, dueDate: props }));
   };
-  let star = isPriority ? styled.star_icon : styled.nostar_icon;
-
-  const changeColor = isPriority => {
-    return (star = isPriority ? styled.star_icon : styled.nostar_icon);
-  };
 
   const handleIsPriority = e => {
-    console.log(e.target);
-    console.log(typeof isPriority);
     setCardState(prev => ({ ...prev, isPriority: !prev.isPriority }));
-    console.log(isPriority);
-    changeColor(cardState.isPriority);
-    console.log(cardState.isPriority);
-    const op = changeColor();
-    // star = isPriority ? styled.star_icon : styled.nostar_icon;
   };
 
   const dispatch = useDispatch();
@@ -65,12 +52,7 @@ function Card({ arr }) {
     <>
       <div className={styled.card_header}>
         <Select />
-        {/* {isPriority ? (
-          <div className={styled.star_icon} onClick={handleIsPriority}></div>
-        ) : (
-          <div className={styled.nostar_icon} onClick={handleIsPriority}></div>
-        )} */}
-        <div className={star} onClick={handleIsPriority}></div>
+        <div className={cardState.isPriority ? styled.star_icon :styled.nostar_icon} onClick={handleIsPriority}></div>
       </div>
 
       <div className={styled.card_wrapper}>
