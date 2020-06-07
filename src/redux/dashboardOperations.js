@@ -96,7 +96,7 @@ export const changeCard = (_id, correctCardData) => (dispatch) => {
     .put(`https://questify.goit.co.ua/api/quests/${_id}`, correctCardData)
     .then((response) => {
       console.log("response change", response.data.quest);
-      // dispatch(dashboardSlice.actions.removeCardReducer(_id));
+      dispatch(dashboardSlice.actions.removeCardReducer(_id));
       return response;
     })
     .then((res) => {
