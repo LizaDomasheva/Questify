@@ -1,6 +1,7 @@
 import axios from "axios";
 import { getUserId } from "../redux/selectors";
 import { dashboardSlice } from "../redux/reducers/dashboardReducer";
+import { version } from "react";
 
 export const removeCard = (_id) => (dispatch) => {
   axios
@@ -41,3 +42,7 @@ export const changeCard = (_id, cardState) => (dispatch) => {
     .then((response) => console.log("response", response.data.quest))
     .catch((err) => console.warn(err));
 };
+// remove old version and add new filtered version
+// const findId () => {
+  
+// };
