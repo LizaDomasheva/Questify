@@ -23,8 +23,8 @@ function Card({ arr }) {
     // dueDate: easydate('Y/M/d', {setDate:dueDate}),
     dueDate: new Date(dueDate),
     isEdit: isEdit || null,
-    defaultSelectColor: 'card_category',
-    defaultSelectGroupClr: 'card_item',
+    // defaultSelectColor: 'card_category',
+    // defaultSelectGroupClr: 'card_item',
   };
 
   const selectInitialState = {
@@ -116,11 +116,13 @@ function Card({ arr }) {
   return (
     <>
       <div className={styled.card_header}>
+        <div className={styled.card_item}>
         <Select
           defaultSelectGroupClr={cardState.defaultSelectGroupClr}
           onSelectColor={event => onSelectColor(event.target.value)}
           difficulty={difficulty}
         />
+        </div>
         {/* {isPriority ? (
           <div className={styled.star_icon} onClick={handleIsPriority}></div>
         ) : (
