@@ -7,10 +7,10 @@ import * as sessionSelectors from './redux/selectors';
 import { connect } from 'react-redux';
 
 class App extends Component {
-  componentDidMount() {
-    this.props.refreshCurrentUser();
-    // console.log(this.props.nickname);
-  }
+  // componentDidMount() {
+  //   this.props.refreshCurrentUser();
+  //   console.log(this.props.nickname);
+  // }
 
   render() {
     return (

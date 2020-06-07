@@ -13,7 +13,6 @@ import moment from "moment";
 import easydate from "easydate";
 import { CompletedModal } from "./CompletedModal";
 
-// const [cardName, setCardState] = useState({name: null})
 function Card({ arr }) {
   const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
   const initialState = {
