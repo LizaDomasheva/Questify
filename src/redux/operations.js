@@ -20,7 +20,8 @@ const filterDataTime = data => {
   let tomorrow = [];
   let allTheRest = [];
   let doneNew = [];
-  console.log('data', data);
+  // console.log('data', data);
+  console.log('doneNew :>> ', doneNew);
   const filtredData = data.reduce((acc, itemNew) => {
     const item = { ...itemNew, isEdit: false };
     const formatData = easydate('YMd', {
@@ -56,16 +57,16 @@ const filterDataTime = data => {
 };
 
 export const getUser = nickname => (dispatch, getState) => {
-  console.log('nickname getUser', nickname);
+  // console.log('nickname getUser', nickname);
   axios
     .post(loginURL, nickname)
     .then(response => {
-      console.log('response get User = ', response.data.data.tasks);
+      // console.log('response get User = ', response.data.data.tasks);
       dispatch(userSlice.actions.loginUser(response.data.data.user));
       const filterDone = filterDataDone(response.data.data.tasks);
       const filterTime = filterDataTime(response.data.data.tasks);
-      console.log('filterTime :>> ', filterTime);
-      console.log('filterDone :>> ', filterDone);
+      // console.log('filterTime :>> ', filterTime);
+      // console.log('filterDone :>> ', filterDone);
       dispatch(dashboardSlice.actions.filterCardReducer(filterDone));
       dispatch(dashboardSlice.actions.filterCardReducerToday(filterTime));
     })
@@ -74,15 +75,15 @@ export const getUser = nickname => (dispatch, getState) => {
 
 export const postUser = nickname => (dispatch, getState) => {
   // const name = selectors.getUser(getState());
-  console.log(typeof nickname);
+  // console.log(typeof nickname);
   axios
     .post(loginURL, { nickname: `${nickname}` })
     .then(response => {
-      console.log(response);
+      // console.log(response);
       dispatch(userSlice.actions.loginUser(response.data.data.user));
       const filterDone = filterDataDone(response.data.data.tasks);
       const filterTime = filterDataTime(response.data.data.tasks);
-      console.log('filterTime :>> ', filterTime);
+      // console.log('filterTime :>> ', filterTime);
       dispatch(dashboardSlice.actions.filterCardReducer(filterDone));
       dispatch(dashboardSlice.actions.filterCardReducerToday(filterTime));
     })

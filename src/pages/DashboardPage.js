@@ -13,8 +13,8 @@ import styled from './DashboardPage.module.css';
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);
-  console.log('typeof(editFlag)', typeof editFlag);
-  console.log('todayCard', todayCard);
+  // console.log('typeof(editFlag)', typeof editFlag);
+  // console.log('todayCard', todayCard);
   const dispatch = useDispatch();
 
   const createNewCard = () => {
@@ -22,12 +22,13 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
       dispatch(createCard());
       seteditFlag(true);
     }
-    console.log('editFlag', editFlag);
+    // console.log('editFlag', editFlag);
   };
 
   useEffect(() => {
     dispatch(postUser(nickname));
-    console.log('dash', nickname);
+    console.log('todayCard :>> ', todayCard);
+    // console.log('dash', nickname);
   }, []);
 
   return (
@@ -36,7 +37,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         <Header nickname={nickname} history={history} />
         <section className={styled.dashboard}>
           <p className={styled.title}>TODAY</p>
-          {todayCard.length > 0 ? (
+          {todayCard ? (
             <CardList arr={todayCard} />
           ) : (
             <p className={styled.alert}>No quests or challenges for today</p>
@@ -44,14 +45,16 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
-          {/* {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : 'oooooooops!'} */}
+          {tomorrow.length > 0 ? (<CardList arr={tomorrow} />) : (
+            <p className={styled.alert}>No quests or challenges for today</p>
+          )}
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>DONE</p>
           <div className={styled.doneFigure}>
             <div className={styled.doneLine}></div>
           </div>
-          {done.length > 0 ? (
+          {done ? (
             <CardList arr={done} />
           ) : (
             <p className={styled.alert}>No quests or challenges for done</p>
@@ -59,7 +62,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>ALL THE REST</p>
-          {allTheRest.length > 0 && <CardList arr={allTheRest} />}
+          {allTheRest && <CardList arr={allTheRest} />}
         </section>
       </div>
       <CreateQuestButton onClick={createNewCard} />

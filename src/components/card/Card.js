@@ -54,7 +54,7 @@ function Card({ arr }) {
   // };
 
   const onSelectColor = value => {
-    console.log('valueColor :>> ', value);
+    // console.log('valueColor :>> ', value);
     setSelectState(() => ({ defaultSelectGroupClr: value + '_select' }));
     setCardState(prev => ({
       ...prev,
@@ -64,7 +64,7 @@ function Card({ arr }) {
   };
 
   const onSelectChange = value => {
-    console.log('value :>> ', value);
+    // console.log('value :>> ', value);
     setSelectState(() => ({ defaultSelectColor: value + '_category' }));
     setCardState(prev => ({
       ...prev,

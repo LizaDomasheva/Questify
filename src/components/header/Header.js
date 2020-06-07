@@ -20,6 +20,8 @@ const Header = ({ nickname, history }) => {
   const showChallengeCard = () => {};
   let logoLetter = ''
   if(nickname !== null) {
+    console.log('logoLetter :>> ', logoLetter);
+    console.log('nickName :>> ', nickname);
     logoLetter = nickname.charAt(0).toUpperCase()
   }
 

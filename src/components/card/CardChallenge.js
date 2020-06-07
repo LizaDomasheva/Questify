@@ -6,7 +6,7 @@ import styled from './card.module.css';
 function CardChallenge({ arr }) {
   const handleChange = props => {
     setValue(props);
-    console.log('tempData', props);
+    // console.log('tempData', props);
   };
 
   const tempCard = arr;
