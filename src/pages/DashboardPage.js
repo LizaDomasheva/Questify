@@ -7,14 +7,14 @@ import CardList from '../components/cardList/CardList';
 // import { useEffect, useState } from 'react';
 import { postUser } from '../redux/operations';
 import { createCard } from '../redux/dashboardOperations';
-import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
+import CreateQuestButton from '../components/createQuestButton/createQuestButton';
 import styled from './DashboardPage.module.css';
 
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);
-  console.log('typeof(editFlag)', typeof editFlag);
-  console.log('todayCard', todayCard);
+  // console.log('typeof(editFlag)', typeof editFlag);
+  // console.log('todayCard', todayCard);
   const dispatch = useDispatch();
 
   const createNewCard = () => {
