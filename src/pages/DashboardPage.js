@@ -7,7 +7,7 @@ import CardList from '../components/cardList/CardList';
 // import { useEffect, useState } from 'react';
 import { postUser } from '../redux/operations';
 import { createCard } from '../redux/dashboardOperations';
-import CreateQuestButton from '../components/createQuestButton/createQuestButton';
+import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
 import styled from './DashboardPage.module.css';
 
 

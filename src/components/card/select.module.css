@@ -1,6 +1,7 @@
 .card_category  {
     text-transform: uppercase;
     font-family: HelveticaNeueCyr,sans-serif;
+    width:110px;
     font-size: 11px;
     height: 30px;
     line-height: 30px;
@@ -10,10 +11,10 @@
     box-shadow: rgb(252, 242, 183) -22px 0px 0px 0px;
     background-color: rgb(252, 242, 183);
 }
-
+/* 
 .option {
     border: none;
-}
+} */
 
 .stuff_category {
     box-shadow: rgb(236, 239, 241) -22px 0px 0px 0px;
