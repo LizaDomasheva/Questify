@@ -65,15 +65,10 @@ export const filterDataTimeTest = (data) => {
           done.push(item);
           return (acc = { ...acc, done: done });
         }
-      case "Tomorr":
-        if (!item.done) {
-          item.done = true
+      case "Tomorr":        
+          item.done = true;
           done.push(item);
-          return (acc = { ...acc, done: done });
-        } else {
-          done.push(item);
-          return (acc = { ...acc, done: done });
-        }
+          return (acc = { ...acc, done: done });        
       case "Yester":
         if (!item.done) {
           tomorrow.push(item);
@@ -100,7 +95,7 @@ export const changeCard = (_id, correctCardData) => (dispatch) => {
   axios
     .put(`https://questify.goit.co.ua/api/quests/${_id}`, correctCardData)
     .then((response) => {
-      console.log("response", response.data.quest);
+      console.log("response change", response.data.quest);
       // dispatch(dashboardSlice.actions.removeCardReducer(_id));
       return response;
     })
@@ -110,7 +105,8 @@ export const changeCard = (_id, correctCardData) => (dispatch) => {
       const filterData = filterDataTimeTest(newArr);
       console.log("filterData", filterData);
       // dispatch(dashboardSlice.actions.filterCardReducerToday(filterData));
-      dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterData));
+      // dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterData));
+      dispatch(dashboardSlice.actions.editCardReducer(filterData));
 
     })
     .catch((err) => console.warn(err));

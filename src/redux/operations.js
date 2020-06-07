@@ -73,7 +73,7 @@ export const getUser = nickname => (dispatch, getState) => {
 
 export const postUser = nickname => (dispatch, getState) => {
   // const name = selectors.getUser(getState());
-  console.log(typeof nickname);
+  // console.log(typeof nickname);
   axios
     .post(loginURL, { nickname: `${nickname}` })
     .then(response => {

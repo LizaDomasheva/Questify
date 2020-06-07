@@ -13,8 +13,8 @@ import styled from './DashboardPage.module.css';
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);
-  console.log('typeof(editFlag)', typeof editFlag);
-  console.log('todayCard', todayCard);
+  // console.log('typeof(editFlag)', typeof editFlag);
+  // console.log('todayCard', todayCard);
   const dispatch = useDispatch();
 
   const createNewCard = () => {
