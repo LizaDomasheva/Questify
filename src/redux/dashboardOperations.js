@@ -5,6 +5,8 @@ import { filterDataTime } from "./operations";
 import moment from "moment";
 import easydate from "easydate";
 
+
+
 export const removeCard = _id => dispatch => {
   axios
     .delete(`https://questify.goit.co.ua/api/quests/${_id}`)
@@ -39,45 +41,60 @@ export const createCard = () => (dispatch, getState) => {
     .catch(err => console.warn(err));
 };
 
-// export const filterDataTimeTest = (data) => {
-//   let today = [];
-//   let tomorrow = [];
-//   let allTheRest = [];
-//   let doneNew = [];
+export const filterDataTimeTest = (data) => {
+  let today = [];
+  let tomorrow = [];
+  let allTheRest = [];
+  let done = [];
 
-//   const filtredData = data.reduce((acc, itemNew) => {
-//     const item = { ...itemNew, isEdit: false };
-//     const formatData = easydate("YMd", {
-//       setDate: `${item.dueDate}`,
-//       timeZone: "utc",
-//     });
-//     const data = moment().calendar(`${formatData}`).slice(0, 6);
-//     switch (data) {
-//       case "Today ":
-//         if (!item.done) {
-//           today.push(item);
-//         }
-//         return (acc = { ...acc, today: today });
-//       case "Tomorr":
-//         if (!item.done) {
-//           doneNew.push(item);
-//         }
-//         return (acc = { ...acc, doneNew: doneNew });
-//       case "Yester":
-//         if (!item.done) {
-//           tomorrow.push(item);
-//         }
-//         return (acc = { ...acc, tomorrow: tomorrow });
-//       default:
-//         if (!item.done) {
-//           allTheRest.push(item);
-//         }
-//         return (acc = { ...acc, allTheRest: allTheRest });
-//     }
-//   }, {});
+  console.log("data", data);
+  const filtredData = data.reduce((acc, itemNew) => {
+    const item = { ...itemNew, isEdit: false };
+    const formatData = easydate("YMd", {
+      setDate: `${item.dueDate}`,
+      timeZone: "utc",
+    });
+    const data = moment().calendar(`${formatData}`).slice(0, 6);
+    // console.log('dataBeforeSwitch', data)
+    switch (data) {
+      case "Today ":
+        if (!item.done) {
+          today.push(item);
+          return (acc = { ...acc, today: today });
+        } else {
+          done.push(item);
+          return (acc = { ...acc, done: done });
+        }
+      case "Tomorr":
+        if (!item.done) {
+          item.done = true
+          done.push(item);
+          return (acc = { ...acc, done: done });
+        } else {
+          done.push(item);
+          return (acc = { ...acc, done: done });
+        }
+      case "Yester":
+        if (!item.done) {
+          tomorrow.push(item);
+          return (acc = { ...acc, tomorrow: tomorrow, });
+        } else {
+          done.push(item);
+          return (acc = { ...acc, done: done });
+        }
+        default:
+          if (!item.done) {
+            allTheRest.push(item);
+          return (acc = { ...acc, allTheRest: allTheRest });
+        } else {
+          done.push(item);
+          return (acc = { ...acc, done: done });
+        }
+    }
+  }, {});
 
-//   return filtredData;
-// };
+  return filtredData;
+};
 
 export const changeCard = (_id, correctCardData) => (dispatch) => {
   axios
@@ -88,11 +105,13 @@ export const changeCard = (_id, correctCardData) => (dispatch) => {
       return response;
     })
     .then((res) => {
-      console.log("res", res);
+      console.log("res", res.data.quest);
       const newArr = [res.data.quest];
-      const filterData = filterDataTime(newArr);
+      const filterData = filterDataTimeTest(newArr);
       console.log("filterData", filterData);
-      dispatch(dashboardSlice.actions.filterCardReducerToday(filterData));
+      // dispatch(dashboardSlice.actions.filterCardReducerToday(filterData));
+      dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterData));
+
     })
     .catch((err) => console.warn(err));
 };
