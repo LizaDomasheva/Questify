@@ -41,7 +41,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         <Header nickname={nickname} history={history} />
         <section className={styled.dashboard}>
           <p className={styled.title}>TODAY</p>
-          { todayCard > 0 ? (
+          { todayCard ? (
             <CardList arr={todayCard} />
           ) : (
             <p className={styled.alert}>No quests or challenges for today</p>
@@ -49,7 +49,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
-          { (tomorrow > 0 ) ? (
+          { tomorrow ? (
             <CardList arr={tomorrow} />
           ) : (
             <p className={styled.alert}>No quests or challenges for done</p>
@@ -60,7 +60,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
           <div className={styled.doneFigure}>
             <div className={styled.doneLine}></div>
           </div>
-          {(done || done > 0) ? (
+          {done ? (
             <CardList arr={done} />
           ) : (
             <p className={styled.alert}>No quests or challenges for done</p>
@@ -68,7 +68,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>ALL THE REST</p>
-          {(allTheRest || allTheRest > 0) && <CardList arr={allTheRest} />}
+          {allTheRest && <CardList arr={allTheRest} />}
         </section>
       </div>
       <CreateQuestButton onClick={createNewCard} />
