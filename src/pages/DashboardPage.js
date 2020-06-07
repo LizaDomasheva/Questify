@@ -25,6 +25,10 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
     // console.log('editFlag', editFlag);
   };
 
+  // useEffect(() => {
+  //   dispatch(postUser(nickname)
+  //   )}, [nickname])
+
   useEffect(() => {
     dispatch(postUser(nickname));
     console.log('todayCard :>> ', todayCard);
@@ -37,7 +41,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         <Header nickname={nickname} history={history} />
         <section className={styled.dashboard}>
           <p className={styled.title}>TODAY</p>
-          {todayCard ? (
+          { todayCard > 0 ? (
             <CardList arr={todayCard} />
           ) : (
             <p className={styled.alert}>No quests or challenges for today</p>
@@ -45,14 +49,18 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
-          {tomorrow ? <CardList arr={tomorrow} /> : <p className={styled.alert}>No quests or challenges for done</p>}
+          { (tomorrow > 0 ) ? (
+            <CardList arr={tomorrow} />
+          ) : (
+            <p className={styled.alert}>No quests or challenges for done</p>
+          )}
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>DONE</p>
           <div className={styled.doneFigure}>
             <div className={styled.doneLine}></div>
           </div>
-          {done ? (
+          {(done || done > 0) ? (
             <CardList arr={done} />
           ) : (
             <p className={styled.alert}>No quests or challenges for done</p>
@@ -60,7 +68,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>ALL THE REST</p>
-          {allTheRest && <CardList arr={allTheRest} />}
+          {(allTheRest || allTheRest > 0) && <CardList arr={allTheRest} />}
         </section>
       </div>
       <CreateQuestButton onClick={createNewCard} />
