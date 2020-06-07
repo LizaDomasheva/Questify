@@ -35,10 +35,10 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
           <p className={styled.title}>TODAY</p>
       {todayCard.length > 0 ? <CardList arr={todayCard}/> : <p className={styled.alert}>No quests or challenges for today</p>}
       </section>
-      <section className={styled.dashboard}>
+      {/* <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
       {tomorrow.length > 0 ? <CardList arr={tomorrow} /> : <p className={styled.alert}>No quests or challenges for tomorrow</p>}
-      </section>
+      </section> */}
       <section className={styled.dashboard}>
           <p className={styled.title}>DONE</p>
       {done.length > 0 ? <CardList arr={done} /> : <p className={styled.alert}>No quests or challenges for done</p>}

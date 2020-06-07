@@ -122,7 +122,7 @@ function Card({ arr }) {
               value={cardState.dueDate}
               onChange={handleChange}
               dateFormat="YYYY-MM-DD"
-            />
+            /> 
           </div>
         </div>
         <div className={styled.card_block}>

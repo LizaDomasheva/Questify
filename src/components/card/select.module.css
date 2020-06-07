@@ -8,8 +8,8 @@
     /* padding: 0 25px 0 0; */
     border: none;
     outline: none;
-    box-shadow: rgb(255, 255, 255) -22px 0px 0px 0px;
-    background-color: rgb(255, 255, 255);
+    box-shadow: rgb(236, 239, 241) -22px 0px 0px 0px;
+    background-color: rgb(236, 239, 241);
 }
 
 .option {
@@ -152,4 +152,10 @@
     font-family: HelveticaNeueCyr,sans-serif;
     font-size: 15px;
     color: #b6c4ca; 
+}
+
+
+select {
+    font-size:11px;
+    background-color: initial;
 }
