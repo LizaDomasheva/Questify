@@ -45,9 +45,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
-          {tomorrow.length > 0 ? (<CardList arr={tomorrow} />) : (
-            <p className={styled.alert}>No quests or challenges for today</p>
-          )}
+          {tomorrow ? <CardList arr={tomorrow} /> : <p className={styled.alert}>No quests or challenges for done</p>}
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>DONE</p>
