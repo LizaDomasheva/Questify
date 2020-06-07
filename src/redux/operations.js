@@ -15,7 +15,7 @@ const filterDataDone = data => {
   return filtredData;
 };
 
-const filterDataTime = data => {
+export const filterDataTime = (data) => {
   let today = [];
   let tomorrow = [];
   let allTheRest = [];
@@ -65,7 +65,6 @@ export const getUser = nickname => (dispatch, getState) => {
       const filterDone = filterDataDone(response.data.data.tasks);
       const filterTime = filterDataTime(response.data.data.tasks);
       console.log('filterTime :>> ', filterTime);
-      console.log('filterDone :>> ', filterDone);
       dispatch(dashboardSlice.actions.filterCardReducer(filterDone));
       dispatch(dashboardSlice.actions.filterCardReducerToday(filterTime));
     })
