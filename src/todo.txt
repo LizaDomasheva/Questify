@@ -1,14 +1,11 @@
 ToDo:
-- логин
 - challenge card 
-- persist
-
-existCard = no buttons = Card.js
-newCard = 2 buttons
-editingCard = 3
-
-
-1. + || click cardId -  editFlag: true, isEdit: true 
-2. + проверяем: editFlag: true - редактировать нельзя, создавать нельзя
-3. клик по карточке - isEdit: true, editFlag: true
-4. 
+- заблокированные карточки
+- scroll To
+- отрисовка новой карточки с 2 кнопками
+- поспать, но это не точно, и не всем :(
+- добавление измененной карточки в конец массива в today, а должна стоять на месте
+- loader логика
+- рефакторинг пропсов (editFlag)
+- анимация на лого
+- АГОНЬ!!!!!
