@@ -118,26 +118,28 @@
     font-family: HelveticaNeueCyr,sans-serif;
     font-size: 15px;
     color: #b6c4ca;
-    background: url('../../assets/images/icons/round/btn.svg');
+    background-image: url('../../assets/images/icons/round/btn.svg');
     background-repeat: no-repeat;
     background-size: 15px;
-    background-position: 5px;
+    background-position: left;
     width: 90px;
     height: 25px;
     padding-left: 20px;
     border: none;
     outline: none;
     width: 110px;
+
 }
+
 
 .normal_select{
     font-family: HelveticaNeueCyr,sans-serif;
     font-size: 15px;
     color: #b6c4ca;
-    background: url('../../assets/images/icons/round/green.svg'); 
+    background-image: url('../../assets/images/icons/round/green.svg'); 
     background-repeat: no-repeat;
     background-size: 10px;
-    background-position: 5px;
+    background-position: left;
     width: 90px;
     height: 25px;
     padding-left: 20px;
@@ -150,10 +152,10 @@
     font-family: HelveticaNeueCyr,sans-serif;
     font-size: 15px;
     color: #b6c4ca;
-    background: url('../../assets/images/icons/round/red.svg');
+    background-image: url('../../assets/images/icons/round/red.svg');
     background-repeat: no-repeat;
     background-size: 10px;
-    background-position: 5px;
+    background-position: left;
     width: 90px;
     height: 25px;
     padding-left: 20px;
