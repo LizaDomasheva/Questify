@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import chroma from "chroma-js";
-import { css } from "emotion";
+// import chroma from "chroma-js";
+// import { css } from "emotion";
 import DatePicker from "react-date-picker";
 import Select from "./Select";
 import styled from "./card.module.css";
 import { useDispatch } from "react-redux";
+import easydate from "easydate";
 import SelectCategory from "./SelectCategory";
 import { removeCard, changeCard } from "../../redux/dashboardOperations";
 import DeleteQuestModal from "./DeleteQuestModal";
-import axios from "axios";
-import moment from "moment";
-import easydate from "easydate";
+// import axios from "axios";
+// import moment from "moment";
 import { CompletedModal } from "./CompletedModal";
 
 function Card({ arr }) {
@@ -39,6 +39,8 @@ function Card({ arr }) {
   };
 
   const onSelectColor = value => {
+    // console.log('valueColor :>> ', value);
+    // setSelectState(() => ({ defaultSelectGroupClr: value + '_select' }));
     setCardState(prev => ({
       ...prev,
       defaultSelectGroupClr: value + '_select',
@@ -46,7 +48,8 @@ function Card({ arr }) {
   };
 
   const onSelectChange = value => {
-    console.log('value :>> ', value);
+    // console.log('value :>> ', value);
+    // setSelectState(() => ({ defaultSelectColor: value + '_category' }));
     setCardState(prev => ({
       ...prev,
       defaultSelectColor: value + '_category',
@@ -112,7 +115,8 @@ function Card({ arr }) {
     // console.log("click", "click");
     // console.log('cardState', cardState)
     const correctCardData = {...cardState, dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })}
-    // console.log('prepairData', correctCardData)
+    console.log('prepairData', correctCardData)
+  
     dispatch(changeCard(_id, correctCardData));
   };
 

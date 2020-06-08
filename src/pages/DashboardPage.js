@@ -21,8 +21,6 @@ import styled from './DashboardPage.module.css';
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);
-  // console.log('typeof(editFlag)', typeof editFlag);
-  // console.log('todayCard', todayCard);
   const dispatch = useDispatch();
 
   const createNewCard = () => {
@@ -30,12 +28,13 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
       dispatch(createCard());
       seteditFlag(true);
     }
-    console.log('editFlag', editFlag);
   };
+
 
   useEffect(() => {
     dispatch(postUser(nickname));
-    console.log('dash', nickname);
+    // console.log('todayCard :>> ', todayCard);
+    // console.log('dash', nickname);
   }, []);
 
   const [isDoneFigure, setDoneFigure] = useState(false);
@@ -59,7 +58,11 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
-          {tomorrow ? <CardList arr={tomorrow} /> : <p className={styled.alert}>No quests or challenges for done</p>}
+          { tomorrow ? (
+            <CardList arr={tomorrow} />
+          ) : (
+            <p className={styled.alert}>No quests or challenges for done</p>
+          )}
         </section>
 
 
@@ -80,7 +83,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
 
         <section className={styled.dashboard}>
           <p className={styled.title}>ALL THE REST</p>
-          {allTheRest.length > 0 && <CardList arr={allTheRest} />}
+          {allTheRest && <CardList arr={allTheRest} />}
         </section>
       </div>
       <CreateQuestButton onClick={createNewCard} />
