@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import chroma from "chroma-js";
 import { css } from "emotion";
 import DatePicker from "react-date-picker";
-import Select from "react-select";
+import Select from "./Select";
 import styled from "./card.module.css";
 import { useDispatch } from "react-redux";
 import SelectCategory from "./SelectCategory";
@@ -23,55 +23,55 @@ function Card({ arr }) {
     // dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: dueDate }),
     dueDate: new Date(dueDate),
     isEdit: isEdit || null,
-    // defaultSelectColor: 'card_category',
-    // defaultSelectGroupClr: 'card_item',
-  };
-
-  const selectInitialState = {
     defaultSelectColor: 'card_category',
     defaultSelectGroupClr: 'card_item',
   };
 
+  // const selectInitialState = {
+  //   defaultSelectColor: 'card_category',
+  //   defaultSelectGroupClr: 'card_item',
+  // };
+
   const [cardState, setCardState] = useState(initialState);
-  const [selectState, setSelectState] = useState(selectInitialState);
+  // const [selectState, setSelectState] = useState(selectInitialState);
   const changeName = ({ target: { name, value } }) => {
     setCardState(prev => ({ ...prev, [name]: value }));
   };
 
-  // const onSelectColor = value => {
-  //   setCardState(prev => ({
-  //     ...prev,
-  //     defaultSelectGroupClr: value + '_select',
-  //   }));
-  // };
-
-  // const onSelectChange = value => {
-  //   console.log('value :>> ', value);
-  //   setCardState(prev => ({
-  //     ...prev,
-  //     defaultSelectColor: value + '_category',
-  //   }));
-  // };
-
   const onSelectColor = value => {
-    console.log('valueColor :>> ', value);
-    setSelectState(() => ({ defaultSelectGroupClr: value + '_select' }));
     setCardState(prev => ({
       ...prev,
-      // defaultSelectGroupClr: value + '_select',
-      group: value,
+      defaultSelectGroupClr: value + '_select',
     }));
   };
 
   const onSelectChange = value => {
     console.log('value :>> ', value);
-    setSelectState(() => ({ defaultSelectColor: value + '_category' }));
     setCardState(prev => ({
       ...prev,
-      // defaultSelectColor: value + '_category',
-      group: value,
+      defaultSelectColor: value + '_category',
     }));
   };
+
+  // const onSelectColor = value => {
+  //   console.log('valueColor :>> ', value);
+  //   setSelectState(() => ({ defaultSelectGroupClr: value + '_select' }));
+  //   setSelectState(prev => ({
+  //     ...prev,
+  //     // defaultSelectGroupClr: value + '_select',
+  //     group: value,
+  //   }));
+  // };
+
+  // const onSelectChange = value => {
+  //   console.log('value :>> ', value);
+  //   setSelectState(() => ({ defaultSelectColor: value + '_category' }));
+  //   setSelectState(prev => ({
+  //     ...prev,
+  //     // defaultSelectColor: value + '_category',
+  //     group: value,
+  //   }));
+  // };
 
   // const onSelectChange = e => {
   //   console.log('e.target.value', e.target.value);
@@ -125,7 +125,6 @@ function Card({ arr }) {
     setCardState((prev) => ({ ...prev, done: !prev.done }));
     // console.log("cardState", cardState);
   };
-
   // console.log("cardState", cardState);
   return (
     <>
@@ -144,12 +143,6 @@ function Card({ arr }) {
         )} */}
 
         <div className={star} onClick={handleIsPriority}></div>
-        {/* <div
-          className={
-            cardState.isPriority ? styled.star_icon : styled.nostar_icon
-          }
-          onClick={handleIsPriority}
-        ></div>{" "} */}
       </div>
 
       <div className={styled.card_wrapper}>
@@ -171,14 +164,14 @@ function Card({ arr }) {
               value={cardState.dueDate}
               onChange={handleChange}
               dateFormat="YYYY-MM-DD"
-            />
+            /> 
           </div>
         </div>
         <div className={styled.card_block}>
           <div className={styled.card_category}>
             <SelectCategory
               onSelectChange={onSelectChange}
-              defaultSelectColor={selectState.defaultSelectColor}
+              defaultSelectColor={cardState.defaultSelectColor}
               onSelectChange={event => onSelectChange(event.target.value)}
               // onSelectChange={onSelectChange}
               group={cardState.group}
