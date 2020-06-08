@@ -129,10 +129,10 @@ export const postUser = nickname => (dispatch, getState) => {
       const filterTime = filterDataTime(response.data.data.tasks);
       console.log('filterTime :>> ', filterTime);
       dispatch(dashboardSlice.actions.filterCardReducer(filterDone));
-      dispatch(dashboardSlice.actions.filterCardReducerToday(filterTime));
+      dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterTime));
     })
     .catch(err => console.log('error = ', err));
-}
+};
 
 // import { userSlice } from "./reducers/userReducer";
 // import axios from "axios";
