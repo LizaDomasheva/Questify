@@ -10,6 +10,14 @@ import { createCard } from '../redux/dashboardOperations';
 import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
 import styled from './DashboardPage.module.css';
 
+
+// const divStyle = {
+//   transform:[{rotate:"180deg"}]
+// }
+
+
+
+
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);
@@ -29,14 +37,21 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
     // console.log('dash', nickname);
   }, []);
 
+  const [isDoneFigure, setDoneFigure] = useState(false);
+
+  const openList = () => {
+    setDoneFigure(prev=>(!isDoneFigure));
+  };
+
+
   return (
     <>
       <div className={styled.dashboard_wrapper}>
         <Header nickname={nickname} history={history} />
         <section className={styled.dashboard}>
           <p className={styled.title}>TODAY</p>
-          { todayCard ? (
-            <CardList arr={todayCard} />
+          {todayCard ? (
+            <CardList arr={todayCard}/>
           ) : (
             <p className={styled.alert}>No quests or challenges for today</p>
           )}
@@ -49,17 +64,23 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
             <p className={styled.alert}>No quests or challenges for done</p>
           )}
         </section>
-        <section className={styled.dashboard}>
-          <p className={styled.title}>DONE</p>
-          <div className={styled.doneFigure}>
-            <div className={styled.doneLine}></div>
-          </div>
-          {done ? (
-            <CardList arr={done} />
-          ) : (
-            <p className={styled.alert}>No quests or challenges for done</p>
-          )}
+
+
+        <section className={styled.dashboard}>      
+            <div onClick={openList} className={isDoneFigure ? styled.doneFigure : styled.doneFigure__rotate}>
+          <p className={isDoneFigure? styled.title:styled.title_color}>DONE</p>
+              <div className={styled.doneLine}> 
+              </div>
+            </div>
+            {isDoneFigure && 
+              <CardList arr={done} />
+            }
+            
+            
         </section>
+
+
+
         <section className={styled.dashboard}>
           <p className={styled.title}>ALL THE REST</p>
           {allTheRest && <CardList arr={allTheRest} />}
