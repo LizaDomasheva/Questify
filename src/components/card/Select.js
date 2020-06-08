@@ -1,5 +1,7 @@
 import React from 'react'
-import styled from '../card/select.module.css'
+import styled from './select.module.css'
+
+
 
 
 const Select = props => {
@@ -9,7 +11,8 @@ const Select = props => {
   <option value="easy" className={styled.easy_select}>Easy</option>
     <option value="normal" className={styled.normal_select}>Normal</option>
     <option value="hard" className={styled.hard_select}>Hard</option>
-</select>
+</select> 
+
 )}
 
 export default Select;
