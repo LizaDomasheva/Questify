@@ -55,21 +55,12 @@ function CardChallenge({ arr }) {
       easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
     );
     // console.log("props", props);
-<<<<<<< HEAD
   };
 
   const showModal = () => {
     setCardState(true);
   };
 
-=======
-  };
-
-  const showModal = () => {
-    setCardState(true);
-  };
-
->>>>>>> dev
   const closeModal = () => {
     setCardState(false);
   };
@@ -111,12 +102,7 @@ function CardChallenge({ arr }) {
               dateFormat="YYYY-MM-DD"
             /> 
           </div>
-<<<<<<< HEAD
-
-        {/* <div className={styled.date_challenge}>
-=======
           {/* <div className={styled.date_challenge}>
->>>>>>> dev
                 <input className={styled.card_input__date} type="text" value="02.06.2020 10:13 PM"/>
                 <button className={styled.card_btn__icon}></button>
                 {/* <div>Calendar</div> */}
@@ -133,11 +119,7 @@ function CardChallenge({ arr }) {
             />
           </div>
           <div className={styled.card_btn__create}>
-<<<<<<< HEAD
-          <button
-=======
           {/* <button
->>>>>>> dev
               onClick={() => showModal()}
               className={styled.delete}
             ></button>
@@ -148,11 +130,7 @@ function CardChallenge({ arr }) {
                 closeModal={closeModal}
               />
             )}
-<<<<<<< HEAD
-            <div className={styled.strip}></div>
-=======
             <div className={styled.strip}></div> */}
->>>>>>> dev
             <button className={styled.start}>Start</button>
           </div>
         </div>
@@ -161,9 +139,6 @@ function CardChallenge({ arr }) {
   );
 }
 
-<<<<<<< HEAD
-export default CardChallenge;
-=======
 export default CardChallenge;
 // import React, { useState } from 'react';
 // // import { css } from 'emotion';
@@ -231,4 +206,3 @@ export default CardChallenge;
 // }
 
 // export default CardChallenge;
->>>>>>> dev
