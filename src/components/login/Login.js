@@ -10,6 +10,7 @@ const initialState = {
 const Login = ({ history }) => {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
+  
   const submitHandler = e => {
     e.preventDefault();
     dispatch(session.getUser({ ...state }));
