@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from '../card/Card';
 import styled from '../card/card.module.css';
 import CardChallenge from '../card/CardChallenge';
@@ -43,45 +43,46 @@ import CardChallenge from '../card/CardChallenge';
 //     </div>
 //   );
 // };
-const initialState = {
-  name: null,
-  difficulty: null,
-  group: null,
-  isPriority: null,
-  dueDate: null,
-  done: false
-};
+// const initialState = {
+//   name: null,
+//   difficulty: null,
+//   group: null,
+//   isPriority: null,
+//   dueDate: null,
+//   done: false,
+// };
 
-const CardList = ({ arr, challengeSendToUser }) => {
-  const [cardState, setCardState] = useState(initialState);
+const CardList = ({ arr }) => {
+  // console.log('arr :>> ', arr);
+  // const [cardState, setCardState] = useState(initialState);
   //   setState(prev => ({ ...prev, [name]: value }));
 
-  const changeCard = ({ name, difficulty, group, isPriority, dueDate, done }) => {
-    setCardState(prev => ({
-      ...prev,
-      name,
-      difficulty,
-      group,
-      isPriority,
-      dueDate,
-    }));
-  };
-  const findId = e => {
-    if (!e.target.closest('li')) {
-      return;
-    }
-    const li = e.target.closest('li');
-    const id = li.dataset.id;
-    const findCard = arr.find(item => item._id === id);
+  // const changeCard = ({ name, difficulty, group, isPriority, dueDate, done}) => {
+  //   setCardState(prev => ({
+  //     ...prev,
+  //     name,
+  //     difficulty,
+  //     group,
+  //     isPriority,
+  //     dueDate,
+  //   }))
+  // };
+  // const findId = e => {
+  //   if (!e.target.closest('li')) {
+  //     return;
+  //   }
+  //   const li = e.target.closest('li');
+  //   const id = li.dataset.id;
+  //   const findCard = arr.find(item => item._id === id);
 
-    changeCard(findCard);
-  };
+  //   changeCard(findCard);
+  // };
 
   return (
     <ul className={styled.card_list} >
           {/* <ul className={styled.card_list} onClick={findId}> */}
-
-      {arr.map(card => (
+      {arr.length>0 && arr.map(card => 
+      (
         <li
           data-id={card._id}
           key={card._id}

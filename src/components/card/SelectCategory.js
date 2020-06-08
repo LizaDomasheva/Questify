@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from '../card/select.module.css'
 
 const SelectCategory = (props) => {
     return(
       <select className={styled[props.defaultSelectColor]} onChange={props.onSelectChange} >
-      <option value="stuff">STUFF</option>
+      <option value="stuff" className={styled.stuff_category}>STUFF</option>
       <option value="learning" className={styled.learning_category}>LEARNING</option>
       <option value="health" className={styled.health_category}>HEALTH</option>
       <option value="work" className={styled.work_category}>WORK</option>

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 import css from './header.module.css';
 import {userSlice} from '../../redux/reducers/userReducer';
 
@@ -20,6 +19,7 @@ const Header = ({ nickname, history }) => {
   const showChallengeCard = () => {};
   let logoLetter = ''
   if(nickname !== null) {
+    // console.log('nickName :>> ', nickname);
     logoLetter = nickname.charAt(0).toUpperCase()
   }
 
