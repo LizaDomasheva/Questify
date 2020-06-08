@@ -1,9 +1,11 @@
-import axios from 'axios';
-import { getUserId } from '../redux/selectors';
-import { dashboardSlice } from '../redux/reducers/dashboardReducer';
-import { filterDataTime } from './operations';
-import moment from 'moment';
-import easydate from 'easydate';
+import axios from "axios";
+import { getUserId } from "../redux/selectors";
+import { dashboardSlice } from "../redux/reducers/dashboardReducer";
+// import { filterDataTime } from "./operations";
+import moment from "moment";
+import easydate from "easydate";
+
+
 
 export const removeCard = _id => dispatch => {
   axios
@@ -19,6 +21,7 @@ export const removeCard = _id => dispatch => {
 };
 
 export const createCard = () => (dispatch, getState) => {
+  console.log('getState :>> ', getState);
   const userId = getUserId(getState());
   const newDate = new Date(Date.now());
   axios
@@ -36,7 +39,7 @@ export const createCard = () => (dispatch, getState) => {
       dispatch(dashboardSlice.actions.addCardReducer(tempData));
       //   console.log("response", tempData);
     })
-    .catch(err => console.warn(err));
+    .catch(err => console.warn("back not work", err));
 };
 
 export const filterDataTimeTest = data => {
@@ -45,8 +48,8 @@ export const filterDataTimeTest = data => {
   let allTheRest = [];
   let done = [];
 
-  console.log('data', data);
-  const filtredData = data.reduce((acc, itemNew) => {
+  console.log("data", data);
+  let filtredData = data.reduce((acc, itemNew) => {
     const item = { ...itemNew, isEdit: false };
     const formatData = easydate('YMd', {
       setDate: `${item.dueDate}`,
@@ -89,48 +92,40 @@ export const filterDataTimeTest = data => {
   return filtredData;
 };
 
-export const changeCard = (_id, correctCardData) => dispatch => {
-  axios
-    .put(`https://questify.goit.co.ua/api/quests/${_id}`, correctCardData)
-    .then(response => {
-      console.log('response change', response.data.quest);
-      // dispatch(dashboardSlice.actions.removeCardReducer(_id));
-      return response;
-    })
-    .then(res => {
-      console.log('res', res.data.quest);
-      const newArr = [res.data.quest];
-      const filterData = filterDataTimeTest(newArr);
-      console.log('filterData', filterData);
-      // dispatch(dashboardSlice.actions.filterCardReducerToday(filterData));
-      // dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterData));
-      dispatch(dashboardSlice.actions.editCardReducer(filterData));
-    })
-    .catch(err => console.warn(err));
-};
-
-// export const changeCardNew = (_id, correctCardData) => dispatch => {
-//   // axios
-//   //   .put(`https://questify.goit.co.ua/api/quests/${_id}`, correctCardData)
-//   //   .then(response => {
-//   //     console.log('response change', response.data.quest);
-//   //     // dispatch(dashboardSlice.actions.removeCardReducer(_id));
-//   //     return response;
-//   //   })
-//   //   .then(res => {
-//     const newId = Date.now();
-//     console.log('My newId', newId);
-//     const x ={...correctCardData, _id: newId};
-//     console.log('My correctCardData with x = ', x)
-//       console.log('My correctCardData = ', correctCardData)
-//       // const newArr = [correctCardData];
-//       const newArr = [x];
-//       console.log('My newArr = ', newArr)
+// export const changeCard = (_id, correctCardData) => (dispatch, getState) => {
+//   axios
+//     .put(`https://questify.goit.co.ua/api/quests/${_id}`, correctCardData)
+//     // .then((response) => {
+//     //   console.log("response change", response.data.quest);
+//     //   dispatch(dashboardSlice.actions.removeCardReducer(_id));
+//     //   return response;
+//     // })
+//     .then((res) => {
+//       console.log("res", res.data.quest);
+//       const newArr = [res.data.quest];
 //       const filterData = filterDataTimeTest(newArr);
-//       console.log('My filterData', filterData);
+//       console.log("filterData", filterData);
 //       // dispatch(dashboardSlice.actions.filterCardReducerToday(filterData));
 //       // dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterData));
-//       dispatch(dashboardSlice.actions.editCardReducerNew(filterData));
-//     // })
-//     // .catch(err => console.warn(err));
+//       dispatch(dashboardSlice.actions.editCardReducer(filterData));
+//     })
+//     .catch((err) => console.warn(err));
 // };
+
+
+export const changeCard = (_id, correctCardData) => async (dispatch) => {
+  try {
+    const res = await axios
+    .put(`https://questify.goit.co.ua/api/quests/${_id}`, correctCardData)
+    console.log('correctCardData :>> ', correctCardData);
+    console.log('res edit :>> ', res);
+    let newArr = [res.data.quest];
+      let filterData = filterDataTimeTest(newArr);
+      console.log("filterData", filterData);
+      dispatch(dashboardSlice.actions.editCardReducer(filterData));
+      // dispatch(dashboardSlice.actions.removeCardReducer(_id));
+  } catch (err) {
+    console.log(err);
+  }
+  
+  };

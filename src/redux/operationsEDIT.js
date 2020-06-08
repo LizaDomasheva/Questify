@@ -132,4 +132,4 @@ export const postUser = nickname => (dispatch, getState) => {
       dispatch(dashboardSlice.actions.filterCardReducerToday(filterTime));
     })
     .catch(err => console.log('error = ', err));
-};
+}

@@ -7,14 +7,20 @@ import CardList from '../components/cardList/CardList';
 // import { useEffect, useState } from 'react';
 import { postUser } from '../redux/operations';
 import { createCard } from '../redux/dashboardOperations';
-import CreateQuestButton from '../components/createQuestButton/createQuestButton';
+import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
 import styled from './DashboardPage.module.css';
+
+
+// const divStyle = {
+//   transform:[{rotate:"180deg"}]
+// }
+
+
+
 
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);
-  // console.log('typeof(editFlag)', typeof editFlag);
-  // console.log('todayCard', todayCard);
   const dispatch = useDispatch();
 
   const createNewCard = () => {
@@ -22,13 +28,21 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
       dispatch(createCard());
       seteditFlag(true);
     }
-    console.log('editFlag', editFlag);
   };
+
 
   useEffect(() => {
     dispatch(postUser(nickname));
-    console.log('dash', nickname);
+    // console.log('todayCard :>> ', todayCard);
+    // console.log('dash', nickname);
   }, []);
+
+  const [isDoneFigure, setDoneFigure] = useState(false);
+
+  const openList = () => {
+    setDoneFigure(prev=>(!isDoneFigure));
+  };
+
 
   return (
     <>
@@ -37,29 +51,39 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         <section className={styled.dashboard}>
           <p className={styled.title}>TODAY</p>
           {todayCard ? (
-            <CardList arr={todayCard} />
+            <CardList arr={todayCard}/>
           ) : (
             <p className={styled.alert}>No quests or challenges for today</p>
           )}
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
-          {tomorrow ? <CardList arr={tomorrow} /> : <p className={styled.alert}>No quests or challenges for done</p>}
-        </section>
-        <section className={styled.dashboard}>
-          <p className={styled.title}>DONE</p>
-          <div className={styled.doneFigure}>
-            <div className={styled.doneLine}></div>
-          </div>
-          {done ? (
-            <CardList arr={done} />
+          { tomorrow ? (
+            <CardList arr={tomorrow} />
           ) : (
             <p className={styled.alert}>No quests or challenges for done</p>
           )}
         </section>
+
+
+        <section className={styled.dashboard}>      
+            <div onClick={openList} className={isDoneFigure ? styled.doneFigure : styled.doneFigure__rotate}>
+          <p className={isDoneFigure? styled.title:styled.title_color}>DONE</p>
+              <div className={styled.doneLine}> 
+              </div>
+            </div>
+            {isDoneFigure && 
+              <CardList arr={done} />
+            }
+            
+            
+        </section>
+
+
+
         <section className={styled.dashboard}>
           <p className={styled.title}>ALL THE REST</p>
-          {allTheRest.length > 0 && <CardList arr={allTheRest} />}
+          {allTheRest && <CardList arr={allTheRest} />}
         </section>
       </div>
       <CreateQuestButton onClick={createNewCard} />
