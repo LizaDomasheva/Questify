@@ -13,8 +13,6 @@ import styled from './DashboardPage.module.css';
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);
-  // console.log('typeof(editFlag)', typeof editFlag);
-  // console.log('todayCard', todayCard);
   const dispatch = useDispatch();
 
   const createNewCard = () => {
@@ -22,16 +20,12 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
       dispatch(createCard());
       seteditFlag(true);
     }
-    // console.log('editFlag', editFlag);
   };
 
-  // useEffect(() => {
-  //   dispatch(postUser(nickname)
-  //   )}, [nickname])
 
   useEffect(() => {
     dispatch(postUser(nickname));
-    console.log('todayCard :>> ', todayCard);
+    // console.log('todayCard :>> ', todayCard);
     // console.log('dash', nickname);
   }, []);
 

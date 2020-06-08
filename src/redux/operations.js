@@ -1,9 +1,9 @@
 import { userSlice } from './reducers/userReducer';
 import axios from 'axios';
-import storage from 'redux-persist/lib/storage';
+// import storage from 'redux-persist/lib/storage';
 import easydate from 'easydate';
 import moment from 'moment';
-import * as selectors from './selectors';
+// import * as selectors from './selectors';
 import { dashboardSlice } from './reducers/dashboardReducer';
 
 // const loginURL = 'https://develop-questify.goit.co.ua/api/auth';
@@ -21,7 +21,7 @@ export const filterDataTime = data => {
   let allTheRest = [];
   let done = [];
 
-  console.log('data', data);
+  // console.log('data', data);
   const filtredData = data.reduce((acc, itemNew) => {
     const item = { ...itemNew, isEdit: false };
     const formatData = easydate('YMd', {
@@ -41,7 +41,7 @@ export const filterDataTime = data => {
     const deltaTime = currentData - momentData - curData - 86400000;
     if (deltaTime > 0) {
       data = 'tooOld';
-      console.log('data', data);
+      // console.log('data', data);
     } else console.log('ops', 'ooooops');
     // console.log('deltaTime', deltaTime)
     // console.log('itemNew.dueDate :>> ', itemNew.dueDate);
@@ -102,7 +102,7 @@ export const filterDataTime = data => {
 };
 
 export const getUser = nickname => (dispatch, getState) => {
-  console.log('nickname getUser', nickname);
+  // console.log('nickname getUser', nickname);
   axios
     .post(loginURL, nickname)
     .then(response => {

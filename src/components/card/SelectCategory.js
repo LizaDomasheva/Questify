@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styled from '../card/select.module.css'
 
 const SelectCategory = (props) => {

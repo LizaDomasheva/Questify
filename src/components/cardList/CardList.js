@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from '../card/Card';
 import styled from '../card/card.module.css';
 import CardChallenge from '../card/CardChallenge';
@@ -43,17 +43,17 @@ import CardChallenge from '../card/CardChallenge';
 //     </div>
 //   );
 // };
-const initialState = {
-  name: null,
-  difficulty: null,
-  group: null,
-  isPriority: null,
-  dueDate: null,
-  done: false,
-};
+// const initialState = {
+//   name: null,
+//   difficulty: null,
+//   group: null,
+//   isPriority: null,
+//   dueDate: null,
+//   done: false,
+// };
 
 const CardList = ({ arr }) => {
-  console.log('arr :>> ', arr);
+  // console.log('arr :>> ', arr);
   // const [cardState, setCardState] = useState(initialState);
   //   setState(prev => ({ ...prev, [name]: value }));
 
