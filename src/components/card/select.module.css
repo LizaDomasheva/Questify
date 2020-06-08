@@ -97,7 +97,7 @@
 }
 
 .card_item {
-    width: 100px;
+    width: 110px;
     list-style: none;
     padding: 0 12px;
     border-radius: 5px;
@@ -127,7 +127,7 @@
     padding-left: 20px;
     border: none;
     outline: none;
-    width: 100px;
+    width: 110px;
 }
 
 .normal_select{
@@ -143,7 +143,7 @@
     padding-left: 20px;
     border: none;
     outline: none;
-    width: 100px;
+    width: 110px;
 }
 
 .hard_select {
@@ -159,5 +159,5 @@
     padding-left: 20px;
     border: none;
     outline: none;
-    width: 100px;
+    width: 110px;
 }
