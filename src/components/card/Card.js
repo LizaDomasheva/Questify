@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import chroma from "chroma-js";
-import { css } from "emotion";
-import DatePicker from "react-date-picker";
-import Select from "react-select";
-import styled from "./card.module.css";
-import { useDispatch } from "react-redux";
-import SelectCategory from "./SelectCategory";
-import { removeCard, changeCard } from "../../redux/dashboardOperations";
-import DeleteQuestModal from "./DeleteQuestModal";
-import axios from "axios";
-import moment from "moment";
-import easydate from "easydate";
-import { CompletedModal } from "./CompletedModal";
+import React, { useState } from 'react';
+import chroma from 'chroma-js';
+import { css } from 'emotion';
+import DatePicker from 'react-date-picker';
+import Select from 'react-select';
+import styled from './card.module.css';
+import { useDispatch } from 'react-redux';
+import SelectCategory from './SelectCategory';
+import { removeCard, changeCard, changeCardNew } from '../../redux/dashboardOperations';
+import DeleteQuestModal from './DeleteQuestModal';
+import axios from 'axios';
+import moment from 'moment';
+import easydate from 'easydate';
+import { CompletedModal } from './CompletedModal';
 
 function Card({ arr }) {
   const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
@@ -23,8 +23,8 @@ function Card({ arr }) {
     // dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: dueDate }),
     dueDate: new Date(dueDate),
     isEdit: isEdit || null,
-    defaultSelectColor: 'card_category',
-    defaultSelectGroupClr: 'card_item',
+    // defaultSelectColor: 'card_category',
+    // defaultSelectGroupClr: 'card_item',
   };
 
   const selectInitialState = {
@@ -111,9 +111,14 @@ function Card({ arr }) {
   const updateCard = () => {
     // console.log("click", "click");
     // console.log('cardState', cardState)
-    const correctCardData = {...cardState, dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })}
+    const correctCardData = {
+      ...cardState,
+      dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
+      isEdit: false,
+    };
     // console.log('prepairData', correctCardData)
     dispatch(changeCard(_id, correctCardData));
+      // dispatch(changeCardNew(_id, correctCardData));
   };
 
   // const onSelectChange = (e) => {
@@ -122,7 +127,7 @@ function Card({ arr }) {
   // };
 
   const isTaskDone = () => {
-    setCardState((prev) => ({ ...prev, done: !prev.done }));
+    setCardState(prev => ({ ...prev, done: !prev.done }));
     // console.log("cardState", cardState);
   };
 
@@ -191,8 +196,7 @@ function Card({ arr }) {
             <div className={styled.strip}></div>
             <button
               onClick={() => showModal()}
-              className={styled.delete}
-            ></button>
+              className={styled.delete}></button>
             {isModalOpen && (
               <DeleteQuestModal
                 deleteCard={deleteCard}

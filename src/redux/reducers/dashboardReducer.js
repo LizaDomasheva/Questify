@@ -20,6 +20,10 @@ export const dashboardSlice = createSlice({
       done: state.done.filter(card => card._id !== payload),
       allTheRest: state.allTheRest.filter(card => card._id !== payload),
     }),
+    // editCardReducerNew: (state, { payload }) => ({
+    //   ...state,
+    //   today: [...state.today, payload.today],
+    // }),
     editCardReducer: (state, { payload }) => ({
       ...state,
       today: [...state.today, payload.today],

@@ -3,7 +3,7 @@ import { css } from 'emotion';
 import DatePicker from 'react-date-picker';
 import styled from './card.module.css';
 
-function CardChallenge({ arr }) {
+function CardChallenge({ arr }) git {
   const handleChange = props => {
     setValue(props);
     console.log('tempData', props);
