@@ -1,5 +1,14 @@
 ToDo:
-- отредактировать режим edit
 - логин
 - challenge card 
 - persist
+
+existCard = no buttons = Card.js
+newCard = 2 buttons
+editingCard = 3
+
+
+1. + || click cardId -  editFlag: true, isEdit: true 
+2. + проверяем: editFlag: true - редактировать нельзя, создавать нельзя
+3. клик по карточке - isEdit: true, editFlag: true
+4. 
