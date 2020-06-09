@@ -119,7 +119,7 @@ function CardChallenge({ arr }) {
             />
           </div>
           <div className={styled.card_btn__create}>
-          {/* <button
+          <button
               onClick={() => showModal()}
               className={styled.delete}
             ></button>
@@ -130,7 +130,7 @@ function CardChallenge({ arr }) {
                 closeModal={closeModal}
               />
             )}
-            <div className={styled.strip}></div> */}
+            <div className={styled.strip}></div>
             <button className={styled.start}>Start</button>
           </div>
         </div>
