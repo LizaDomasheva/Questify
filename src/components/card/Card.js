@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-date-picker";
 import Select from "./Select";
 import styled from "./card.module.css";
+import css from './select.module.css'
 import { useDispatch } from "react-redux";
 import easydate from "easydate";
 import SelectCategory from "./SelectCategory";
@@ -18,8 +19,11 @@ function Card({
   editFlag,
   resetEditFlag,
   setEditFlagTrue,
+  startFlag,
+  resetStartFlag,
 }) {
   const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
+  
   const initialState = {
     name: name,
     difficulty: difficulty,
@@ -27,13 +31,16 @@ function Card({
     isPriority: isPriority,
     dueDate: new Date(dueDate),
     isEdit: isEdit,
-    // defaultSelectColor: "card_category",
-    // defaultSelectGroupClr: "card_item",
   };
 
   const selectInitialState = {
-    defaultSelectColor: "card_category",
-    defaultSelectGroupClr: "card_item",
+    defaultSelectColor: group + 'card_category',
+    // defaultSelectColor: group ? (group + "_category") : 'card_category',
+    // defaultSelectColor: "card_category",
+
+    defaultSelectGroupClr: difficulty + "_select",
+    // defaultSelectGroupClr: "card_item",
+
   };
 
   const [cardState, setCardState] = useState(initialState);
@@ -109,8 +116,11 @@ function Card({
   };
 
   const dispatch = useDispatch();
+
   const deleteCard = (_id) => {
     dispatch(removeCard(_id));
+    resetEditFlag();
+    resetStartFlag();
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -119,9 +129,9 @@ function Card({
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
   const updateCard = () => {
     const correctCardData = {
@@ -167,7 +177,7 @@ function Card({
             <Select
               defaultSelectGroupClr={selectState.defaultSelectGroupClr}
               onSelectColor={(event) => onSelectColor(event.target.value)}
-              difficulty={difficulty}
+              difficulty={cardState.difficulty}
             />
           </div>
           {/* {isPriority ? (
@@ -211,22 +221,32 @@ function Card({
           <div className={styled.card_block}>
             <div className={styled.card_category}>
               <SelectCategory
-                onSelectChange={onSelectChange}
+                // onSelectChange={onSelectChange}
                 defaultSelectColor={selectState.defaultSelectColor}
                 onSelectChange={(event) => onSelectChange(event.target.value)}
                 group={cardState.group}
                 // value={cardState.group}
               />
             </div>
-            {cardState.isEdit && (
+            {cardState.isEdit && !startFlag && (
               <ButtonsManipulate
                 deleteCard={deleteCard}
                 showModal={showModal}
                 id={_id}
                 updateCard={updateCard}
+                title={cardState.name}
+                cardState={cardState}
+                isTaskDone={isTaskDone}
               />
             )}
-            {/* {!editFlag && <Buttons/>} */}
+            {startFlag && cardState.isEdit && (
+              <Buttons
+                resetStartFlag={resetStartFlag}
+                updateCard={updateCard}
+                deleteCard={deleteCard}
+                id={_id}
+              />
+            )}
             {/* <Buttons deleteCard={deleteCard} showModal={showModal} id={_id}/> */}
             {/* <div className={styled.card_btn__create}>
 

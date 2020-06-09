@@ -53,7 +53,7 @@ import CardEditing from '../card/cardEditing/CardEditing';
 //   done: false,
 // };
 
-const CardList = ({ arr, editFlag, resetEditFlag, setEditFlagTrue }) => {
+const CardList = ({ arr, editFlag, resetEditFlag, setEditFlagTrue, startFlag, resetStartFlag }) => {
   // console.log('arr :>> ', arr);
   // const [cardState, setCardState] = useState(initialState);
   //   setState(prev => ({ ...prev, [name]: value }));
@@ -108,7 +108,7 @@ const CardList = ({ arr, editFlag, resetEditFlag, setEditFlagTrue }) => {
             {/* <CardEditing arr={card}/> */}
             {/* {update && <CardEditing arr={card}/>} */}
             {/* {!card.hasOwnProperty('challengeSendToUser') && <CardEditing arr={card} />} */}
-          {(!card.hasOwnProperty('challengeSendToUser')) && <Card arr={card} editStateTest={editStateTest} isEdit={card.isEdit}  editFlag={editFlag} resetEditFlag={resetEditFlag} setEditFlagTrue={setEditFlagTrue}/>}
+          {(!card.hasOwnProperty('challengeSendToUser')) && <Card arr={card} editStateTest={editStateTest} isEdit={card.isEdit}  editFlag={editFlag} resetEditFlag={resetEditFlag} setEditFlagTrue={setEditFlagTrue} startFlag={startFlag} resetStartFlag={resetStartFlag}/>}
           {card.hasOwnProperty('challengeSendToUser') && (
             <CardChallenge arr={card} />
           )}

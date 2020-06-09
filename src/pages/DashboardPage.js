@@ -15,28 +15,50 @@ import CardEditing from "../components/card/cardEditing/CardEditing";
 // }
 
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
+  useEffect(() => {
+    window.scrollTo(
+      {
+        top: 0,
+        behavior: "smooth",
+      },
+      []
+    );
+  });
+
   const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);
+  const [startFlag, setstartFlag] = useState(false);
   const dispatch = useDispatch();
 
   const resetEditFlag = () => {
-    seteditFlag(false)
-  }
+    seteditFlag(false);
+  };
 
   const setEditFlagTrue = () => {
-    seteditFlag(true)
-  } 
+    seteditFlag(true);
+  };
 
   const createNewCard = () => {
     if (!editFlag) {
       dispatch(createCard());
       seteditFlag(true);
-      console.log('editFlag', editFlag)
+      console.log("editFlag", editFlag);
     }
+    setstartFlag(true);
+    console.log('startFlag', startFlag)
+  };
+  
+  const resetStartFlag = () => {
+    setstartFlag(false);
+    resetEditFlag()
   };
 
   useEffect(() => {
     dispatch(postUser(nickname));
+    //   window.scrollTo({
+    //     top: 0,
+    //     behavior: "smooth"
+    // });
   }, []);
 
   const [isDoneFigure, setDoneFigure] = useState(false);
@@ -53,7 +75,14 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
           <p className={styled.title}>TODAY</p>
           {/* {editFlag && <CardEditing arr={todayCard}/>} */}
           {todayCard ? (
-            <CardList arr={todayCard} editFlag={editFlag} resetEditFlag={resetEditFlag} setEditFlagTrue={setEditFlagTrue}/>
+            <CardList
+              arr={todayCard}
+              editFlag={editFlag}
+              resetEditFlag={resetEditFlag}
+              setEditFlagTrue={setEditFlagTrue}
+              startFlag={startFlag}
+              resetStartFlag={resetStartFlag}
+            />
           ) : (
             <p className={styled.alert}>No quests or challenges for today</p>
           )}
@@ -61,7 +90,12 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
           {tomorrow ? (
-            <CardList arr={tomorrow} editFlag={editFlag} resetEditFlag={resetEditFlag} setEditFlagTrue={setEditFlagTrue}/>
+            <CardList
+              arr={tomorrow}
+              editFlag={editFlag}
+              resetEditFlag={resetEditFlag}
+              setEditFlagTrue={setEditFlagTrue}
+            />
           ) : (
             <p className={styled.alert}>No quests or challenges for done</p>
           )}
@@ -79,12 +113,26 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
             </p>
             <div className={styled.doneLine}></div>
           </div>
-          {isDoneFigure && <CardList arr={done} editFlag={editFlag} resetEditFlag={resetEditFlag} setEditFlagTrue={setEditFlagTrue}/>}
+          {isDoneFigure && (
+            <CardList
+              arr={done}
+              editFlag={editFlag}
+              resetEditFlag={resetEditFlag}
+              setEditFlagTrue={setEditFlagTrue}
+            />
+          )}
         </section>
 
         <section className={styled.dashboard}>
           <p className={styled.title}>ALL THE REST</p>
-          {allTheRest && <CardList arr={allTheRest} editFlag={editFlag} resetEditFlag={resetEditFlag} setEditFlagTrue={setEditFlagTrue}/>}
+          {allTheRest && (
+            <CardList
+              arr={allTheRest}
+              editFlag={editFlag}
+              resetEditFlag={resetEditFlag}
+              setEditFlagTrue={setEditFlagTrue}
+            />
+          )}
         </section>
       </div>
       <CreateQuestButton onClick={createNewCard} />

@@ -3,7 +3,7 @@ import styled from "./card.module.css";
 import DeleteQuestModal from "./DeleteQuestModal";
 import ButtonsManipulate from "./ButtonsManipulate";
 
-const Buttons = ({ deleteCard, id }) => {
+const Buttons = ({ deleteCard, id, resetStartFlag, updateCard }) => {
   const [isStart, setIsStart] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -30,7 +30,7 @@ const Buttons = ({ deleteCard, id }) => {
         />
       )}
       <div className={styled.strip}></div>
-      <button onClick={startEdit} className={styled.start}>Start</button>
+      <button onClick={updateCard} className={styled.start}>Start</button>
       {/* {isStart &&  <ButtonsManipulate />} */}
     </>
   );
