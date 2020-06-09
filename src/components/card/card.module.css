@@ -80,6 +80,8 @@
 
 }
 
+
+
 /* CardChallenge */
 .trophy_icon {
     background-image: url(../../assets/images/icons/trophy/trophy.svg);
@@ -138,6 +140,16 @@
     color: #b9c3c8;
     cursor: pointer;
     background-color: initial;
+    position: relative;
+}
+
+.fire {
+    position: absolute;
+    left: 195px;
+    bottom: 120px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/images/icons/fire/fireOrange.png);
 }
 
 .date_picker>div {

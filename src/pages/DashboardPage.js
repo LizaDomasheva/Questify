@@ -71,7 +71,8 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   return (
     <>
       <div className={styled.dashboard_wrapper}>
-        <Header nickname={nickname} history={history} allTheRest={allTheRest} />
+          {/* <Loading/> */}
+        <Header nickname={nickname} history={history} allTheRest={allTheRest}/>
         <section className={styled.dashboard}>
           <p className={styled.title}>TODAY</p>
           {/* {editFlag && <CardEditing arr={todayCard}/>} */}

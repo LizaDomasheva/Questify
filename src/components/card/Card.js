@@ -32,7 +32,8 @@ function Card({
     dueDate: new Date(dueDate),
     isEdit: isEdit,
   };
-
+  console.log('new Date(dueDate) :>> ', new Date(dueDate).getDate());
+  console.log('new Date(Date.now) :>> ', new Date(Date.now()).getDate());
   const selectInitialState = {
     // defaultSelectColor: group + 'card_category',
     // defaultSelectColor: group ? (group + "_category") : 'card_category',
@@ -77,8 +78,10 @@ function Card({
   //   }));
   // };
 
+
   const onSelectColor = value => {
     setSelectState(prev => ({
+
       ...prev,
       defaultSelectGroupClr: value + '_select',
     }));
@@ -263,12 +266,10 @@ Olia Melnyk, [09.06.20 15:35]
             <div className={styled.strip}></div>
             <button
               onClick={() => showModal()}
-<<<<<<< HEAD
-              className={styled.delete}></button>
-=======
+
               className={styled.delete}
               ></button>
->>>>>>> dev
+
             {isModalOpen && (
               <DeleteQuestModal
               deleteCard={deleteCard}
