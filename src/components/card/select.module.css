@@ -8,8 +8,8 @@
     border-radius: 0 60px 60px 0;
     border: none;
     outline: none;
-    box-shadow: rgb(252, 242, 183) -22px 0px 0px 0px;
-    background-color: rgb(252, 242, 183);
+    box-shadow: rgb(236, 239, 241) -22px 0px 0px 0px;
+    background-color: rgb(236, 239, 241);
 }
 /* 
 .option {
@@ -97,7 +97,7 @@
 }
 
 .card_item {
-    width: 110px;
+    width: 100px;
     list-style: none;
     padding: 0 12px;
     border-radius: 5px;
@@ -127,7 +127,7 @@
     padding-left: 20px;
     border: none;
     outline: none;
-    width: 110px;
+    width: 100px;
 }
 
 .normal_select{
@@ -143,7 +143,7 @@
     padding-left: 20px;
     border: none;
     outline: none;
-    width: 110px;
+    width: 100px;
 }
 
 .hard_select {
@@ -159,5 +159,13 @@
     padding-left: 20px;
     border: none;
     outline: none;
-    width: 110px;
+    width: 100px;
 }
+
+
+select{
+    font-family: fontAwesome
+}
+
+
+
