@@ -106,6 +106,22 @@
     border-bottom: 1px solid #00d7ff;
 }
 
+.card_input_disActive {
+    width: 250px;
+    text-align: center;
+    font-family: HelveticaNeueCyr, sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+    /* border-bottom: 1px solid #00d7ff; */
+
+}
+
 .card_input__date {
     border: none;
     outline: none;
@@ -163,6 +179,18 @@
     height: 17px;
     outline: none;
 }
+
+.date_picker>div>button:nth-child(3) {
+    border: none;
+    background-image: url(../../assets/images/icons/fire/fire.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 17px;
+    outline: none;
+}
+
+
 
 .date_picker>div>button>svg {
     display: none;
