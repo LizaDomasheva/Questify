@@ -84,11 +84,11 @@ function CardEditing({ arr }) {
 
   const handleChange = (props) => {
     setCardState((prev) => ({ ...prev, dueDate: props }));
-    console.log("dueDate", dueDate);
-    console.log(
-      "dueDateEasy",
-      easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })
-    );
+    // console.log("dueDate", dueDate);
+    // console.log(
+    //   "dueDateEasy",
+    //   easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })
+    // );
     // console.log("props", props);
   };
 
@@ -118,7 +118,7 @@ function CardEditing({ arr }) {
       dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate }),
       isEdit: false,
     };
-    console.log("prepairData", correctCardData);
+    // console.log("prepairData", correctCardData);
 
     dispatch(changeCard(_id, correctCardData));
   };

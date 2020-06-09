@@ -52,6 +52,7 @@
     bottom: 35px;
     border: 7px solid transparent;
     border-bottom: 7px solid var(--easy-color); 
+    margin-bottom: 3px;
 }   
     
 .doneFigure__rotate::after {
@@ -61,7 +62,7 @@
     bottom: 35px;
     border: 7px solid transparent;
     border-bottom: 7px solid var(--easy-color); 
-    margin-bottom: -8px;
+    margin-bottom: -5px;
     transform: rotate(180deg);
 }
 
