@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "./cardCompleted.module.css";
-// import { useDispatch } from "react-redux";
-// import {changeCard} from '../../redux/dashboardOperations'
 
 export const CompletedModal = ({ title, updateCard }) => {
 
