@@ -8,7 +8,7 @@ const initialState = {
   nickname: '',
 };
 
-const Header = ({ nickname, history }) => {
+const Header = ({ nickname, history, allTheRest }) => {
   const [clearUser, setClearUser] = useState(initialState)
   const dispatch = useDispatch()
   const handleLogOut = () => {

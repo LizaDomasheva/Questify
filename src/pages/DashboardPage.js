@@ -9,6 +9,7 @@ import { postUser } from '../redux/operations';
 import { createCard } from '../redux/dashboardOperations';
 import CreateQuestButton from '../components/createQuestButton/CreateQuestButton';
 import styled from './DashboardPage.module.css';
+import Loading from '../components/loading/Loading';
 
 
 // const divStyle = {
@@ -47,7 +48,8 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   return (
     <>
       <div className={styled.dashboard_wrapper}>
-        <Header nickname={nickname} history={history} />
+          {/* <Loading/> */}
+        <Header nickname={nickname} history={history} allTheRest={allTheRest}/>
         <section className={styled.dashboard}>
           <p className={styled.title}>TODAY</p>
           {todayCard ? (

@@ -13,6 +13,7 @@ import DeleteQuestModal from "./DeleteQuestModal";
 // import moment from "moment";
 import { CompletedModal } from "./CompletedModal";
 
+
 function Card({ arr }) {
   const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
   const initialState = {
