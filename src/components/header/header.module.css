@@ -24,14 +24,14 @@
 }
 
 .logo {
-  /* background-image: url(../../assets/images/logo/favicon-dark.svg); */
-  width: 22px;
-  height: 22px;
-  background-size: 22px;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-top: 20px;
-  margin-left: 8%;
+    background-image: url(../../assets/images/logo/favicon-dark.svg);
+    width: 22px;
+    height: 22px;
+    background-size: 22px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 20px;
+    margin-left: 8%;
 }
 
 .user {
@@ -81,6 +81,13 @@
   background-color: rgb(62, 78, 108);
   background-image: url(../../assets/images/icons/trophy/disTrophy.png);
 }
+
+.trophyDisabled {
+    composes: trophy;
+    box-shadow: none;
+    background-color: rgb(62, 78, 108);
+    background-image: url(../../assets/images/icons/trophy/disTrophy.png);
+  }
 
 .exit {
   width: 22px;

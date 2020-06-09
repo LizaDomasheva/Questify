@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-date-picker';
-import Select from './Select';
-import styled from './card.module.css';
-import { useDispatch } from 'react-redux';
-import easydate from 'easydate';
-import SelectCategory from './SelectCategory';
-import { removeCard, changeCard } from '../../redux/dashboardOperations';
-import DeleteQuestModal from './DeleteQuestModal';
-import { CompletedModal } from './CompletedModal';
-import Buttons from './Buttons';
-import ButtonsManipulate from './ButtonsManipulate';
+import React, { useState } from "react";
+import DatePicker from "react-date-picker";
+import Select from "./Select";
+import styled from "./card.module.css";
+import css from "./select.module.css";
+import { useDispatch } from "react-redux";
+import easydate from "easydate";
+import SelectCategory from "./SelectCategory";
+import { removeCard, changeCard } from "../../redux/dashboardOperations";
+import DeleteQuestModal from "./DeleteQuestModal";
+import { CompletedModal } from "./CompletedModal";
+import Buttons from "./Buttons";
+import ButtonsManipulate from "./ButtonsManipulate";
 
 function Card({
   arr,
@@ -18,8 +19,11 @@ function Card({
   editFlag,
   resetEditFlag,
   setEditFlagTrue,
+  startFlag,
+  resetStartFlag,
 }) {
   const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
+
   const initialState = {
     name: name,
     difficulty: difficulty,
@@ -27,15 +31,30 @@ function Card({
     isPriority: isPriority,
     dueDate: new Date(dueDate),
     isEdit: isEdit,
-    // defaultSelectColor: "card_category",
-    // defaultSelectGroupClr: "card_item",
   };
   console.log('new Date(dueDate) :>> ', new Date(dueDate).getDate());
   console.log('new Date(Date.now) :>> ', new Date(Date.now()).getDate());
   const selectInitialState = {
-    defaultSelectColor: 'card_category',
-    defaultSelectGroupClr: 'card_item',
+    // defaultSelectColor: group + 'card_category',
+    // defaultSelectColor: group ? (group + "_category") : 'card_category',
+    defaultSelectColor: "card_category",
+
+    // defaultSelectGroupClr: difficulty + "_select",
+    defaultSelectGroupClr: "card_item",
   };
+
+
+
+  // const selectInitialState = {
+  //     defaultSelectColor: group + 'card_category',
+  //     // defaultSelectColor: group ? (group + "_category") : 'card_category',
+  //     // defaultSelectColor: "card_category",
+  
+  //     defaultSelectGroupClr: difficulty + "_select",
+  //     // defaultSelectGroupClr: "card_item",
+  
+  //   };
+
 
   const [cardState, setCardState] = useState(initialState);
   const [selectState, setSelectState] = useState(selectInitialState);
@@ -62,9 +81,9 @@ function Card({
   //   }));
   // };
 
-  const onSelectColor = value => {
-    console.log('valueColor :>> ', value);
-    setSelectState(prev => ({
+
+  const onSelectColor = (value) => {
+    setSelectState((prev) => ({
       ...prev,
       defaultSelectGroupClr: value + '_select',
     }));
@@ -75,18 +94,20 @@ function Card({
     }));
   };
 
-  const onSelectChange = value => {
-    console.log('value :>> ', value);
-    setSelectState(prev => ({
-      ...prev,
-      defaultSelectColor: value + '_category',
+  const onSelectChange = (value) => {
+    setSelectState((prev) => ({
+      // ...prev,
+      defaultSelectColor: value + "_category",
     }));
-    setCardState(prev => ({
+    console.log("selectState", selectState);
+    setCardState((prev) => ({
       ...prev,
       // defaultSelectColor: value + '_category',
       group: value,
     }));
   };
+
+
 
   // const onSelectChange = e => {
   //   console.log('e.target.value', e.target.value);
@@ -95,12 +116,12 @@ function Card({
 
   const handleChange = props => {
     if (!cardState.isEdit) return;
-    setCardState(prev => ({ ...prev, dueDate: props }));
-    console.log('dueDate', dueDate);
-    console.log(
-      'dueDateEasy',
-      easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
-    );
+    setCardState((prev) => ({ ...prev, dueDate: props }));
+    // console.log("dueDate", dueDate);
+    // console.log(
+    //   "dueDateEasy",
+    //   easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })
+    // );
   };
 
   const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon; ///перепроверить
@@ -110,8 +131,11 @@ function Card({
   };
 
   const dispatch = useDispatch();
-  const deleteCard = _id => {
+
+  const deleteCard = (_id) => {
     dispatch(removeCard(_id));
+    resetEditFlag();
+    resetStartFlag();
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -120,16 +144,17 @@ function Card({
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  // const closeModal = () => {
+  //   setIsModalOpen(false);
+  // };
 
-  const updateCard = () => {
+
+const updateCard = () => {
     const correctCardData = {
       ...cardState,
       dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
     };
-    console.log('prepairData', correctCardData);
+    // console.log("prepairData", correctCardData);
     dispatch(changeCard(_id, correctCardData));
     resetEditFlag();
   };
@@ -144,31 +169,32 @@ function Card({
   };
 
   const editState = () => {
-    setCardState(prev => ({ ...prev, isEdit: true }));
-    console.log('cardState', cardState);
+    setCardState((prev) => ({ ...prev, isEdit: true }));
+    // console.log("cardState", cardState);
   };
 
   const changeIsEdit = e => {
     if (editFlag) return;
     editStateTest(e);
-    setCardState(prev => ({ ...prev, isEdit: true }));
-    console.log('editFlagDiv', editFlag);
-    console.log('cardState', cardState);
+    setCardState((prev) => ({ ...prev, isEdit: true }));
+    // console.log("editFlagDiv", editFlag);
+    // console.log("cardState", cardState);
     setEditFlagTrue();
   };
 
   return (
     <>
       <div
-        className={cardState.isEdit && styled.card_active}
+        className={cardState.isEdit ? styled.card_active : styled.card_border}
         onClick={changeIsEdit}
       >
         <div className={styled.card_header}>
           <div className={styled.card_item}>
+            {/* {console.log('cardState.difficulty', (cardState.difficulty.toLowerCase() === 'hard'))} */}
             <Select
               defaultSelectGroupClr={selectState.defaultSelectGroupClr}
-              onSelectColor={event => onSelectColor(event.target.value)}
-              difficulty={difficulty}
+              onSelectColor={(event) => onSelectColor(event.target.value)}
+              difficulty={cardState.difficulty}
             />
           </div>
           {/* {isPriority ? (
@@ -183,6 +209,7 @@ function Card({
         <div className={styled.card_wrapper}>
           <div className={styled.card_container}>
             <input
+              // style={{backgroundColor: 'white'}}
               className={
                 cardState.isEdit
                   ? styled.card_input
@@ -205,37 +232,45 @@ function Card({
                 dateFormat="YYYY-MM-DD"
                 clearIcon={!cardState.isEdit && null}
                 disabled={!cardState.isEdit}
-                // isOpen={false}
               />
-              {new Date(dueDate).getDate() ===
-                new Date(Date.now()).getDate() && (
+               {(new Date(dueDate).getDate() ===
+                new Date(Date.now()).getDate()) && !cardState.isEdit && (
                 <div className={styled.fire} />
-              )}
+              ) }
             </div>
           </div>
           <div className={styled.card_block}>
-            <div className={styled.card_category}>
+            <div className={css.card_category}>
               <SelectCategory
-                // onSelectChange={onSelectChange}
                 defaultSelectColor={selectState.defaultSelectColor}
                 onSelectChange={event => onSelectChange(event.target.value)}
                 group={cardState.group}
-                // value={cardState.group}
               />
             </div>
-            {cardState.isEdit && (
+            {cardState.isEdit && !startFlag && (
               <ButtonsManipulate
                 deleteCard={deleteCard}
                 showModal={showModal}
                 id={_id}
                 updateCard={updateCard}
+                title={cardState.name}
+                cardState={cardState}
+                isTaskDone={isTaskDone}
               />
             )}
-            {/* {!editFlag && <Buttons/>} */}
+            {startFlag && cardState.isEdit && (
+              <Buttons
+                resetStartFlag={resetStartFlag}
+                updateCard={updateCard}
+                deleteCard={deleteCard}
+                id={_id}
+              />
+            )}
             {/* <Buttons deleteCard={deleteCard} showModal={showModal} id={_id}/> */}
             {/* <div className={styled.card_btn__create}>
 
-            <button onClick={updateCard} className={styled.save}></button>
+Olia Melnyk, [09.06.20 15:35]
+<button onClick={updateCard} className={styled.save}></button>
             <div className={styled.strip}></div>
             <button
               onClick={() => showModal()}
