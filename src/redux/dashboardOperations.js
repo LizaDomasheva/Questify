@@ -11,7 +11,7 @@ export const removeCard = (_id) => (dispatch) => {
     .then((response) => {
       console.log("response-delete", response);
       if (response.data.success) {
-        console.log("id", _id);
+        // console.log("id", _id);
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       }
     })
@@ -19,7 +19,7 @@ export const removeCard = (_id) => (dispatch) => {
 };
 
 export const createCard = () => (dispatch, getState) => {
-  console.log("getState :>> ", getState);
+  // console.log("getState :>> ", getState);
   const userId = getUserId(getState());
   const newDate = new Date(Date.now());
   axios
@@ -150,12 +150,12 @@ export const changeCard = (_id, correctCardData) => async (dispatch) => {
       `https://questify.goit.co.ua/api/quests/${_id}`,
       correctCardData
     );
-    console.log("correctCardData :>> ", correctCardData);
+    // console.log("correctCardData :>> ", correctCardData);
     console.log("res edit :>> ", res);
     let newArr = [res.data.quest];
-    console.log("type of", typeof newArr);
+    // console.log("type of", typeof newArr);
     let filterData = filterDataTimeTest(newArr);
-    console.log("filterData", filterData);
+    // console.log("filterData", filterData);
     const dataForReducer = {
       today: [],
       tomorrow: [],

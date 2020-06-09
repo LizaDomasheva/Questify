@@ -15,15 +15,15 @@ import CardEditing from "../components/card/cardEditing/CardEditing";
 // }
 
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
-  useEffect(() => {
-    window.scrollTo(
-      {
-        top: 0,
-        behavior: "smooth",
-      },
-      []
-    );
-  });
+  // useEffect(() => {
+  //   window.scrollTo(
+  //     {
+  //       top: 0,
+  //       behavior: "smooth",
+  //     },
+  //     []
+  //   );
+  // });
 
   const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);
@@ -70,7 +70,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   return (
     <>
       <div className={styled.dashboard_wrapper}>
-        <Header nickname={nickname} history={history} />
+        <Header nickname={nickname} history={history} allTheRest={allTheRest} />
         <section className={styled.dashboard}>
           <p className={styled.title}>TODAY</p>
           {/* {editFlag && <CardEditing arr={todayCard}/>} */}
@@ -95,6 +95,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
               editFlag={editFlag}
               resetEditFlag={resetEditFlag}
               setEditFlagTrue={setEditFlagTrue}
+              resetStartFlag={resetStartFlag}
             />
           ) : (
             <p className={styled.alert}>No quests or challenges for done</p>
@@ -119,6 +120,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
               editFlag={editFlag}
               resetEditFlag={resetEditFlag}
               setEditFlagTrue={setEditFlagTrue}
+              resetStartFlag={resetStartFlag}
             />
           )}
         </section>
@@ -131,6 +133,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
               editFlag={editFlag}
               resetEditFlag={resetEditFlag}
               setEditFlagTrue={setEditFlagTrue}
+              resetStartFlag={resetStartFlag}
             />
           )}
         </section>

@@ -4,7 +4,7 @@ import DeleteQuestModal from "./DeleteQuestModal";
 import ButtonsManipulate from "./ButtonsManipulate";
 
 const Buttons = ({ deleteCard, id, resetStartFlag, updateCard }) => {
-  const [isStart, setIsStart] = useState(false)
+  const [isStart, setIsStart] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -16,8 +16,8 @@ const Buttons = ({ deleteCard, id, resetStartFlag, updateCard }) => {
   };
 
   const startEdit = () => {
-    setIsStart(true)
-  }
+    setIsStart(true);
+  };
 
   return (
     <>
@@ -30,8 +30,9 @@ const Buttons = ({ deleteCard, id, resetStartFlag, updateCard }) => {
         />
       )}
       <div className={styled.strip}></div>
-      <button onClick={updateCard} className={styled.start}>Start</button>
-      {/* {isStart &&  <ButtonsManipulate />} */}
+      <button onClick={updateCard} className={styled.start}>
+        Start
+      </button>
     </>
   );
 };

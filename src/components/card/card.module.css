@@ -10,7 +10,14 @@
 
 }
 
-
+/* .fire {
+    position: absolute;
+    left: 195px;
+    bottom: 114px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/images/icons/fire/fireOrange.png);
+} */
 
 /* CardChallenge */
 .card_background {
@@ -134,10 +141,13 @@
 }
 
 .date_picker>div {
+    background-color: white;
     border: none;
 }
 
 .date_picker>div>div>input {
+    position: relative;
+    background-color: white;
     border: none;
     outline: none;
     text-align: center;
@@ -147,11 +157,26 @@
     cursor: pointer;
 }
 
+.fire {
+    position: absolute;
+    left: 195px;
+    bottom: 114px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/images/icons/fire/fireOrange.png);
+}
+
+
+
 .date_picker>div>div>span {
+    background-color: white;
+
     color: #b9c3c8;
 }
 
 .date_picker>span>div {
+    background-color: white;
+
     position: absolute;
     width: 250px;
     padding: 4px;
@@ -164,13 +189,16 @@
 
 .date_picker>div>button:nth-child(2) {
     display: none;
+    background-color: white;
+
     border: 1px solid red;
-    /* display: none; */
     visibility: hidden;
     width: 0;
 }
 
 .date_picker>div>button:nth-child(3) {
+    background-color: white;
+
     border: none;
     background-image: url(../../assets/images/icons/calendar/baseline-date_range-24px.svg);
     background-size: cover;
@@ -181,6 +209,7 @@
 }
 
 .date_picker>div>button>svg {
+
     display: none;
 }
 
@@ -321,6 +350,7 @@
         height: 292px;
     }
 }
+
 /* .dashboard {
     padding-top: 36px;
 }
@@ -457,6 +487,7 @@
 }
 
 .date_picker>div>div>input {
+    /* position: relative; */
     border: none;
     outline: none;
     text-align: center;
@@ -465,6 +496,18 @@
     color: #b9c3c8;
     cursor: pointer;
 }
+
+/* .fire {
+    position: absolute;
+    left: 0;
+    top: 0;
+    /* left: 195px;
+    bottom: 114px; */
+    /* width: 25px;
+    height: 25px;
+    background-image: url(../../assets/images/icons/fire/fireOrange.png);
+} */ 
+
 
 .date_picker>div>div>span {
     color: #b9c3c8;
@@ -636,7 +679,7 @@
         margin-right: 88px;
     } */
 
-    /* .card_border:nth-child(even) {
+/* .card_border:nth-child(even) {
         margin-right: 0px;
     }
 
