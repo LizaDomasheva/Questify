@@ -129,6 +129,7 @@
 
 }
 
+/* ==================Card */
 .card_input__date {
     border: none;
     outline: none;
@@ -242,6 +243,8 @@
 }
 
 
+
+
 /* CardChallenge */
 .card_challenge {
     font-size: 13px;
@@ -263,6 +266,86 @@
     text-align: center;
     margin-bottom: 2px;
 }
+
+.date_picker>div {
+    border: none;
+}
+
+.date_pickerChallenge>div {
+    border: none;
+    background-color: transparent;
+}
+
+.date_pickerChallenge>div>div>div>input {
+    margin-left: 75px;
+}
+
+.date_pickerChallenge>div>div>input {
+    /* position: relative; */
+    background-color: transparent;
+    border: none;
+    outline: none;
+    text-align: center;
+    font-family: HelveticaNeueCyr, sans-serif;
+    font-size: 15px;
+    color: #b9c3c8;
+    cursor: pointer;
+}
+
+.date_pickerChallenge>div>div>span {
+    background-color: transparent;
+    color: #b9c3c8;
+}
+
+.date_pickerChallenge>span>div {
+    position: absolute;
+    width: 250px;
+    padding: 4px;
+    margin-top: 1px;
+    z-index: 99999 !important;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
+    border: 1px solid #f9f9f9;
+}
+
+.date_pickerChallenge>div>button:nth-child(2) {
+    display: none;
+    background-color: transparent;
+    border: 1px solid red;
+    visibility: hidden;
+    width: 0;
+}
+
+.date_pickerChallenge>div>button:nth-child(3) {
+    background-color: transparent;
+    border: none;
+    background-image: url(../../assets/images/icons/calendar/baseline-date_range-24px.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 17px;
+    outline: none;
+}
+
+ /* .date_pickerChallenge>div>button:nth-child(3) {
+    border: none;
+    background-image: url(../../assets/images/icons/fire/fire.svg); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 16px;
+    height: 17px;
+    outline: none;
+}  */
+
+
+.date_pickerChallenge>div>button>svg {
+    display: none;
+}
+
+
+
+
+
 
 /* ============================= */
 
