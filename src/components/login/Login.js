@@ -10,7 +10,7 @@ const initialState = {
 const Login = ({ history }) => {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
-  
+
   const submitHandler = e => {
     e.preventDefault();
     dispatch(session.getUser({ ...state }));
@@ -34,7 +34,10 @@ const Login = ({ history }) => {
           Choose your name to sign up or log in
           <input
             className={styles.input}
+            type="text"
             name="nickname"
+            minLength="3"
+            maxLength="8"
             value={state.nickname}
             onChange={changeHandler}
           />

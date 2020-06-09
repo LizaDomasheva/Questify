@@ -1,22 +1,22 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 // import chroma from "chroma-js";
 // import { css } from "emotion";
-import DatePicker from "react-date-picker";
-import Select from "./Select";
-import styled from "./card.module.css";
-import { useDispatch } from "react-redux";
-import easydate from "easydate";
-import SelectCategory from "./SelectCategory";
-import { removeCard, changeCard } from "../../redux/dashboardOperations";
-import DeleteQuestModal from "./DeleteQuestModal";
+import DatePicker from 'react-date-picker';
+import Select from './Select';
+import styled from './card.module.css';
+import { useDispatch } from 'react-redux';
+import easydate from 'easydate';
+import SelectCategory from './SelectCategory';
+import { removeCard, changeCard } from '../../redux/dashboardOperations';
+import DeleteQuestModal from './DeleteQuestModal';
 // import axios from "axios";
 // import moment from "moment";
-import { CompletedModal } from "./CompletedModal";
+import { CompletedModal } from './CompletedModal';
 
 function Card({ arr }) {
   const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
   const initialState = {
-    name: name,
+    name: name.length > 15 ? name.slice(0, 15) + '...' : name,
     difficulty: difficulty,
     group: group,
     isPriority: isPriority,
@@ -114,9 +114,12 @@ function Card({ arr }) {
   const updateCard = () => {
     // console.log("click", "click");
     // console.log('cardState', cardState)
-    const correctCardData = {...cardState, dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })}
-    console.log('prepairData', correctCardData)
-  
+    const correctCardData = {
+      ...cardState,
+      dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
+    };
+    console.log('prepairData', correctCardData);
+
     dispatch(changeCard(_id, correctCardData));
   };
 
@@ -126,7 +129,7 @@ function Card({ arr }) {
   // };
 
   const isTaskDone = () => {
-    setCardState((prev) => ({ ...prev, done: !prev.done }));
+    setCardState(prev => ({ ...prev, done: !prev.done }));
     // console.log("cardState", cardState);
   };
 
@@ -135,11 +138,11 @@ function Card({ arr }) {
     <>
       <div className={styled.card_header}>
         <div className={styled.card_item}>
-        <Select
-          defaultSelectGroupClr={cardState.defaultSelectGroupClr}
-          onSelectColor={event => onSelectColor(event.target.value)}
-          difficulty={difficulty}
-        />
+          <Select
+            defaultSelectGroupClr={cardState.defaultSelectGroupClr}
+            onSelectColor={event => onSelectColor(event.target.value)}
+            difficulty={difficulty}
+          />
         </div>
         {/* {isPriority ? (
           <div className={styled.star_icon} onClick={handleIsPriority}></div>
@@ -169,7 +172,7 @@ function Card({ arr }) {
               value={cardState.dueDate}
               onChange={handleChange}
               dateFormat="YYYY-MM-DD"
-            /> 
+            />
           </div>
         </div>
         <div className={styled.card_block}>
@@ -191,8 +194,7 @@ function Card({ arr }) {
             <div className={styled.strip}></div>
             <button
               onClick={() => showModal()}
-              className={styled.delete}
-            ></button>
+              className={styled.delete}></button>
             {isModalOpen && (
               <DeleteQuestModal
                 deleteCard={deleteCard}
