@@ -10,6 +10,7 @@ import CreateQuestButton from "../components/createQuestButton/CreateQuestButton
 import styled from "./DashboardPage.module.css";
 import CardEditing from "../components/card/cardEditing/CardEditing";
 
+
 // const divStyle = {
 //   transform:[{rotate:"180deg"}]
 // }
@@ -90,6 +91,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
           {tomorrow ? (
+
             <CardList
               arr={tomorrow}
               editFlag={editFlag}
@@ -97,6 +99,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
               setEditFlagTrue={setEditFlagTrue}
               resetStartFlag={resetStartFlag}
             />
+
           ) : (
             <p className={styled.alert}>No quests or challenges for done</p>
           )}
@@ -149,6 +152,7 @@ const mapStateToProps = (state) => ({
   allTheRest: state.dashboard.allTheRest,
   tomorrow: state.dashboard.tomorrow,
   done: state.dashboard.done,
+  challengeSendToUser: state.challengeSendToUser,
 });
 
 export default connect(mapStateToProps)(DashboardPage);

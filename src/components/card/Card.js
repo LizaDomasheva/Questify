@@ -42,6 +42,19 @@ function Card({
     defaultSelectGroupClr: "card_item",
   };
 
+
+
+  // const selectInitialState = {
+  //     defaultSelectColor: group + 'card_category',
+  //     // defaultSelectColor: group ? (group + "_category") : 'card_category',
+  //     // defaultSelectColor: "card_category",
+  
+  //     defaultSelectGroupClr: difficulty + "_select",
+  //     // defaultSelectGroupClr: "card_item",
+  
+  //   };
+
+
   const [cardState, setCardState] = useState(initialState);
   const [selectState, setSelectState] = useState(selectInitialState);
   const changeName = ({ target: { name, value } }) => {
@@ -67,6 +80,9 @@ function Card({
   //   }));
   // };
 
+
+
+
   const onSelectColor = (value) => {
     setSelectState((prev) => ({
       ...prev,
@@ -91,6 +107,8 @@ function Card({
       group: value,
     }));
   };
+
+
 
   // const onSelectChange = e => {
   //   console.log('e.target.value', e.target.value);
@@ -131,7 +149,8 @@ function Card({
   //   setIsModalOpen(false);
   // };
 
-  const updateCard = () => {
+
+const updateCard = () => {
     const correctCardData = {
       ...cardState,
       dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate }),
@@ -251,7 +270,8 @@ function Card({
             {/* <Buttons deleteCard={deleteCard} showModal={showModal} id={_id}/> */}
             {/* <div className={styled.card_btn__create}>
 
-            <button onClick={updateCard} className={styled.save}></button>
+Olia Melnyk, [09.06.20 15:35]
+<button onClick={updateCard} className={styled.save}></button>
             <div className={styled.strip}></div>
             <button
               onClick={() => showModal()}

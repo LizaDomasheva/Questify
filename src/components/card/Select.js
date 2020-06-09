@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "./select.module.css";
+
 import easy from "../../assets/images/icons/round/btn.svg";
 import normal from "../../assets/images/icons/round/green.svg";
 import hard from "../../assets/images/icons/round/red.svg";

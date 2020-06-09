@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { css } from "emotion";
 import DatePicker from "react-date-picker";
@@ -19,6 +20,7 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
   const { dueDate, name, group, difficulty, _id, challengeSendToUser } = arr;
   console.log("arr._id", _id);
 
+
   const initialState = {
     name: name,
     difficulty: difficulty,
@@ -31,8 +33,10 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
 
   const [cardState, setCardState] = useState(initialState);
 
+
   const onSelectColor = (value) => {
     setCardState((prev) => ({
+
       ...prev,
       defaultSelectGroupClr: value + "_select",
     }));
@@ -48,9 +52,11 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
 
   const dispatch = useDispatch();
 
+
   // const deleteCard = (_id) => {
   //   dispatch(removeCard(_id));
   // };
+
 
   const handleChange = (props) => {
     setCardState((prev) => ({ ...prev, dueDate: props }));
@@ -126,10 +132,12 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
           <div className={styled.card_item}>
             <Select
               defaultSelectGroupClr={cardState.defaultSelectGroupClr}
+
               onSelectColor={(event) => onSelectColor(event.target.value)}
               difficulty={difficulty}
             />
           </div>
+
           <div className={styled.trophy_icon}></div>
         </div>
         <div className={styled.card_container}>
@@ -139,11 +147,14 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
 
         <div className={styled.date}>
           <DatePicker
+
             className={styled.date_pickerChallenge}
+
             selected={cardState.dueDate}
             value={cardState.dueDate}
             onChange={handleChange}
             dateFormat="YYYY-MM-DD"
+
             // clearIcon={!cardState.isEdit && null}
             // disabled={!cardState.isEdit}
 
@@ -165,6 +176,7 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
               group={cardState.group}
             />
           </div>
+
           {!challengeSendToUser && (
             <Buttons
               updateCard={updateCard}
@@ -188,6 +200,7 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
           {/* <div className={styled.card_btn__create}>
             <button
               onClick={() => showModal()}
+
               className={styled.delete}
             ></button>
             {!cardState && (
@@ -197,11 +210,13 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
                 closeModal={closeModal}
               />
             )}
+
             <div className={styled.strip}></div>
             <button onClick={startHandleChallenge} className={styled.start}>
               Start
             </button>
           </div> */}
+
         </div>
       </div>
     </>
