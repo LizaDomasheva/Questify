@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Card from '../card/Card';
 import styled from '../card/card.module.css';
 import CardChallenge from '../card/CardChallenge';
+import CardEditing from '../card/cardEditing/CardEditing';
 
 // const CardList = ({arr, challengeSendToUser}) => {
 //   console.log('arr :>> ', arr);
@@ -52,7 +53,7 @@ import CardChallenge from '../card/CardChallenge';
 //   done: false,
 // };
 
-const CardList = ({ arr }) => {
+const CardList = ({ arr, editFlag, resetEditFlag, setEditFlagTrue }) => {
   // console.log('arr :>> ', arr);
   // const [cardState, setCardState] = useState(initialState);
   //   setState(prev => ({ ...prev, [name]: value }));
@@ -67,32 +68,54 @@ const CardList = ({ arr }) => {
   //     dueDate,
   //   }))
   // };
-  // const findId = e => {
-  //   if (!e.target.closest('li')) {
-  //     return;
-  //   }
-  //   const li = e.target.closest('li');
-  //   const id = li.dataset.id;
-  //   const findCard = arr.find(item => item._id === id);
 
-  //   changeCard(findCard);
-  // };
+  const findId = e => {
+    if (!e.target.closest('li')) {
+      return;
+    }
+    const li = e.target.closest('li');
+    const id = li.dataset.id;
+    const findCard = arr.find(item => item._id === id);
+    console.log('findCard', findCard)
+    // changeCard(findCard);
+  };
+
+  // const [cardState, setCardState] = useState(initialState);
+
+  // const [update, setupdate] = useState(false)
+
+  const editStateTest = (e) => {
+    findId(e)
+
+    // setupdate(true)
+    // console.log('update', update)
+
+    // console.log('e.target', e.target)
+    // if (e.target.nodeName === 'DIV')
+  }
+
 
   return (
     <ul className={styled.card_list} >
           {/* <ul className={styled.card_list} onClick={findId}> */}
-      {arr.length>0 && arr.map(card => 
-      (
-        <li
+      {arr.length>0 && arr.map(card => {
+        // console.log('card', card)
+        return  (
+        <li 
           data-id={card._id}
           key={card._id}
           className={card.isEdit ? styled.card_active : styled.card_border}>
-          {!card.hasOwnProperty('challengeSendToUser') && <Card arr={card} />}
+            {/* <CardEditing arr={card}/> */}
+            {/* {update && <CardEditing arr={card}/>} */}
+            {/* {!card.hasOwnProperty('challengeSendToUser') && <CardEditing arr={card} />} */}
+          {(!card.hasOwnProperty('challengeSendToUser')) && <Card arr={card} editStateTest={editStateTest} isEdit={card.isEdit}  editFlag={editFlag} resetEditFlag={resetEditFlag} setEditFlagTrue={setEditFlagTrue}/>}
           {card.hasOwnProperty('challengeSendToUser') && (
             <CardChallenge arr={card} />
           )}
         </li>
-      ))}
+      )
+      }
+     )}
     </ul>
   );
 };
