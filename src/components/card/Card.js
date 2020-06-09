@@ -55,18 +55,19 @@ function Card({ arr }) {
 
   const onSelectColor = value => {
     console.log('valueColor :>> ', value);
-    setSelectState(() => ({...selectInitialState, defaultSelectGroupClr: value + '_select' }));
-    setSelectState(prev => ({
+    setSelectState((prev) => ({...prev, defaultSelectGroupClr: value + '_select' }));
+    setCardState(prev => ({
       ...prev,
       // defaultSelectGroupClr: value + '_select',
       group: value,
     }));
+    
   };
 
   const onSelectChange = value => {
     console.log('value :>> ', value);
-    setSelectState(() => ({...selectInitialState, defaultSelectColor: value + '_category' }));
-    setSelectState(prev => ({
+    setSelectState((prev) => ({...prev, defaultSelectColor: value + '_category' }));
+    setCardState(prev => ({
       ...prev,
       // defaultSelectColor: value + '_category',
       group: value,
@@ -171,7 +172,7 @@ function Card({ arr }) {
         <div className={styled.card_block}>
           <div className={styled.card_category}>
             <SelectCategory
-              onSelectChange={onSelectChange}
+              // onSelectChange={onSelectChange}
               defaultSelectColor={selectState.defaultSelectColor}
               onSelectChange={event => onSelectChange(event.target.value)}
               // onSelectChange={onSelectChange}

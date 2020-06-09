@@ -72,11 +72,8 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
             {isDoneFigure && 
               <CardList arr={done} />
             }
-            
-            
+                        
         </section>
-
-
 
         <section className={styled.dashboard}>
           <p className={styled.title}>ALL THE REST</p>
