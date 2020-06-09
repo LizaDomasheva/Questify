@@ -220,7 +220,7 @@ const updateCard = () => {
                 selected={cardState.dueDate}
                 value={cardState.dueDate}
                 onChange={handleChange}
-                dateFormat="YYYY-MM-DD"
+                dateFormat="YYYY-MM-DD h:mm aa"
                 clearIcon={!cardState.isEdit && null}
                 disabled={!cardState.isEdit}
                 // isOpen={false}
