@@ -106,6 +106,22 @@
     border-bottom: 1px solid #00d7ff;
 }
 
+.card_input_disActive {
+    width: 250px;
+    text-align: center;
+    font-family: HelveticaNeueCyr, sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+    /* border-bottom: 1px solid #00d7ff; */
+
+}
+
 .card_input__date {
     border: none;
     outline: none;
@@ -292,19 +308,20 @@
         margin-right: 0;
       }
 
-}
-
-@media (min-width: 1280px) {
-    .card_border {
+      .card_border {
         width: 315px;
         height: 292px;
-        margin-right: 50px;
+        margin-right: 60px;
     }
 
     .card_active {
         width: 315px;
         height: 292px;
     }
+
+}
+
+@media (min-width: 1280px) {
 
     .card_wrapper {
         margin-top: 45px;
