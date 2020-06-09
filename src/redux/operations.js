@@ -110,7 +110,7 @@ export const getUser = nickname => (dispatch, getState) => {
       dispatch(userSlice.actions.loginUser(response.data.data.user));
       // const filterDone = filterDataDone(response.data.data.tasks);
       const filterTime = filterDataTime(response.data.data.tasks);
-      console.log('filterTime :>> ', filterTime);
+      console.log('filterTime type :>> ',filterTime);
       // dispatch(dashboardSlice.actions.filterCardReducer(filterDone));
       dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterTime));
     })
@@ -123,12 +123,10 @@ export const postUser = nickname => (dispatch, getState) => {
   axios
     .post(loginURL, { nickname: `${nickname}` })
     .then(response => {
-      console.log(response);
+      // console.log(response);
       dispatch(userSlice.actions.loginUser(response.data.data.user));
-      const filterDone = filterDataDone(response.data.data.tasks);
+      // const filterDone = filterDataDone(response.data.data.tasks);
       const filterTime = filterDataTime(response.data.data.tasks);
-      console.log('filterTime :>> ', filterTime);
-      dispatch(dashboardSlice.actions.filterCardReducer(filterDone));
       dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterTime));
     })
     .catch(err => console.log('error = ', err));
