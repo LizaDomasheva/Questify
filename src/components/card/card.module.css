@@ -31,7 +31,6 @@
 
 /* //////////////////////// */
 
-
 .card_active {
     border: 2px solid #00d7ff;
     width: 280px;
@@ -80,6 +79,8 @@
 
 }
 
+
+
 /* CardChallenge */
 .trophy_icon {
     background-image: url(../../assets/images/icons/trophy/trophy.svg);
@@ -95,7 +96,6 @@
     text-align: center;
     /* margin-top: 30px; */
     margin-bottom: 24px;
-
 }
 
 .card_input {
@@ -139,6 +139,16 @@
     color: #b9c3c8;
     cursor: pointer;
     background-color: initial;
+    position: relative;
+}
+
+.fire {
+    position: absolute;
+    left: 195px;
+    bottom: 120px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/images/icons/fire/fireOrange.png);
 }
 
 .date_picker>div {
@@ -177,8 +187,6 @@
     height: 25px;
     background-image: url(../../assets/images/icons/fire/fireOrange.png);
 }
-
-
 
 .date_picker>div>div>span {
     /* background-color: white; */
@@ -235,15 +243,14 @@
     outline: none;
 }
 
-
-
 .date_picker>div>button>svg {
-
     display: none;
 }
 
 
-
+.card_block {
+    margin-top: 28px;
+} 
 
 /* CardChallenge */
 .card_challenge {
@@ -267,8 +274,9 @@
     margin-bottom: 2px;
 }
 
-.date_picker>div {
+.date_pickerChallenge>div {
     border: none;
+    margin-left: 75px;
 }
 
 .date_pickerChallenge>div {
@@ -276,12 +284,8 @@
     background-color: transparent;
 }
 
-.date_pickerChallenge>div>div>div>input {
-    margin-left: 75px;
-}
-
 .date_pickerChallenge>div>div>input {
-    /* position: relative; */
+    position: relative;
     background-color: transparent;
     border: none;
     outline: none;
@@ -292,12 +296,22 @@
     cursor: pointer;
 }
 
+.fire {
+    position: absolute;
+    left: 195px;
+    bottom: 114px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/images/icons/fire/fireOrange.png);
+}
+
 .date_pickerChallenge>div>div>span {
     background-color: transparent;
     color: #b9c3c8;
 }
 
 .date_pickerChallenge>span>div {
+    background-color: transparent;
     position: absolute;
     width: 250px;
     padding: 4px;
@@ -327,21 +341,19 @@
     outline: none;
 }
 
- /* .date_pickerChallenge>div>button:nth-child(3) {
+/* .date_pickerChallenge>div>button:nth-child(3) {
     border: none;
-    background-image: url(../../assets/images/icons/fire/fire.svg); 
+    background-image: url(../../assets/images/icons/fire/fire.svg);
     background-size: cover;
     background-repeat: no-repeat;
     width: 16px;
     height: 17px;
     outline: none;
-}  */
-
+} */
 
 .date_pickerChallenge>div>button>svg {
     display: none;
 }
-
 
 
 
