@@ -11,7 +11,6 @@ export const removeCard = (_id) => (dispatch) => {
     .then((response) => {
       console.log("response-delete", response);
       if (response.data.success) {
-        // console.log("id", _id);
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       }
     })
@@ -19,7 +18,6 @@ export const removeCard = (_id) => (dispatch) => {
 };
 
 export const createCard = () => (dispatch, getState) => {
-  // console.log("getState :>> ", getState);
   const userId = getUserId(getState());
   const newDate = new Date(Date.now());
   axios
@@ -44,7 +42,6 @@ export const filterDataTimeTest = (data) => {
   let allTheRest = [];
   let done = [];
 
-  // console.log('data', data);
   const filtredData = data.reduce((acc, itemNew) => {
     const item = { ...itemNew, isEdit: false };
     const formatData = easydate("YMd", {
@@ -165,6 +162,51 @@ export const changeCard = (_id, correctCardData) => async (dispatch) => {
     };
     dispatch(dashboardSlice.actions.removeCardReducer(_id));
     dispatch(dashboardSlice.actions.editCardReducer(dataForReducer));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const startChallenge = (_id) => async (dispatch) => {
+  console.log("111111", 111111);
+  console.log("challenge_id", _id);
+
+  try {
+    const start = await axios
+      .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
+        updateFields: { challengeSendToUser: true },
+      })
+      .then((response) => {
+        console.log("responseStart", response.data.challenge);
+        const startArr = [response.data.challenge];
+        let filterData = filterDataTimeTest(startArr);
+        const dataForReducer = {
+          today: [],
+          tomorrow: [],
+          done: [],
+          allTheRest: [],
+          ...filterData,
+        };
+        dispatch(dashboardSlice.actions.removeCardReducer(_id));
+        dispatch(dashboardSlice.actions.editCardReducer(dataForReducer));
+      });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const deleteChallenge = (_id, userId) => async (dispatch) => {
+  console.log('userId', userId)
+  console.log("helllooooooo", "helllooooooo");
+  try {
+    const start = await axios
+      .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
+        updateFields: { challengeSendToUser: false, userId: "5edb442117cae54439d94ec4" }, 
+      })
+      .then((response) => {
+        console.log("responseStart", response.data.challenge);
+        dispatch(dashboardSlice.actions.removeCardReducer(_id));
+      });
   } catch (err) {
     console.log(err);
   }

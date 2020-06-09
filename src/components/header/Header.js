@@ -23,10 +23,10 @@ const Header = ({ nickname, history, allTheRest }) => {
     logoLetter = nickname.charAt(0).toUpperCase();
   }
 
-  const findChallenge = allTheRest.find((card) => card.challengeSendToUser);
+  const findChallenge = allTheRest && allTheRest.find((card) => card.challengeSendToUser);
 
   const trophy =
-    findChallenge && findChallenge.challengeSendToUser
+   ( findChallenge && findChallenge.challengeSendToUser)
       ? css.trophyDisabled
       : css.trophy;
 

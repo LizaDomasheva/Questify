@@ -143,11 +143,22 @@
 .date_picker>div {
     background-color: white;
     border: none;
+    /* background-color: transparent; */
+}
+
+.date_pickerChallenge>div {
+    /* background-color: white; */
+    /* composes: date_picker; */
+    border: none;
+    background-color: transparent;
+    /* color: white; */
 }
 
 .date_picker>div>div>input {
     position: relative;
-    background-color: white;
+    /* background-color: white; */
+    background-color: transparent;
+
     border: none;
     outline: none;
     text-align: center;
@@ -169,13 +180,15 @@
 
 
 .date_picker>div>div>span {
-    background-color: white;
-
+    /* background-color: white; */
+    background-color: transparent;
     color: #b9c3c8;
 }
 
 .date_picker>span>div {
-    background-color: white;
+    /* background-color: white; */
+    background-color: transparent;
+
 
     position: absolute;
     width: 250px;
@@ -189,7 +202,9 @@
 
 .date_picker>div>button:nth-child(2) {
     display: none;
-    background-color: white;
+    /* background-color: white; */
+    background-color: transparent;
+
 
     border: 1px solid red;
     visibility: hidden;
@@ -197,7 +212,8 @@
 }
 
 .date_picker>div>button:nth-child(3) {
-    background-color: white;
+    /* background-color: white; */
+    background-color: transparent;
 
     border: none;
     background-image: url(../../assets/images/icons/calendar/baseline-date_range-24px.svg);
@@ -348,6 +364,7 @@
     .card_background {
         width: 315px;
         height: 292px;
+        position: relative;
     }
 }
 
@@ -548,6 +565,7 @@
 
 
 /* CardChallenge */
+
 .card_challenge {
     font-size: 13px;
     line-height: 11px;

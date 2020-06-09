@@ -130,7 +130,7 @@ const CardList = ({
                 />
               )}
               {card.hasOwnProperty("challengeSendToUser") && (
-                <CardChallenge arr={card} resetEditFlag={resetEditFlag} resetStartFlag={resetStartFlag}/>
+                <CardChallenge arr={card} resetEditFlag={resetEditFlag} resetStartFlag={resetStartFlag} startFlag={startFlag} setEditFlagTrue={setEditFlagTrue}/>
               )}
             </li>
           );

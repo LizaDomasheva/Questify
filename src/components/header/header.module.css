@@ -34,6 +34,7 @@
     background-position: center;
     margin-top: 20px;
     margin-left: 8%;
+
 }
 
 .user {
@@ -76,6 +77,13 @@
     background-position: center;
     border: none;
 }
+
+.trophyDisabled {
+    composes: trophy;
+    box-shadow: none;
+    background-color: rgb(62, 78, 108);
+    background-image: url(../../assets/images/icons/trophy/disTrophy.png);
+  }
 
 .exit {
     width: 22px;
