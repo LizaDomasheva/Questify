@@ -73,6 +73,8 @@
 
 }
 
+
+
 /* CardChallenge */
 .trophy_icon {
     background-image: url(../../assets/images/icons/trophy/trophy.svg);
@@ -106,6 +108,22 @@
     border-bottom: 1px solid #00d7ff;
 }
 
+.card_input_disActive {
+    width: 250px;
+    text-align: center;
+    font-family: HelveticaNeueCyr, sans-serif;
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    background: none;
+    outline: none;
+    border: none;
+    /* border-bottom: 1px solid #00d7ff; */
+
+}
+
 .card_input__date {
     border: none;
     outline: none;
@@ -115,6 +133,16 @@
     color: #b9c3c8;
     cursor: pointer;
     background-color: initial;
+    position: relative;
+}
+
+.fire {
+    position: absolute;
+    left: 195px;
+    bottom: 120px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/images/icons/fire/fireOrange.png);
 }
 
 .date_picker>div {

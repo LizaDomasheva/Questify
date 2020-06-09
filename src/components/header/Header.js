@@ -1,35 +1,48 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import css from './header.module.css';
-import {userSlice} from '../../redux/reducers/userReducer';
-
+import { userSlice } from '../../redux/reducers/userReducer';
 
 const initialState = {
   nickname: '',
 };
 
 const Header = ({ nickname, history, allTheRest }) => {
-  const [clearUser, setClearUser] = useState(initialState)
-  const dispatch = useDispatch()
+  const [clearUser, setClearUser] = useState(initialState);
+  const dispatch = useDispatch();
   const handleLogOut = () => {
-    dispatch(userSlice.actions.logOutUser({...clearUser}))
-    setClearUser(() => ({nickname: ''}))
+    dispatch(userSlice.actions.logOutUser({ ...clearUser }));
+    setClearUser(() => ({ nickname: '' }));
     history.push('/');
   };
+
+  const findChallenge = allTheRest.find(card => card.challengeSendToUser);
+
+  const trophy =
+    findChallenge && findChallenge.challengeSendToUser
+      ? css.trophyDisabled
+      : css.trophy;
+
   const showChallengeCard = () => {};
-  let logoLetter = ''
-  if(nickname !== null) {
+  let logoLetter = '';
+  if (nickname !== null) {
     // console.log('nickName :>> ', nickname);
-    logoLetter = nickname.charAt(0).toUpperCase()
+    logoLetter = nickname.charAt(0).toUpperCase();
   }
+
+  // const virus = new Vivus(
+  //   'my-div',
+  //   { duration: 200, file: '../../assets/images/logo/favicon-dark.svg' },
+  //   myCallback,
+  // );
 
   return (
     <>
       <div className={css.header}>
-        <div >
+        <div>
           <div className={css.wrap}>
             {/* <Link to='/'> */}
-            <div className={css.logo}></div>
+            <div id="my-div" className={css.logo}></div>
             {/* </Link> */}
             <div className={css.userWrap}>
               <div className={css.user}>
@@ -38,10 +51,8 @@ const Header = ({ nickname, history, allTheRest }) => {
               <p className={css.userText}>{nickname}'s Quest Log</p>
             </div>
             <div className={css.iconsWrap}>
-              <button
-                onClick={showChallengeCard}
-                className={css.trophy}
-              ></button>
+              {/* trophyDisabled */}
+              <div onClick={showChallengeCard} className={trophy}></div>
               <button onClick={handleLogOut} className={css.exit}></button>
             </div>
           </div>

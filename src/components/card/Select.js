@@ -9,9 +9,9 @@ const Select = props => {
  
     return(
 <select className={styled[props.defaultSelectGroupClr]} onChange={props.onSelectColor}>
-  <option value="easy"  className={styled.easy_select} style={{backgroundImage: "url('https://img.icons8.com/all/500/unchecked-circle.png')"}}>Easy</option>
-  <option value="normal" className={styled.normal_select}>Normal</option>
-  <option value="hard" className={styled.hard_select}>Hard</option>
+  <option value="easy"  className={styled.easy_select}> Easy</option>
+  <option value="normal" className={styled.normal_select}>‍ Normal</option>
+  <option value="hard" className={styled.hard_select}>‍ Hard</option>
 </select> 
 
 )}
