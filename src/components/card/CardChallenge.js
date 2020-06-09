@@ -131,7 +131,16 @@ function CardChallenge({ arr }) {
               />
             )}
             <div className={styled.strip}></div> */}
-            <button className={styled.start}>Start</button>
+            {/* <button className={styled.start}>Start</button> */}
+            {/* <button onClick={isTaskDone} className={styled.done}></button>
+            {cardState.done && (
+              <CompletedModal
+                title={cardState.name}
+                updateCard={updateCard}
+                _id={_id}
+                cardState={cardState}
+              />
+            )} */}
           </div>
         </div>
       </div>

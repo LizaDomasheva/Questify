@@ -105,7 +105,7 @@
     font-size: 15px;
     color: #b6c4ca;
     outline: none;
-    background: url('../../assets/images/icons/round/btn.svg') left;
+    background: url('../../assets/images/icons/round/btn.svg') left; 
     background-repeat: no-repeat;
     background-position: 5px;
     background-size: 15px;
@@ -116,6 +116,7 @@
 
 .easy_select{
     font-family: HelveticaNeueCyr,sans-serif;
+    content: "\183";
     font-size: 15px;
     color: #b6c4ca;
     background: url('../../assets/images/icons/round/btn.svg');
@@ -129,6 +130,28 @@
     outline: none;
     width: 110px;
 }
+
+/* .color::before {
+    background: url('../../assets/images/icons/round/btn.svg');
+    color: red;
+    width: 5px;
+    font-size: 20px;
+    
+  }
+
+  .blue {
+    color: green;
+    font-size: 20px;
+  }
+
+.red {
+        color:red;
+        font-size: 20px;
+
+} */
+
+
+  
 
 .normal_select{
     font-family: HelveticaNeueCyr,sans-serif;
@@ -161,3 +184,5 @@
     outline: none;
     width: 110px;
 }
+
+
