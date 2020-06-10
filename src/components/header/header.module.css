@@ -5,8 +5,6 @@
     /* margin: 0 -9%; */
 }
 
-
-
 .headerContainer {
     width: 280px;
     margin: 0 auto;
@@ -47,7 +45,7 @@
 
 .name {
     font-size: 12px;
-    font-family: "HelveticaNeueCyr";
+    font-family: 'HelveticaNeueCyr';
     color: rgb(255, 255, 255);
     line-height: 0.917;
     text-align: center;
@@ -77,6 +75,20 @@
     border: none;
 }
 
+.trophyDisabled {
+    composes: trophy;
+    box-shadow: none;
+    background-color: rgb(62, 78, 108);
+    background-image: url(../../assets/images/icons/trophy/disTrophy.png);
+}
+
+.trophyDisabled {
+    composes: trophy;
+    box-shadow: none;
+    background-color: rgb(62, 78, 108);
+    background-image: url(../../assets/images/icons/trophy/disTrophy.png);
+}
+
 .exit {
     width: 22px;
     height: 22px;
@@ -84,6 +96,14 @@
     transform: rotate(180deg);
     border: none;
     background-color: rgb(0, 54, 91);
+}
+
+.exit:hover,
+.exit:focus {
+    background-image: url(../../assets/images/icons/logout/logoutHover.svg);
+    /* background-color: rgb(0, 216, 255); */
+    /* background-color: rgb(51, 77, 110); */
+
 }
 
 @media (min-width: 768px) {
@@ -119,7 +139,7 @@
 
     .userText {
         font-size: 17px;
-        font-family: "HelveticaNeueCyr";
+        font-family: 'HelveticaNeueCyr';
         color: rgb(117, 139, 167);
         line-height: 0.647;
         margin-top: 36px;

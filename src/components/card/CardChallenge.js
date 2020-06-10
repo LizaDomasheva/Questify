@@ -1,59 +1,69 @@
-import React, { useState } from 'react';
-import { css } from 'emotion';
-import DatePicker from 'react-date-picker';
-import styled from './card.module.css';
-import Select from './Select'
+import React, { useState } from "react";
+import { css } from "emotion";
+import DatePicker from "react-date-picker";
+import styled from "./card.module.css";
+import Select from "./Select";
 import { useDispatch } from "react-redux";
-import SelectCategory from './SelectCategory'
+import SelectCategory from "./SelectCategory";
 import easydate from "easydate";
 import DeleteQuestModal from "./DeleteQuestModal";
-import CompletedChallenge from './CompletedChallenge'
-import { removeCard} from "../../redux/dashboardOperations";
+import CompletedChallenge from "./CompletedChallenge";
+import { removeCard, changeCard } from "../../redux/dashboardOperations";
+import axios from "axios";
+import { startChallenge } from "../../redux/dashboardOperations";
+import Buttons from "./Buttons";
+import ButtonsManipulate from "./ButtonsManipulate";
+import { deleteChallenge } from "../../redux/dashboardOperations";
 
-function CardChallenge({ arr }) {
-  const { dueDate, name, group, difficulty, _id, challengeSendToUser} = arr;
+function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditFlagTrue }) {
+  const { dueDate, name, group, difficulty, _id, challengeSendToUser } = arr;
+  console.log("arr._id", _id);
+
+
   const initialState = {
     name: name,
     difficulty: difficulty,
     group: group,
     dueDate: new Date(dueDate),
-    challengeSendToUser:false,
-    defaultSelectColor: 'card_category',
-    defaultSelectGroupClr: 'card_item',
+    challengeSendToUser: false,
+    defaultSelectColor: "card_category",
+    defaultSelectGroupClr: "card_item",
   };
 
   const [cardState, setCardState] = useState(initialState);
 
 
- const onSelectColor = value => {
-    setCardState(prev => ({
+  const onSelectColor = (value) => {
+    setCardState((prev) => ({
+
       ...prev,
-      defaultSelectGroupClr: value + '_select',
+      defaultSelectGroupClr: value + "_select",
     }));
   };
 
-  const onSelectChange = value => {
-    console.log('value :>> ', value);
-    setCardState(prev => ({
+  const onSelectChange = (value) => {
+    // console.log("value :>> ", value);
+    setCardState((prev) => ({
       ...prev,
-      defaultSelectColor: value + '_category',
+      defaultSelectColor: value + "_category",
     }));
   };
 
-  
   const dispatch = useDispatch();
-  const deleteCard = _id => {
-    dispatch(removeCard(_id));
-  };
 
 
-  const handleChange = props => {
-    setCardState(prev => ({ ...prev, dueDate: props }));
-    console.log('dueDate', dueDate);
-    console.log(
-      'dueDateEasy',
-      easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
-    );
+  // const deleteCard = (_id) => {
+  //   dispatch(removeCard(_id));
+  // };
+
+
+  const handleChange = (props) => {
+    setCardState((prev) => ({ ...prev, dueDate: props }));
+    // console.log("dueDate", dueDate);
+    // console.log(
+    //   "dueDateEasy",
+    //   easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })
+    // );
     // console.log("props", props);
   };
 
@@ -64,6 +74,47 @@ function CardChallenge({ arr }) {
   const closeModal = () => {
     setCardState(false);
   };
+
+  // const updateCard = () => {
+  //   const correctCardData = {
+  //     ...cardState,
+  //     dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate }),
+  //   };
+  //   // console.log("prepairData", correctCardData);
+  //   dispatch(changeCard(_id, correctCardData));
+  //   resetEditFlag();
+  //   // setCardState((prev) => ({...prev, challengeSendToUser: true}))
+  //   // console.log('cardState.challengeSendToUser', cardState.challengeSendToUser)
+  // };
+
+  // const startHandle = () => {
+  //   setCardState((prev) => ({...prev, challengeSendToUser: true}))
+  //   console.log('cardState', cardState)
+  // }
+
+  const deleteCard = (_id) => {
+    dispatch(deleteChallenge(_id));
+    // resetEditFlag();
+    // resetStartFlag();
+  };
+
+  const updateCard = async () => {
+    console.log("111111", 111111);
+    console.log("challenge_id", _id);
+    dispatch(startChallenge(_id));
+  };
+
+  const isTaskDone = () => {
+    setCardState((prev) => ({ ...prev, done: !prev.done }));
+  };
+
+  const changeIsEdit = (e) => {
+    if (!challengeSendToUser) return;
+    setCardState((prev) => ({ ...prev, isEdit: true }));
+    setEditFlagTrue();
+  };
+
+
   // const tempCard = arr;
   // const { dueDate, name, group } = tempCard;
   // console.log('difficulty', difficulty)
@@ -75,34 +126,40 @@ function CardChallenge({ arr }) {
     <>
       {/* <div className={styled.card_list}> */}
       {/* {!challengeSendToUser &&  */}
-      <div className={styled.card_background}>
+      <div onClick={changeIsEdit} className={styled.card_background}>
         <div className={styled.card_header}>
-        <div className={styled.card_item}>
-        <Select
-          defaultSelectGroupClr={cardState.defaultSelectGroupClr}
-          onSelectColor={event => onSelectColor(event.target.value)}
-          difficulty={difficulty}
-        />
-        </div>
-         
+          <div className={styled.card_item}>
+            <Select
+              defaultSelectGroupClr={cardState.defaultSelectGroupClr}
+
+              onSelectColor={(event) => onSelectColor(event.target.value)}
+              difficulty={difficulty}
+            />
+          </div>
+
           <div className={styled.trophy_icon}></div>
         </div>
-
         <div className={styled.card_container}>
           <p className={styled.card_challenge}>Challenge</p>
           <h2 className={styled.card_title}>{name}</h2>
         </div>
 
         <div className={styled.date}>
-            <DatePicker
-              className={styled.date_picker}
-              selected={cardState.dueDate}
-              value={cardState.dueDate}
-              onChange={handleChange}
-              dateFormat="YYYY-MM-DD"
-            /> 
-          </div>
-          {/* <div className={styled.date_challenge}>
+          <DatePicker
+
+            className={styled.date_pickerChallenge}
+
+            selected={cardState.dueDate}
+            value={cardState.dueDate}
+            onChange={handleChange}
+            dateFormat="YYYY-MM-DD"
+
+            // clearIcon={!cardState.isEdit && null}
+            // disabled={!cardState.isEdit}
+
+          />
+        </div>
+        {/* <div className={styled.date_challenge}>
                 <input className={styled.card_input__date} type="text" value="02.06.2020 10:13 PM"/>
                 <button className={styled.card_btn__icon}></button>
                 {/* <div>Calendar</div> */}
@@ -113,26 +170,52 @@ function CardChallenge({ arr }) {
             <SelectCategory
               onSelectChange={onSelectChange}
               defaultSelectColor={cardState.defaultSelectColor}
-              onSelectChange={event => onSelectChange(event.target.value)}
+              onSelectChange={(event) => onSelectChange(event.target.value)}
               // onSelectChange={onSelectChange}
               group={cardState.group}
             />
           </div>
-          <div className={styled.card_btn__create}>
-          {/* <button
+
+          {!challengeSendToUser && (
+            <Buttons
+              updateCard={updateCard}
+              deleteCard={deleteCard}
+              id={_id}
+              resetStartFlag={resetStartFlag}
+            />
+          )}
+
+          {challengeSendToUser && cardState.isEdit && (
+            <ButtonsManipulate
+              cardState={cardState}
+              deleteCard={deleteCard}
+              id={_id}
+              updateCard={updateCard}
+              isTaskDone={isTaskDone}
+            />
+          )}
+
+          {/* {challengeSendToUser && } */}
+          {/* <div className={styled.card_btn__create}>
+            <button
               onClick={() => showModal()}
+
               className={styled.delete}
             ></button>
-            {cardState && (
+            {!cardState && (
               <DeleteQuestModal
                 deleteCard={deleteCard}
                 id={_id}
                 closeModal={closeModal}
               />
             )}
-            <div className={styled.strip}></div> */}
-            <button className={styled.start}>Start</button>
-          </div>
+
+            <div className={styled.strip}></div>
+            <button onClick={startHandleChallenge} className={styled.start}>
+              Start
+            </button>
+          </div> */}
+
         </div>
       </div>
     </>
@@ -140,69 +223,3 @@ function CardChallenge({ arr }) {
 }
 
 export default CardChallenge;
-// import React, { useState } from 'react';
-// // import { css } from 'emotion';
-// import DatePicker from 'react-date-picker';
-// import styled from './card.module.css';
-
-// function CardChallenge({ arr }) {
-//   const handleChange = props => {
-//     setValue(props);
-//     // console.log('tempData', props);
-//   };
-
-//   const tempCard = arr;
-//   const { dueDate, name } = tempCard;
-//   // console.log('difficulty', difficulty)
-//   let [value, setValue] = useState(new Date(dueDate));
-//   // let [selectOption, setSelectOption] = useState(difficulty.toLowerCase())
-//   // console.log('selectOption', selectOption)
-
-//   return (
-//     <>
-//       {/* <div className={styled.card_list}> */}
-//       {/* {!challengeSendToUser &&  */}
-//       <div className={styled.card_background}>
-//         <div className={styled.card_header}>
-//           <div className={styled.card_select}>
-//             Easy
-//             <div className={styled.card_select_icon}></div>
-//           </div>
-//           <div className={styled.trophy_icon}></div>
-//         </div>
-
-//         <div className={styled.card_container}>
-//           <p className={styled.card_challenge}>Challenge</p>
-//           <h2 className={styled.card_title}>{name}</h2>
-//         </div>
-
-//         <div className={styled.date}>
-//           <DatePicker
-//             className={styled.date_picker}
-//             selected={value}
-//             value={value}
-//             onChange={handleChange}
-//           />
-//         </div>
-
-//         {/* <div className={styled.date_challenge}>
-//                 <input className={styled.card_input__date} type="text" value="02.06.2020 10:13 PM"/>
-//                 <button className={styled.card_btn__icon}></button>
-//                 {/* <div>Calendar</div> */}
-//         {/* </div>             */}
-//         {/* </div> */}
-
-//         <div className={styled.card_block}>
-//           <div className={styled.card_category}>productivity</div>
-//           <div className={styled.card_btn__create}>
-//             <button className={styled.delete}></button>
-//             <div className={styled.strip}></div>
-//             <button className={styled.start}>Start</button>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }
-
-// export default CardChallenge;

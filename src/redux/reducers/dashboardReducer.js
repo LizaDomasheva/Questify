@@ -13,6 +13,7 @@ export const dashboardSlice = createSlice({
       ...state,
       today: [...state.today, payload].reverse(),
     }),
+    
     removeCardReducer: (state, { payload }) => 
     ({
       ...state,
@@ -21,6 +22,7 @@ export const dashboardSlice = createSlice({
       done: state.done.filter(card => card._id !== payload),
       allTheRest: state.allTheRest.filter(card => card._id !== payload),
     }),
+
     editCardReducer: (state, { payload }) => 
     // console.log('editCardReducer :>> ', payload)
     ({
@@ -30,6 +32,7 @@ export const dashboardSlice = createSlice({
       allTheRest: [...state.allTheRest, ...payload.allTheRest],
       done: [...state.done, ...payload.done],
     }),
+
     filterCardReducer: (state, { payload }) => ({ ...state, done: payload }),
     filterCardReducerToday: (state, { payload }) => ({
       ...state,
