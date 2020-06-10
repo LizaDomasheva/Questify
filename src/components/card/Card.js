@@ -32,8 +32,8 @@ function Card({
     dueDate: new Date(dueDate),
     isEdit: isEdit,
   };
-  console.log('new Date(dueDate) :>> ', new Date(dueDate).getDate());
-  console.log('new Date(Date.now) :>> ', new Date(Date.now()).getDate());
+  // console.log('new Date(dueDate) :>> ', new Date(dueDate).getDate());
+  // console.log('new Date(Date.now) :>> ', new Date(Date.now()).getDate());
   const selectInitialState = {
     // defaultSelectColor: group + 'card_category',
     // defaultSelectColor: group ? (group + "_category") : 'card_category',

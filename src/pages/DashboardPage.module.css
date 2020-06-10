@@ -73,7 +73,7 @@
     background-image: linear-gradient(90deg, rgb(185, 195, 200), rgb(185, 195, 200) 75%, transparent 75%, transparent 100%);
     background-size: 10px 1px;
     border: none;
-    width: 100%;
+    width: 68%;
     margin-left: 100px;
     margin-top: 10px;
     bottom: 38px;
@@ -88,5 +88,14 @@
     font-weight: 700;
 }
 
-
+@media (min-width: 768px){
+    .doneLine {
+        width:86%
+    }
+}
+@media (min-width: 1280px){
+    .doneLine {
+        width:86%
+    }
+}
 

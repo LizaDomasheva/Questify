@@ -211,3 +211,36 @@ export const deleteChallenge = (_id, userId) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const editChallenge = (
+  _id,
+   dueDate,
+  difficulty,
+) => async dispatch => {
+  console.log('helllooooooo', 'helllooooooo');
+  console.log('dueDate :>> ', dueDate);
+  console.log('_id :>> ', _id);
+  console.log('difficulty :>> ', difficulty);
+  try {
+    const start = await axios
+      .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
+          "updateFields": {"difficulty": difficulty, "challengeSendToUser": true, "dueDate": dueDate}
+      })
+      .then(response => {
+        console.log('responseEditChallenge', response.data.challenge);
+        // const startArr = [response.data.challenge];
+        // let filterData = filterDataTimeTest(startArr);
+        // const dataForReducer = {
+        //   today: [],
+        //   tomorrow: [],
+        //   done: [],
+        //   allTheRest: [],
+        //   ...filterData,
+        // };
+        // dispatch(dashboardSlice.actions.removeCardReducer(_id));
+        // dispatch(dashboardSlice.actions.editCardReducer(dataForReducer));
+      });
+  } catch (err) {
+    console.log('errChallenge :>> ', err);
+  }
+};
