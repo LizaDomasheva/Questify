@@ -18,3 +18,13 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(findId);
+
+updateFields: {challengeSendToUser: true}
+challengeSendToUser: true
+updateFields: {challengeSendToUser: true}
+
+// {
+// 	"updateFields": {"challengeSendToUser": true,
+// 		"done":true
+// 	}
+// }
