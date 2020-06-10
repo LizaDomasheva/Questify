@@ -1,15 +1,15 @@
 .card_category  {
     text-transform: uppercase;
     font-family: HelveticaNeueCyr,sans-serif;
-    width:110px;
+    width:101px;
     font-size: 11px;
     height: 30px;
     line-height: 30px;
     border-radius: 0 60px 60px 0;
     border: none;
     outline: none;
-    box-shadow: rgb(252, 242, 183) -22px 0px 0px 0px;
-    background-color: rgb(252, 242, 183);
+    box-shadow: rgb(236, 239, 241) -22px 0px 0px 0px;
+    background-color: rgb(236, 239, 241);
 }
 /* 
 .option {
@@ -18,7 +18,7 @@
 
 .stuff_category {
     box-shadow: rgb(236, 239, 241) -22px 0px 0px 0px;
-    background-color: rgb(236, 239, 241);
+    background-color: #eceff1;
     border-radius: 0 60px 60px 0;
    border: none;
    outline: none;
@@ -28,7 +28,7 @@
 
 .learning_category {
     box-shadow: rgb(252, 242, 183) -22px 0px 0px 0px;
-    background-color: rgb(252, 242, 183);
+    background-color: #fcf2b7;
     border-radius: 0 60px 60px 0;
     border: none;
     outline: none;
@@ -97,7 +97,7 @@
 }
 
 .card_item {
-    width: 110px;
+    width: 100px;
     list-style: none;
     padding: 0 12px;
     border-radius: 5px;
@@ -118,46 +118,55 @@
     font-family: HelveticaNeueCyr,sans-serif;
     font-size: 15px;
     color: #b6c4ca;
-    background: url('../../assets/images/icons/round/btn.svg');
+    background-image: url('../../assets/images/icons/round/btn.svg');
     background-repeat: no-repeat;
     background-size: 15px;
-    background-position: 5px;
+    background-position: left;
     width: 90px;
     height: 25px;
     padding-left: 20px;
     border: none;
     outline: none;
-    width: 110px;
+    width: 100px;
 }
+
 
 .normal_select{
     font-family: HelveticaNeueCyr,sans-serif;
     font-size: 15px;
     color: #b6c4ca;
-    background: url('../../assets/images/icons/round/green.svg'); 
+    background-image: url('../../assets/images/icons/round/green.svg'); 
     background-repeat: no-repeat;
     background-size: 10px;
-    background-position: 5px;
+    background-position: left;
     width: 90px;
     height: 25px;
     padding-left: 20px;
     border: none;
     outline: none;
-    width: 110px;
+    width: 100px;
 }
 
 .hard_select {
     font-family: HelveticaNeueCyr,sans-serif;
     font-size: 15px;
     color: #b6c4ca;
-    background: url('../../assets/images/icons/round/red.svg');
+    background-image: url('../../assets/images/icons/round/red.svg');
     background-repeat: no-repeat;
     background-size: 10px;
-    background-position: 5px;
+    background-position: left;
     width: 90px;
     height: 25px;
     padding-left: 20px;
     border: none;
     outline: none;
-    width: 110px;
+    width: 100px;
 }
+
+
+select{
+    font-family: fontAwesome
+}
+
+
+
