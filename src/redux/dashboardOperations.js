@@ -197,15 +197,42 @@ export const startChallenge = (_id) => async (dispatch) => {
 
 export const deleteChallenge = (_id, userId) => async (dispatch) => {
   console.log('userId', userId)
-  console.log("helllooooooo", "helllooooooo");
+  console.log("helllo delCh", "helllooooooo");
   try {
     const start = await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
-        updateFields: { challengeSendToUser: false, userId: "5edb442117cae54439d94ec4" }, 
+        updateFields: { challengeSendToUser: false }, userId: `${userId}`, 
       })
       .then((response) => {
         console.log("responseStart", response.data.challenge);
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
+      });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const doneChallenge = (_id, userId) => async (dispatch) => {
+  console.log('userId', userId)
+  console.log("helllo doneCh", "helllooooooo");
+  try {
+    const start = await axios
+      .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
+        updateFields: { challengeSendToUser: true, done: true }, userId: `${userId}`, 
+      })
+      .then((response) => {
+        console.log("responseDone", response.data.challenge);
+        const startArr = [response.data.challenge];
+        let filterData = filterDataTimeTest(startArr);
+        const dataForReducer = {
+          today: [],
+          tomorrow: [],
+          done: [],
+          allTheRest: [],
+          ...filterData,
+        };
+        dispatch(dashboardSlice.actions.removeCardReducer(_id));
+        dispatch(dashboardSlice.actions.editCardReducer(dataForReducer));
       });
   } catch (err) {
     console.log(err);
@@ -217,7 +244,7 @@ export const editChallenge = (
    dueDate,
   difficulty,
 ) => async dispatch => {
-  console.log('helllooooooo', 'helllooooooo');
+  console.log('hello editCh', 'helllooooooo');
   console.log('dueDate :>> ', dueDate);
   console.log('_id :>> ', _id);
   console.log('difficulty :>> ', difficulty);
@@ -228,17 +255,17 @@ export const editChallenge = (
       })
       .then(response => {
         console.log('responseEditChallenge', response.data.challenge);
-        // const startArr = [response.data.challenge];
-        // let filterData = filterDataTimeTest(startArr);
-        // const dataForReducer = {
-        //   today: [],
-        //   tomorrow: [],
-        //   done: [],
-        //   allTheRest: [],
-        //   ...filterData,
-        // };
-        // dispatch(dashboardSlice.actions.removeCardReducer(_id));
-        // dispatch(dashboardSlice.actions.editCardReducer(dataForReducer));
+        const startArr = [response.data.challenge];
+        let filterData = filterDataTimeTest(startArr);
+        const dataForReducer = {
+          today: [],
+          tomorrow: [],
+          done: [],
+          allTheRest: [],
+          ...filterData,
+        };
+        dispatch(dashboardSlice.actions.removeCardReducer(_id));
+        dispatch(dashboardSlice.actions.editCardReducer(dataForReducer));
       });
   } catch (err) {
     console.log('errChallenge :>> ', err);

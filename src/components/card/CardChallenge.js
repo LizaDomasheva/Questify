@@ -15,8 +15,8 @@ import Buttons from "./Buttons";
 import ButtonsManipulate from "./ButtonsManipulate";
 import { deleteChallenge } from "../../redux/dashboardOperations";
 import { editChallenge } from "../../redux/dashboardOperations";
-function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditFlagTrue }) {
-  const { dueDate, name, group, difficulty, _id, challengeSendToUser, isEdit, isQuest} = arr;
+function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditFlagTrue, editFlag }) {
+  const { dueDate, name, group, difficulty, _id, challengeSendToUser, isEdit, isQuest, userId } = arr;
   const initialState = {
     name: name,
     difficulty: difficulty,
@@ -62,16 +62,21 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
   const closeModal = () => {
     setCardState(false);
   };
-  const deleteCard = (_id, userId) => {
+  const deleteCard = () => {
     dispatch(deleteChallenge(_id, userId));
   };
   const updateCard = async () => {
     dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
+    setCardState((prev) => ({ ...prev, isEdit: false }));
+    resetStartFlag();
+    // resetEditFlag();
+    // console.log('тиск дискетку')
   };
   const isTaskDone = () => {
     setCardState((prev) => ({ ...prev, done: !prev.done }));
   };
   const changeIsEdit = (e) => {
+    if (editFlag) return;
     setCardState((prev) => ({ ...prev, isEdit: true }));
     setEditFlagTrue();
   };
@@ -127,6 +132,7 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
               deleteCard={deleteCard}
               showModal={showModal}
               id={_id}
+              userId={userId}
               updateCard={updateCard}
               isTaskDone={isTaskDone}
             />

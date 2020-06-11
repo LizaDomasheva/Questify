@@ -22,7 +22,7 @@ function Card({
   startFlag,
   resetStartFlag,
 }) {
-  const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
+  const { dueDate, name, isPriority, group, difficulty, _id, isEdit, isQuest } = arr;
 
   const initialState = {
     name: name.length > 15 ? name.slice(0, 15) + '...' : name,
@@ -78,10 +78,8 @@ function Card({
   //   }));
   // };
 
-
   const onSelectColor = value => {
     setSelectState(prev => ({
-
       ...prev,
       defaultSelectGroupClr: value + '_select',
     }));
@@ -120,6 +118,7 @@ function Card({
     // );
   };
 
+
   const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon; ///перепроверить
   const handleIsPriority = e => {
     if (!cardState.isEdit) return;
@@ -149,7 +148,6 @@ function Card({
       ...cardState,
       dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
     };
-    // console.log("prepairData", correctCardData);
     dispatch(changeCard(_id, correctCardData));
     resetEditFlag();
   };
@@ -176,7 +174,7 @@ function Card({
     // console.log("cardState", cardState);
     setEditFlagTrue();
   };
-
+  // const inFocus = cardState.isEdit && true;
   return (
     <>
       <div
@@ -189,6 +187,7 @@ function Card({
               defaultSelectGroupClr={selectState.defaultSelectGroupClr}
               onSelectColor={event => onSelectColor(event.target.value)}
               difficulty={cardState.difficulty}
+              isEdit={cardState.isEdit}
             />
           </div>
           {/* {isPriority ? (
@@ -213,7 +212,8 @@ function Card({
               placeholder="Enter quest name"
               name="name"
               value={cardState.name}
-              autoFocus
+              // autoFocus={inFocus}
+
               required
               onChange={changeName}
             />
@@ -223,10 +223,12 @@ function Card({
                 selected={cardState.dueDate}
                 value={cardState.dueDate}
                 onChange={handleChange}
-                dateFormat="YYYY-MM-DD"
+                // dateFormat="YYYY-MM-DD"
                 clearIcon={!cardState.isEdit && null}
                 disabled={!cardState.isEdit}
+                locale="ua-GB"
               />
+
               {new Date(dueDate).getDate() === new Date(Date.now()).getDate() &&
                 !cardState.isEdit && <div className={styled.fire} />}
             </div>
@@ -237,6 +239,7 @@ function Card({
                 defaultSelectColor={selectState.defaultSelectColor}
                 onSelectChange={event => onSelectChange(event.target.value)}
                 group={cardState.group}
+                isEdit={cardState.isEdit}
               />
             </div>
             {cardState.isEdit && !startFlag && (
@@ -248,6 +251,7 @@ function Card({
                 title={cardState.name}
                 cardState={cardState}
                 isTaskDone={isTaskDone}
+                isQuest={isQuest}
               />
             )}
             {startFlag && cardState.isEdit && (

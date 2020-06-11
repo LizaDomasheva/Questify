@@ -58,7 +58,7 @@ const Select = props => {
       // className={styled[props.defaultSelectGroupClr]}
       onChange={props.onSelectColor}
     >
-      <option  value="easy" className={styled.easy_select }>
+      {/* <option  value="easy" className={styled.easy_select }>
         Easy
       </option>
       <option value="normal" className={styled.normal_select}>
@@ -66,7 +66,46 @@ const Select = props => {
       </option>
       <option value="hard" className={styled.hard_select}>
         Hard
-      </option>
+      </option> */}
+      {props.isQuest===false ? (
+        <option
+          style={{ backgroundColor: '#20395a', border: '#20395a'}}
+          value="easy"
+          className={styled.easy_select}
+        >
+          Easy
+        </option>
+      ) : (
+        <option value="easy" className={styled.easy_select}>
+          Easy
+        </option>
+      )}
+      {props.isQuest ===false ? (
+        <option
+          style={{ backgroundColor: '#20395a', border: '#20395a' }}
+          value="normal"
+          className={styled.easy_select}
+        >
+          Normal
+        </option>
+      ) : (
+        <option value="normal" className={styled.easy_select}>
+          Normal
+        </option>
+      )}
+      {props.isQuest ===false ? (
+        <option
+          style={{ backgroundColor: '#20395a', border: '#20395a' }}
+          value="hard"
+          className={styled.easy_select}
+        >
+          Hard
+        </option>
+      ) : (
+        <option value="hard" className={styled.easy_select}>
+          Hard
+        </option>
+      )}
     </select>
   );
 };

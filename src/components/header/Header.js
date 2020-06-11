@@ -1,39 +1,39 @@
-
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import css from "./header.module.css";
-import { userSlice } from "../../redux/reducers/userReducer";
-
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import css from './header.module.css';
+import { userSlice } from '../../redux/reducers/userReducer';
 
 const initialState = {
-  nickname: "",
+  nickname: '',
 };
 
-const Header = ({ nickname, history, allTheRest }) => {
+const Header = ({ nickname, history, allTheRest, todayCard, tomorrow }) => {
   const [clearUser, setClearUser] = useState(initialState);
   const dispatch = useDispatch();
   const handleLogOut = () => {
     dispatch(userSlice.actions.logOutUser({ ...clearUser }));
 
-    setClearUser(() => ({ nickname: "" }));
-    history.push("/");
+    setClearUser(() => ({ nickname: '' }));
+    history.push('/');
   };
   // const showChallengeCard = () => {};
 
-  let logoLetter = "";
+  let logoLetter = '';
 
   if (nickname !== null) {
     // console.log('nickName :>> ', nickname);
     logoLetter = nickname.charAt(0).toUpperCase();
   }
 
-  const findChallenge = allTheRest && allTheRest.find((card) => card.challengeSendToUser);
+  const findChallenge =
+    (allTheRest && allTheRest.find(card => card.challengeSendToUser)) ||
+    (todayCard && todayCard.find(card => card.challengeSendToUser)) ||
+    (tomorrow && tomorrow.find(card => card.challengeSendToUser));
 
   const trophy =
-   ( findChallenge && findChallenge.challengeSendToUser)
+    findChallenge && findChallenge.challengeSendToUser
       ? css.trophyDisabled
       : css.trophy;
-
 
   return (
     <>
@@ -50,11 +50,9 @@ const Header = ({ nickname, history, allTheRest }) => {
               <p className={css.userText}>{nickname}'s Quest Log</p>
             </div>
             <div className={css.iconsWrap}>
-
               <button
                 // onClick={showChallengeCard}
-                className={trophy}
-              ></button>
+                className={trophy}></button>
 
               <button onClick={handleLogOut} className={css.exit}></button>
             </div>

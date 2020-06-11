@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "./card.module.css";
 import DeleteQuestModal from "./DeleteQuestModal";
 import { CompletedModal } from "./CompletedModal";
+import { CompletedChallenge } from "./CompletedChallenge";
 
 const ButtonsManipulate = ({
   updateCard,
@@ -9,6 +10,8 @@ const ButtonsManipulate = ({
   id,
   isTaskDone,
   cardState,
+  isQuest,
+  userId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -34,7 +37,7 @@ const ButtonsManipulate = ({
       )}
       <div className={styled.strip}></div>
       <button onClick={isTaskDone} className={styled.done}></button>
-      {cardState.done && (
+      {cardState.done && isQuest &&(
         <CompletedModal
           title={cardState.name}
           updateCard={updateCard}
@@ -42,6 +45,16 @@ const ButtonsManipulate = ({
           cardState={cardState}
         />
       )}
+      {cardState.done && !isQuest && (
+        <CompletedChallenge
+        title={cardState.name}
+          updateCard={updateCard}
+          id={id}
+          userId={userId}
+          cardState={cardState}
+          />
+      )
+    }
     </div>
   );
 };
