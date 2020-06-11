@@ -161,5 +161,6 @@
 
 
 select {
-    font-family: fontAwesome
+    font-family: fontAwesome;
+    color: black;
 }

@@ -44,7 +44,6 @@ const Select = props => {
      
       style={{
         backgroundColor: "transparent",
-
         backgroundRepeat: 'no-repeat',
         backgroundSize: '10px',
         backgroundPosition: '5px',
@@ -53,11 +52,10 @@ const Select = props => {
         paddingLeft: '20px',
         border: 'none',
         outline: 'none',
-
         width: '110px',
         fontFamily: 'HelveticaNeueCyr,sans-serif',
         fontSize: '15px',
-        color: '#B6C4CA',
+        color: '#7a7a7a',
 
         backgroundImage: getRound(props.difficulty),
         // borderRadius: '50%',

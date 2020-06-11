@@ -137,7 +137,6 @@
   background-color: white;
   border: none;
   position: relative;
-  /* background-color: transparent; */
 }
 
 .fire {
@@ -157,13 +156,13 @@
   text-align: center;
   font-family: HelveticaNeueCyr, sans-serif;
   font-size: 15px;
-  color: #b9c3c8;
+  color: #6b6a6a;
   cursor: pointer;
 }
 
 .date_picker>div>div>span {
   background-color: transparent;
-  color: #b9c3c8;
+  color: #6b6a6a;
 }
 
 .date_picker>span>div {

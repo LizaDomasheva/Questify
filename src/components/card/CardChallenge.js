@@ -1,24 +1,43 @@
-import React, { useState } from "react";
-import { css } from "emotion";
-import DatePicker from "react-date-picker";
-import styled from "./card.module.css";
-import Select from "./Select";
-import { useDispatch } from "react-redux";
-import SelectCategory from "./SelectCategory";
-import easydate from "easydate";
-import DeleteQuestModal from "./DeleteQuestModal";
-import CompletedChallenge from "./CompletedChallenge";
-import { removeCard, changeCard } from "../../redux/dashboardOperations";
-import axios from "axios";
-import { startChallenge } from "../../redux/dashboardOperations";
-import Buttons from "./Buttons";
-import ButtonsManipulate from "./ButtonsManipulate";
-import { deleteChallenge } from "../../redux/dashboardOperations";
-import { editChallenge } from "../../redux/dashboardOperations";
+import React, { useState } from 'react';
+import { css } from 'emotion';
+import DatePicker from 'react-date-picker';
+import styled from './card.module.css';
+import Select from './Select';
+import { useDispatch } from 'react-redux';
+import SelectCategory from './SelectCategory';
+import easydate from 'easydate';
+import DeleteQuestModal from './DeleteQuestModal';
+import CompletedChallenge from './CompletedChallenge';
+import { removeCard, changeCard } from '../../redux/dashboardOperations';
+import axios from 'axios';
+import { startChallenge } from '../../redux/dashboardOperations';
+import Buttons from './Buttons';
+import ButtonsManipulate from './ButtonsManipulate';
+import { deleteChallenge } from '../../redux/dashboardOperations';
+import { editChallenge } from '../../redux/dashboardOperations';
 
-
-function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditFlagTrue, editFlag, todayCard, allTheRest }) {
-  const { dueDate, name, group, difficulty, _id, challengeSendToUser, isEdit, isQuest, userId, done } = arr;
+function CardChallenge({
+  arr,
+  resetEditFlag,
+  resetStartFlag,
+  startFlag,
+  setEditFlagTrue,
+  editFlag,
+  todayCard,
+  allTheRest,
+}) {
+  const {
+    dueDate,
+    name,
+    group,
+    difficulty,
+    _id,
+    challengeSendToUser,
+    isEdit,
+    isQuest,
+    userId,
+    done,
+  } = arr;
 
   const initialState = {
     name: name,
@@ -27,8 +46,7 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
     dueDate: new Date(dueDate),
     challengeSendToUser: false,
     isEdit: isEdit,
-    isQuest: isQuest
-
+    isQuest: isQuest,
   };
   const selectInitialState = {
     defaultSelectColor: 'card_category',
@@ -59,8 +77,8 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
   };
   const dispatch = useDispatch();
 
-  const handleChange = (props) => {
-    setCardState((prev) => ({ ...prev, dueDate: props }));
+  const handleChange = props => {
+    setCardState(prev => ({ ...prev, dueDate: props }));
   };
   const showModal = () => {
     setCardState(true);
@@ -69,49 +87,49 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
     setCardState(false);
   };
 
-
   const deleteCard = () => {
     dispatch(deleteChallenge(_id, userId));
     // resetEditFlag();
     resetStartFlag();
-
   };
 
-  const updateCard = async (e) => {
-    e.stopPropagation()
-      const correctCardData = {
-        ...cardState,
-        dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
-      };
-      dispatch(startChallenge(_id));
-      setCardState((prev) => ({ ...prev, isEdit: false }));
-      // resetEditFlag();
-      resetStartFlag();
+  const updateCard = async e => {
+    e.stopPropagation();
+    const correctCardData = {
+      ...cardState,
+      dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
+    };
+    dispatch(startChallenge(_id));
+    setCardState(prev => ({ ...prev, isEdit: false }));
+    // resetEditFlag();
+    resetStartFlag();
   };
 
-  const saveCard = async (e) => {
+  const saveCard = async e => {
     // e.stopPropagation()
-    const correctCardData = easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate });
-      dispatch(editChallenge(_id, correctCardData, cardState.difficulty));
+    const correctCardData = easydate('Y-M-dTh:m:s.000Z', {
+      setDate: cardState.dueDate,
+    });
+    dispatch(editChallenge(_id, correctCardData, cardState.difficulty));
 
     // dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
     // setCardState((prev) => ({ ...prev, isEdit: false }));
     resetStartFlag();
     // resetEditFlag();
     // console.log('тиск дискетку')
-  }; 
-
-  const isTaskDone = () => {
-    setCardState((prev) => ({ ...prev, done: !prev.done }));
   };
 
-  const changeIsEdit = (e) => {
-console.log('e.targetDIVchall :>> ', e.target);
+  const isTaskDone = () => {
+    setCardState(prev => ({ ...prev, done: !prev.done }));
+  };
+
+  const changeIsEdit = e => {
+    console.log('e.targetDIVchall :>> ', e.target);
     if (editFlag) return;
     // if (done) {
     //   console.log('cardState.done = ', done)
     //   return};
-    setCardState((prev) => ({ ...prev, isEdit: true }));
+    setCardState(prev => ({ ...prev, isEdit: true }));
     // setEditFlagTrue();
   };
 
@@ -122,7 +140,7 @@ console.log('e.targetDIVchall :>> ', e.target);
           <div className={styled.card_item}>
             <Select
               defaultSelectGroupClr={selectState.defaultSelectGroupClr}
-              onSelectColor={(event) => onSelectColor(event.target.value)}
+              onSelectColor={event => onSelectColor(event.target.value)}
               difficulty={cardState.difficulty}
               isQuest={cardState.isQuest}
               isEdit={cardState.isEdit}
@@ -144,18 +162,20 @@ console.log('e.targetDIVchall :>> ', e.target);
             dateFormat="YYYY-MM-DD"
             clearIcon={!cardState.isEdit && null}
             disabled={!cardState.isEdit}
-
-            locale="ua-GB"
-
+            locale="en-GB"
           />
-                        {new Date(dueDate).getDate() === new Date(Date.now()).getDate() &&
-                !cardState.isEdit && !done && !allTheRest && todayCard && <div className={styled.fireChallenge} />}
+          {(new Date(dueDate).getDate() === new Date(Date.now()).getDate()) &&
+            !cardState.isEdit &&
+            !done &&
+            !allTheRest 
+            // todayCard 
+            && <div className={styled.fireChallenge} />}
         </div>
         <div className={styled.card_block}>
           <div className={styled.card_category}>
             <SelectCategory
               defaultSelectColor={selectState.defaultSelectColor}
-              onSelectChange={(event) => onSelectChange(event.target.value)}
+              onSelectChange={event => onSelectChange(event.target.value)}
               group={cardState.group}
             />
           </div>
@@ -186,5 +206,3 @@ console.log('e.targetDIVchall :>> ', e.target);
   );
 }
 export default CardChallenge;
-
-

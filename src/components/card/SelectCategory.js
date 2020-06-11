@@ -63,6 +63,7 @@ const SelectCategory = props => {
         backgroundColor: getColor(props.group.toLowerCase()),
         boxShadow: getBoxShadow(props.group.toLowerCase()),
         fontFamily: "HelveticaNeueCyr",
+        color: "black"
       }}
     >
       <option value="stuff" className={styled.stuff_category}>

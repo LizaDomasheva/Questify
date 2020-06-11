@@ -194,7 +194,7 @@ function Card({
                 // dateFormat="YYYY-MM-DD"
                 clearIcon={!cardState.isEdit && null}
                 disabled={!cardState.isEdit}
-                // locale="ua-GB"
+                locale="en-GB"
               />
 
               {new Date(dueDate).getDate() === new Date(Date.now()).getDate() &&
