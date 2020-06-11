@@ -1,5 +1,4 @@
 .card_border {
-
   width: 280px;
   height: 265px;
   border: 1px solid rgb(194, 203, 207);
@@ -8,12 +7,14 @@
   box-shadow: 0px 3px 20px 0px rgba(0, 54, 91, 0.08);
   margin-bottom: 25px;
   position: relative;
+
 }
+
 /* CardChallenge */
 .card_background {
   position: relative;
-  background-color: #20395A;
-  border: 1px solid #20395A;
+  background-color: #20395a;
+  border: 1px solid #20395a;
   width: 280px;
   height: 265px;
   border-radius: 11px;
@@ -21,7 +22,7 @@
 }
 
 .card_active {
-  border: 2px solid #00D7FF;
+  border: 2px solid #00d7ff;
   width: 280px;
   height: 265px;
   position: relative;
@@ -32,12 +33,16 @@
   margin-bottom: 25px;
   position: relative;
 }
-.card_header {
 
+.card_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 22px
+}
+
+.card_wrapper {
+  margin-top: 12px;
 }
 
 .star_icon {
@@ -48,30 +53,42 @@
   height: 21px;
   fill: red;
 }
-.nostar_icon {
 
+.nostar_icon {
   background-image: url(../../assets/images/icons/star/favourites-star-symbol.svg);
   background-size: cover;
   background-repeat: no-repeat;
   width: 22px;
   height: 21px;
   fill: white;
+
 }
+
 
 /* CardChallenge */
 .trophy_icon {
   background-image: url(../../assets/images/icons/trophy/trophy.svg);
+  /* box-shadow: 0px 6px 13px 0px rgba(0, 216, 255, 0.43); */
   background-size: cover;
   background-repeat: no-repeat;
   width: 22px;
   height: 21px;
 }
+
 /* ======================= */
+
 .card_container {
   text-align: center;
-  /* margin-top: 30px; */
   margin-bottom: 24px;
+  height: 80px;
 }
+
+.card_container_challenge{
+  text-align: center;
+  /* margin-bottom: 24px; */
+  height: 80px;
+}
+
 .card_input {
   width: 250px;
   text-align: center;
@@ -84,8 +101,9 @@
   background: none;
   outline: none;
   border: none;
-  border-bottom: 1px solid #00D7FF;
+  border-bottom: 1px solid #00d7ff;
 }
+
 .card_input_disActive {
   width: 250px;
   text-align: center;
@@ -98,63 +116,57 @@
   background: none;
   outline: none;
   border: none;
-  /* border-bottom: 1px solid #00D7FF; */
-}
-.card_input__date {
+  /* border-bottom: 1px solid #00d7ff; */
 
+}
+
+.card_input__date {
   border: none;
   outline: none;
   text-align: center;
   font-family: HelveticaNeueCyr, sans-serif;
   font-size: 15px;
-  color: #B9C3C8;
+  color: #b9c3c8;
   cursor: pointer;
   background-color: initial;
   position: relative;
 }
+
+
 .date_picker>div {
   background-color: white;
   border: none;
   position: relative;
   /* background-color: transparent; */
 }
+
 .fire {
   position: absolute;
   left: 195px;
-  bottom: 130px;
+  bottom: 120px;
   width: 25px;
   height: 25px;
   background-image: url(../../assets/images/icons/fire/fireOrange.png);
 }
-.date_pickerChallenge>div {
-  /* background-color: white; */
-  /* composes: date_picker; */
-  border: none;
-  background-color: var(--blue-color);
-  /* color: white; */
 
-}
 .date_picker>div>div>input {
-
   position: relative;
-  /* background-color: white; */
   background-color: transparent;
   border: none;
   outline: none;
   text-align: center;
   font-family: HelveticaNeueCyr, sans-serif;
   font-size: 15px;
-  color: #B9C3C8;
+  color: #b9c3c8;
   cursor: pointer;
 }
 
 .date_picker>div>div>span {
-  /* background-color: white; */
   background-color: transparent;
-  color: #B9C3C8;
+  color: #b9c3c8;
 }
+
 .date_picker>span>div {
-  /* background-color: white; */
   background-color: transparent;
   position: absolute;
   width: 250px;
@@ -163,19 +175,24 @@
   z-index: 99999 !important;
   background: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-  border: 1px solid #F9F9F9;
+  border: 1px solid #f9f9f9;
 }
+
 .date_picker>div>button:nth-child(2) {
   display: none;
   /* background-color: white; */
   background-color: transparent;
+
+
   border: 1px solid red;
   visibility: hidden;
   width: 0;
 }
+
 .date_picker>div>button:nth-child(3) {
   /* background-color: white; */
   background-color: transparent;
+
   border: none;
   background-image: url(../../assets/images/icons/calendar/baseline-date_range-24px.svg);
   background-size: cover;
@@ -184,51 +201,45 @@
   height: 17px;
   outline: none;
 }
+
 .date_picker>div>button>svg {
+
   display: none;
 }
-/* CardChallenge */
-.card_block {
-  margin-top: 28px;
-}
-.dateChallenge>input {
-  background-color: var(--blue-color);
-}
-/* CardChallenge */
-.card_block {
-    margin-top: 28px;
-}
+
 
 .dateChallenge>input {
-    background-color: var(--blue-color);
+  background-color: var(--blue-color);
 }
 
 /* CardChallenge */
 .card_challenge {
   font-size: 13px;
   line-height: 11px;
-  color: #7B8AA4;
+  color: #7b8aa4;
   font-family: "HelveticaNeueCyr";
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 9px;
 }
-.card_title {
 
-  font-size: 18px;
+.card_title {
+  font-size: 15px;
   letter-spacing: 1px;
-  line-height: 21px;
-  color: #FFFFFF;
+  line-height: 1.2;
+  color: #ffffff;
   font-family: "HelveticaNeueCyr";
   font-weight: bold;
   text-align: center;
   margin-bottom: 2px;
 }
+
 .date_pickerChallenge>div {
   border: none;
-  padding-left: 75px;
+  padding-left: 100px;
   background-color: var(--blue-color);
 }
+
 .date_pickerChallenge>div>div>input {
   position: relative;
   background-color: var(--blue-color);
@@ -237,13 +248,24 @@
   text-align: center;
   font-family: HelveticaNeueCyr, sans-serif;
   font-size: 15px;
-  color: #B9C3C8;
+  color: #b9c3c8;
   cursor: pointer;
 }
+
+.fireChallenge {
+    position: absolute;
+    left: 195px;
+    bottom: 98px;
+    width: 25px;
+    height: 25px;
+    background-image: url(../../assets/images/icons/fire/fireOrange.png);
+}
+
 .date_pickerChallenge>div>div>span {
   background-color: transparent;
-  color: #B9C3C8;
+  color: #b9c3c8;
 }
+
 .date_pickerChallenge>span>div {
   background-color: transparent;
   position: absolute;
@@ -253,8 +275,9 @@
   z-index: 99999 !important;
   background: #fff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-  border: 1px solid #F9F9F9;
+  border: 1px solid #f9f9f9;
 }
+
 .date_pickerChallenge>div>button:nth-child(2) {
   display: none;
   background-color: transparent;
@@ -262,6 +285,7 @@
   visibility: hidden;
   width: 0;
 }
+
 .date_pickerChallenge>div>button:nth-child(3) {
   background-color: transparent;
   border: none;
@@ -272,6 +296,7 @@
   height: 17px;
   outline: none;
 }
+
 .date_pickerChallenge>div>button>svg {
   display: none;
 }
@@ -280,13 +305,21 @@
   display: flex;
   justify-content: space-between;
   padding: 22px;
+  margin-top: 28px;
 }
+
 .card_btn__create {
   width: 90px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
+.btn_wrap {
+  display: flex;
+
+} 
+
 .delete {
   background-image: url(../../assets/images/icons/delete/baseline-close-24px.svg);
   cursor: pointer;
@@ -296,22 +329,28 @@
   height: 24px;
   border: none;
   background-color: initial;
+  margin-top: 3px;
+  margin-right: 2px;
 }
+
 .start {
   text-transform: uppercase;
-  color: #00D7FF;
+  color: #00d7ff;
   font-family: HelveticaNeueCyr, sans-serif;
   font-size: 18px;
   cursor: pointer;
   position: relative;
   border: none;
   background-color: initial;
+  margin-left: 4px;
 }
+
 .strip {
   width: 2px;
   height: 30px;
-  background-color: #E5E6E7;
+  background-color: #e5e6e7;
 }
+
 .save {
   background-image: url(../../assets/images/icons/save/outline-save-24px.svg);
   cursor: pointer;
@@ -322,8 +361,8 @@
   border: none;
   background-color: initial;
 }
-.done {
 
+.done {
   background-image: url(../../assets/images/icons/done/baseline-done-24px.svg);
   cursor: pointer;
   background-repeat: no-repeat;
@@ -333,6 +372,7 @@
   border: none;
   background-color: initial;
 }
+
 .card_category {
   text-transform: uppercase;
   font-family: HelveticaNeueCyr, sans-serif;
@@ -347,109 +387,50 @@
   box-shadow: rgb(209, 225, 246) -23px 0px 0px 0px;
   background-color: rgb(209, 225, 246);
 }
+
+
 @media (min-width: 768px) {
   .card_list {
       display: flex;
       flex-wrap: wrap;
       width: 100%;
   }
-  /* .card_border {
-      margin-right: 71px;
-  } */
-  .card_active {
-      margin-right: 44px;
-  }
-  .card_border {
-      width: 280px;
-      height: 265px;
-      /* margin-right: 40px; */
-  }
+
+ 
   .card_list li {
       margin-right: 44px;
   }
+
   .card_list li:nth-child(2n) {
       margin-right: 0;
   }
-  .card_active {
-      width: 280px;
-      height: 265px;
-  }
-  .card_background {
-      width: 280px;
-      height: 265px;
-      /* margin-right: 40px; */
-  }
-  .fire {
-      position: absolute;
-      left: 195px;
-      bottom: 160px;
-      width: 25px;
-      height: 25px;
-      background-image: url(../../assets/images/icons/fire/fireOrange.png);
-  }
+
 }
+
 @media (min-width: 1280px) {
-  .card_wrapper {
-      margin-top: 45px;
-  }
-  .date_challenge {
-      margin-bottom: 42px;
-  }
-  /* .card_background {
-      width: 315px;
-      height: 292px;
-      position: relative;
-  } */
+
   .card_list li {
       margin-right: 80px;
   }
+
   .card_list li:nth-child(2n) {
       margin-right: 80px;
   }
+
   .card_list li:nth-child(3n) {
       margin-right: 0px;
   }
-  /* .card_list li:nth-child(4n) {
-      margin-right: 0;
-  } */
 }
 
 .date_picker>div>button:nth-child(2) {
-  border: none;
-}
-.date_picker>div>div>input {
 
-  /* position: relative; */
   border: none;
-  outline: none;
-  text-align: center;
-  font-family: HelveticaNeueCyr, sans-serif;
-  font-size: 15px;
-  color: #B9C3C8;
-  cursor: pointer;
-}
-.fire {
-  position: absolute;
-  left: 195px;
-  bottom: 114px;
-  width: 25px;
-  height: 25px;
-  background-image: url(../../assets/images/icons/fire/fireOrange.png);
 }
 
 .date_picker>div>div>span {
-  color: #B9C3C8;
+  color: #b9c3c8;
 }
-.date_picker>span>div {
-  position: absolute;
-  width: 250px;
-  padding: 4px;
-  margin-top: 1px;
-  z-index: 99999 !important;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .1);
-  border: 1px solid #F9F9F9;
-}
+
 .date_picker>div>button:nth-child(2) {
   display: none;
   border: 1px solid red;
@@ -457,6 +438,7 @@
   visibility: hidden;
   width: 0;
 }
+
 .date_picker>div>button:nth-child(3) {
   border: none;
   background-image: url(../../assets/images/icons/calendar/baseline-date_range-24px.svg);
@@ -466,43 +448,54 @@
   height: 17px;
   outline: none;
 }
+
 .date_picker>div>button>svg {
   display: none;
 }
-/* CardChallenge */
-.card_challenge {
 
+
+/* CardChallenge */
+
+.card_challenge {
   font-size: 13px;
   line-height: 11px;
-  color: #7B8AA4;
+  color: #7b8aa4;
   font-family: "HelveticaNeueCyr";
   font-weight: bold;
   text-transform: uppercase;
   margin-bottom: 9px;
 }
+
 .card_title {
-  font-size: 18px;
+  font-size: 15px;
   letter-spacing: 1px;
-  line-height: 21px;
-  color: #FFFFFF;
+  line-height: 1.2;
+  color: #ffffff;
   font-family: "HelveticaNeueCyr";
   font-weight: bold;
   text-align: center;
   margin-bottom: 2px;
 }
+
+
+
 @media (min-width: 1740px) {
   .container {
       width: 85%;
   }
+
   .card_list li {
       margin-right: 85px;
   }
+
   .card_list li:nth-child(2n) {
       margin-right: 85px;
   }
+
   .card_list li:nth-child(3n) {
       margin-right: 85px;
   }
+
   .card_list li:nth-child(4n) {
       margin-right: 0;
   }

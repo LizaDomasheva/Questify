@@ -91,13 +91,14 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
         </section>
         <section className={styled.dashboard}>
           <p className={styled.title}>TOMORROW</p>
-          {tomorrow ? (
+          {tomorrow  ? (
 
             <CardList
               arr={tomorrow}
               editFlag={editFlag}
               resetEditFlag={resetEditFlag}
               setEditFlagTrue={setEditFlagTrue}
+              startFlag={startFlag}
               resetStartFlag={resetStartFlag}
             />
 
@@ -128,6 +129,8 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
               resetEditFlag={resetEditFlag}
               setEditFlagTrue={setEditFlagTrue}
               resetStartFlag={resetStartFlag}
+              todayCard={todayCard}
+              allTheRest={allTheRest}
             />
           )}
         </section>

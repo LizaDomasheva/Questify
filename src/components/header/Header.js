@@ -52,9 +52,14 @@ const Header = ({ nickname, history, allTheRest, todayCard, tomorrow }) => {
             <div className={css.iconsWrap}>
               <button
                 // onClick={showChallengeCard}
-                className={trophy}></button>
+                className={trophy}>
+                  <p className={css.gotChallenge}>You've got new challenge!</p>
+                </button>
+               
 
-              <button onClick={handleLogOut} className={css.exit}></button>
+              <button onClick={handleLogOut} className={css.exit}>
+              <p className={css.logOut}>Log out</p>
+              </button>
             </div>
           </div>
         </div>

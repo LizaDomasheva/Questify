@@ -43,16 +43,12 @@ export const dashboardSlice = createSlice({
     }),
 
     filterCardReducerTodayTemp: (state, { payload = {} }) => 
-   
-
     ({
       ...state,
       today: payload.today,
       tomorrow: payload.tomorrow,
       allTheRest: payload.allTheRest,
       done: payload.done,
-
     }),
-   
   },
 });

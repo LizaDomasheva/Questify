@@ -27,7 +27,8 @@ function Card({
 
 
   const initialState = {
-    name: name.length > 15 ? name.slice(0, 15) + '...' : name,
+    name: name,
+    // .length > 25 ? name.slice(0, 25) + '...' : name,
     difficulty: difficulty,
     group: group,
     isPriority: isPriority,
@@ -119,15 +120,18 @@ function Card({
 
     dispatch(changeCard(_id, correctCardData));
     resetEditFlag();
+    resetStartFlag();
+    // setCardState((prev) => ({ ...prev, isEdit: false }));
   };
 
   const saveCard = () => {
     const correctCardData = {
-      ...cardState,
+      
       dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
     };
-
+    console.log('beforeDispSave :>> ', correctCardData);
     dispatch(changeCard(_id, correctCardData));
+    resetStartFlag();
     resetEditFlag();
   };
 
@@ -196,7 +200,7 @@ function Card({
                 // dateFormat="YYYY-MM-DD"
                 clearIcon={!cardState.isEdit && null}
                 disabled={!cardState.isEdit}
-                locale="ua-GB"
+                // locale="ua-GB"
               />
 
               {new Date(dueDate).getDate() === new Date(Date.now()).getDate() &&

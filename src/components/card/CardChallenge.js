@@ -17,7 +17,7 @@ import { deleteChallenge } from "../../redux/dashboardOperations";
 import { editChallenge } from "../../redux/dashboardOperations";
 
 
-function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditFlagTrue, editFlag }) {
+function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditFlagTrue, editFlag, todayCard, allTheRest }) {
   const { dueDate, name, group, difficulty, _id, challengeSendToUser, isEdit, isQuest, userId, done } = arr;
 
   const initialState = {
@@ -79,31 +79,33 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
 
   const updateCard = async (e) => {
     e.stopPropagation()
-      console.log('e.targetSTART :>> ', e.target);
       const correctCardData = {
         ...cardState,
         dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
       };
       dispatch(startChallenge(_id));
       setCardState((prev) => ({ ...prev, isEdit: false }));
-      resetStartFlag();
       // resetEditFlag();
- 
+      resetStartFlag();
   };
 
-  const saveCard = async () => {
+  const saveCard = async (e) => {
+    // e.stopPropagation()
     const correctCardData = easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate });
       dispatch(editChallenge(_id, correctCardData, cardState.difficulty));
 
     // dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
-    setCardState((prev) => ({ ...prev, isEdit: false }));
+    // setCardState((prev) => ({ ...prev, isEdit: false }));
     resetStartFlag();
     // resetEditFlag();
     // console.log('тиск дискетку')
   }; 
 
-  const isTaskDone = () => {
+  const isTaskDone = (e) => {
+  
+    console.log('e.targetTaskDone :>> ', e.target);
     setCardState((prev) => ({ ...prev, done: !prev.done }));
+ 
   };
 
   const changeIsEdit = (e) => {
@@ -113,7 +115,7 @@ console.log('e.targetDIVchall :>> ', e.target);
     //   console.log('cardState.done = ', done)
     //   return};
     setCardState((prev) => ({ ...prev, isEdit: true }));
-    setEditFlagTrue();
+    // setEditFlagTrue();
   };
 
   return (
@@ -131,7 +133,7 @@ console.log('e.targetDIVchall :>> ', e.target);
           </div>
           <div className={styled.trophy_icon}></div>
         </div>
-        <div className={styled.card_container}>
+        <div className={styled.card_container_challenge}>
           <p className={styled.card_challenge}>Challenge</p>
           <h2 className={styled.card_title}>{name}</h2>
         </div>
@@ -150,7 +152,7 @@ console.log('e.targetDIVchall :>> ', e.target);
 
           />
                         {new Date(dueDate).getDate() === new Date(Date.now()).getDate() &&
-                !cardState.isEdit && !done && <div className={styled.fire} />}
+                !cardState.isEdit && !done && !allTheRest && todayCard && <div className={styled.fireChallenge} />}
         </div>
         <div className={styled.card_block}>
           <div className={styled.card_category}>

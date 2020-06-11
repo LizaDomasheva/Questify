@@ -21,6 +21,7 @@ const Buttons = ({ deleteCard, id, resetStartFlag, updateCard }) => {
 
   return (
     <>
+    <div className={styled.btn_wrap}>
       <button onClick={showModal} className={styled.delete}></button>
       {isModalOpen && (
         <DeleteQuestModal
@@ -33,6 +34,7 @@ const Buttons = ({ deleteCard, id, resetStartFlag, updateCard }) => {
       <button onClick={updateCard} className={styled.start}>
         Start
       </button>
+      </div>
     </>
   );
 };

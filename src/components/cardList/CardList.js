@@ -11,9 +11,9 @@ const CardList = ({
   setEditFlagTrue,
   startFlag,
   resetStartFlag,
+  todayCard,
+  allTheRest
 }) => {
-  
-
   const findId = e => {
     if (!e.target.closest('li')) {
       return;
@@ -21,18 +21,16 @@ const CardList = ({
     const li = e.target.closest('li');
     const id = li.dataset.id;
     const findCard = arr.find(item => item._id === id);
-  
   };
 
   const editStateTest = e => {
     findId(e);
-
   };
 
   return (
     <ul className={styled.card_list}>
       {/* <ul className={styled.card_list} onClick={findId}> */}
-      {arr.length &&
+      {arr &&
         arr.map(card => {
           return (
             <li
@@ -57,9 +55,17 @@ const CardList = ({
                 />
               )}
 
-              {card.hasOwnProperty("challengeSendToUser") && (
-                <CardChallenge arr={card} resetEditFlag={resetEditFlag} resetStartFlag={resetStartFlag} startFlag={startFlag} setEditFlagTrue={setEditFlagTrue} editFlag={editFlag} />
-
+              {card.hasOwnProperty('challengeSendToUser') && (
+                <CardChallenge
+                  arr={card}
+                  resetEditFlag={resetEditFlag}
+                  resetStartFlag={resetStartFlag}
+                  startFlag={startFlag}
+                  setEditFlagTrue={setEditFlagTrue}
+                  editFlag={editFlag}
+                  todayCard={todayCard}
+                  allTheRest={allTheRest}
+                />
               )}
             </li>
           );

@@ -2,7 +2,208 @@
     background-color: rgb(0, 54, 91);
     box-shadow: 0px 2px 2px 0px rgba(0, 54, 91, 0.1);
     height: 60px;
-    /* margin: 0 -9%; */
+}
+
+.headerContainer {
+    width: 280px;
+    margin: 0 auto;
+}
+
+.wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.iconsWrap {
+    display: flex;
+    padding-top: 18px;
+    width: 62px;
+    justify-content: space-between;
+    margin-right: 8%;
+}
+
+.logo {
+    background-image: url(../../assets/images/logo/favicon-dark.svg);
+    width: 22px;
+    height: 22px;
+    background-size: 22px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-top: 20px;
+    margin-left: 8%;
+}
+
+.user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: rgb(51, 77, 110);
+    margin-top: 18px;
+    margin-left: 138px;
+}
+
+.name {
+    font-size: 12px;
+    font-family: 'HelveticaNeueCyr';
+    color: rgb(255, 255, 255);
+    line-height: 0.917;
+    text-align: center;
+    display: inline-block;
+}
+
+.userText {
+    font-size: 0px;
+}
+
+.userText::first-letter {
+    text-transform: uppercase;
+}
+
+.trophy {
+    position: relative;
+    background-image: url(../../assets/images/icons/trophy/trophy.png);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background-color: rgb(0, 216, 255);
+    box-shadow: 0px 6px 13px 0px rgba(0, 216, 255, 0.43);
+    background-size: 14px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: none;
+}
+
+.trophy:hover  p {
+    display: block;
+
+}
+
+.gotChallenge{
+    display: none;
+    position: absolute;
+    width: 170px;
+    font-family: HelveticaNeueCyrLight,sans-serif;
+    font-size: 10px;
+    color: #fff;
+    top: 25px;
+    left: -65px;
+}
+
+
+.trophyDisabled {
+    composes: trophy;
+    box-shadow: none;
+    background-color: rgb(62, 78, 108);
+    background-image: url(../../assets/images/icons/trophy/disTrophy.png);
+}
+
+.exit {
+    position: relative;
+    width: 22px;
+    height: 22px;
+    background-image: url(../../assets/images/icons/logout/logout.svg);
+    transform: rotate(180deg);
+    border: none;
+    background-color: rgb(0, 54, 91);
+}
+
+ .exit:hover p {
+    display: block;
+}
+
+.exit:hover,
+.exit:focus  {
+        background-image: url(../../assets/images/icons/logout/logoutHover.svg);
+    }
+
+.logOut {
+    display: none;
+    position: absolute;
+    width: 170px;
+    font-family: HelveticaNeueCyrLight,sans-serif;
+    font-size: 10px;
+    color: #fff;
+    top: 32px;
+    transform: rotate(180deg);
+    top: -14px;
+    left: -70px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 85%;
+    }
+
+    .header {
+        height: 80px;
+    }
+
+    .logo {
+        padding-top: 34px;
+        width: 80px;
+        background-image: url(../../assets/images/logo/logo-dark.svg);
+        background-size: 90px 80px;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .user {
+        margin: 0;
+        margin-top: 24px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .name {
+        font-size: 18px;
+        /* padding-left: 12px;
+        padding-top: 10px; */
+    }
+
+    .userText {
+        font-size: 17px;
+        font-family: 'HelveticaNeueCyr';
+        color: rgb(117, 139, 167);
+        line-height: 0.647;
+        margin-top: 36px;
+        text-align: center;
+        margin-left: 18px;
+    }
+
+    .userWrap {
+        display: flex;
+    }
+
+    .iconsWrap {
+        padding-top: 24px;
+        width: 96px;
+    }
+
+    .trophy,
+    .exit {
+        width: 35px;
+        height: 35px;
+    }
+
+    .gotChallenge {
+        font-size: 12px;
+        top: 36px;
+        left: -65px;
+    }
+
+    .logOut {
+        font-size: 12px;
+        top: -14px;
+        left: -65px;
+    }
+}
+/* .header {
+    background-color: rgb(0, 54, 91);
+    box-shadow: 0px 2px 2px 0px rgba(0, 54, 91, 0.1);
+    height: 60px;
 }
 
 .headerContainer {
@@ -143,9 +344,6 @@
 .exit:hover,
 .exit:focus {
     background-image: url(../../assets/images/icons/logout/logoutHover.svg);
-    /* background-color: rgb(0, 216, 255); */
-    /* background-color: rgb(51, 77, 110); */
-
 }
 
 @media (min-width: 768px) {
@@ -203,4 +401,4 @@
         width: 35px;
         height: 35px;
     }
-}
+} */
