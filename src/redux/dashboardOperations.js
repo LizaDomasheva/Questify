@@ -1,16 +1,19 @@
 import axios from 'axios';
 import { getUserId } from '../redux/selectors';
 import { dashboardSlice } from '../redux/reducers/dashboardReducer';
-// import { filterDataTime } from "./operations";
+
 import moment from 'moment';
 import easydate from 'easydate';
 
 export const removeCard = _id => dispatch => {
+
   axios
     .delete(`https://questify.goit.co.ua/api/quests/${_id}`)
     .then(response => {
       console.log('response-delete', response);
+
       if (response.data.success) {
+
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       }
     })
@@ -49,8 +52,6 @@ export const filterDataTimeTest = data => {
       timeZone: 'utc',
     });
     let data = moment().calendar(`${formatData}`).slice(0, 6);
-    // const data1 = moment().calendar(`${formatData}`);
-    // console.log("data1", data1);
     const curData = Date.parse(new Date(itemNew.dueDate));
     const currentData = Date.now();
     const now = new Date();
@@ -61,16 +62,8 @@ export const filterDataTimeTest = data => {
     const deltaTime = currentData - momentData - curData - 86400000;
     if (deltaTime > 0) {
       data = 'tooOld';
-      // console.log('data', data);
     } else console.log('ops tooOld', 'ooooops');
-    // console.log('deltaTime', deltaTime)
-    // console.log('itemNew.dueDate :>> ', itemNew.dueDate);
-    // console.log('dueData', dueDate)
-    // console.log('dueData', curData)
-    // console.log('currentData', currentData)
-    // console.log('momentData', momentData)
-    // console.log('dataBeforeSwitch', data)
-    // console.log('moment :>> ', moment().startOf('day').fromNow());
+
 
     switch (data) {
       case 'Today ':
@@ -121,25 +114,6 @@ export const filterDataTimeTest = data => {
   return filtredData;
 };
 
-// export const changeCard = (_id, correctCardData) => (dispatch, getState) => {
-//   axios
-//     .put(`https://questify.goit.co.ua/api/quests/${_id}`, correctCardData)
-//     // .then((response) => {
-//     //   console.log("response change", response.data.quest);
-//   dispatch(dashboardSlice.actions.removeCardReducer(_id));
-//     //   return response;
-//     // })
-//     .then((res) => {
-//       console.log("res", res.data.quest);
-//       const newArr = [res.data.quest];
-//       const filterData = filterDataTimeTest(newArr);
-//       console.log("filterData", filterData);
-//       // dispatch(dashboardSlice.actions.filterCardReducerToday(filterData));
-//       // dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterData));
-//       dispatch(dashboardSlice.actions.editCardReducer(filterData));
-//     })
-//     .catch((err) => console.warn(err));
-// };
 
 export const changeCard = (_id, correctCardData) => async dispatch => {
   try {
@@ -197,6 +171,7 @@ export const startChallenge = _id => async dispatch => {
 
 export const deleteChallenge = (_id, userId) => async dispatch => {
   console.log('userId', userId);
+
   console.log('helllo delCh', 'helllooooooo');
   try {
     const start = await axios
@@ -206,12 +181,14 @@ export const deleteChallenge = (_id, userId) => async dispatch => {
       })
       .then(response => {
         console.log('responseDelete', response.data.challenge);
+
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       });
   } catch (err) {
     console.log(err);
   }
 };
+
 
 export const doneChallenge = (_id, userId) => async dispatch => {
   console.log('userId', userId);
@@ -262,6 +239,7 @@ export const editChallenge = (
       })
       .then(response => {
         console.log('responseEditChallenge', response.data.challenge);
+
         const startArr = [response.data.challenge];
         let filterData = filterDataTimeTest(startArr);
         const dataForReducer = {

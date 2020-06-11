@@ -11,7 +11,7 @@ const Header = ({ nickname, history, allTheRest, todayCard, tomorrow }) => {
   const [clearUser, setClearUser] = useState(initialState);
   const dispatch = useDispatch();
   const handleLogOut = () => {
-    dispatch(userSlice.actions.logOutUser({ ...clearUser }));
+    dispatch(userSlice.actions.User({ ...clearUser }));
 
     setClearUser(() => ({ nickname: '' }));
     history.push('/');

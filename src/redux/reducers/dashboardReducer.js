@@ -41,16 +41,18 @@ export const dashboardSlice = createSlice({
       allTheRest: payload.allTheRest,
       done: [...state.done, ...payload.doneNew],
     }),
+
     filterCardReducerTodayTemp: (state, { payload = {} }) => 
-    // console.log('payload RED =', payload)
+   
+
     ({
       ...state,
       today: payload.today,
       tomorrow: payload.tomorrow,
       allTheRest: payload.allTheRest,
       done: payload.done,
-      // done: [...payload.done],
+
     }),
-    // filterCardReducerTodayTemp: (state, {payload}) => (console.log('payload', payload))
+   
   },
 });
