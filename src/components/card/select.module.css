@@ -12,11 +12,6 @@
     background-color: rgb(236, 239, 241);
 }
 
-/* 
-.option {
-    border: none;
-} */
-
 .stuff_category {
     box-shadow: rgb(236, 239, 241) -22px 0px 0px 0px;
     background-color: #eceff1;
@@ -167,16 +162,4 @@
 
 select {
     font-family: fontAwesome
-}
-
-select:focus {
-    outline: none;
-    border: none;
-    color: transparent;
-}
-
-select:hover {
-    outline: none;
-    border: none;
-    color: transparent;
 }
