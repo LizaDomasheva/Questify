@@ -167,12 +167,6 @@ function Card({
               isEdit={cardState.isEdit}
             />
           </div>
-          {/* {isPriority ? (
-          <div className={styled.star_icon} onClick={handleIsPriority}></div>
-        ) : (
-          <div className={styled.nostar_icon} onClick={handleIsPriority}></div>
-        )} */}
-
           <div className={star} onClick={handleIsPriority}></div>
         </div>
 

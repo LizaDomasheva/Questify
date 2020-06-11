@@ -76,22 +76,19 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
     resetStartFlag();
 
   };
-  const updateCard = async () => {
 
-
-    const correctCardData = {
-      ...cardState,
-      dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
-    };
-    dispatch(startChallenge(_id));
-    // dispatch(editChallenge(_id, correctCardData, cardState.difficulty));
-
-    // dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
-    setCardState((prev) => ({ ...prev, isEdit: false }));
-    resetStartFlag();
-    resetEditFlag();
-    // console.log('тиск дискетку')
-
+  const updateCard = async (e) => {
+    e.stopPropagation()
+      console.log('e.targetSTART :>> ', e.target);
+      const correctCardData = {
+        ...cardState,
+        dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
+      };
+      dispatch(startChallenge(_id));
+      setCardState((prev) => ({ ...prev, isEdit: false }));
+      resetStartFlag();
+      // resetEditFlag();
+ 
   };
 
   const saveCard = async () => {
@@ -108,8 +105,9 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
   const isTaskDone = () => {
     setCardState((prev) => ({ ...prev, done: !prev.done }));
   };
-  const changeIsEdit = (e) => {
 
+  const changeIsEdit = (e) => {
+console.log('e.targetDIVchall :>> ', e.target);
     if (editFlag) return;
     // if (done) {
     //   console.log('cardState.done = ', done)
@@ -152,7 +150,7 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
 
           />
                         {new Date(dueDate).getDate() === new Date(Date.now()).getDate() &&
-                !cardState.isEdit && <div className={styled.fire} />}
+                !cardState.isEdit && !done && <div className={styled.fire} />}
         </div>
         <div className={styled.card_block}>
           <div className={styled.card_category}>
