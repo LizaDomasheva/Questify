@@ -102,7 +102,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
             />
 
           ) : (
-            <p className={styled.alert}>No quests or challenges for done</p>
+            <p className={styled.alert}>No quests or challenges for tomorrow</p>
           )}
         </section>
 
@@ -118,7 +118,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
             </p>
             <div className={styled.doneLine}></div>
           </div>
-          {isDoneFigure && (
+          {done  && (
             <CardList
               arr={done}
               editFlag={editFlag}

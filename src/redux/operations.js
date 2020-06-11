@@ -43,14 +43,7 @@ export const filterDataTime = data => {
       data = 'tooOld';
       // console.log('data', data);
     } else console.log('ops', 'ooooops');
-    // console.log('deltaTime', deltaTime)
-    // console.log('itemNew.dueDate :>> ', itemNew.dueDate);
-    // console.log('dueData', dueDate)
-    // console.log('dueData', curData)
-    // console.log('currentData', currentData)
-    // console.log('momentData', momentData)
-    // console.log('dataBeforeSwitch', data)
-    // console.log('moment :>> ', moment().startOf('day').fromNow());
+  
 
     switch (data) {
       case 'Today ':
@@ -102,7 +95,7 @@ export const filterDataTime = data => {
 };
 
 export const getUser = nickname => (dispatch, getState) => {
-  // console.log('nickname getUser', nickname);
+  console.log('nickname getUser', nickname);
   axios
     .post(loginURL, nickname)
     .then(response => {
