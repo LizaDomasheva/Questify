@@ -1,12 +1,9 @@
 import { userSlice } from './reducers/userReducer';
 import axios from 'axios';
-// import storage from 'redux-persist/lib/storage';
 import easydate from 'easydate';
 import moment from 'moment';
-// import * as selectors from './selectors';
 import { dashboardSlice } from './reducers/dashboardReducer';
 
-// const loginURL = 'https://develop-questify.goit.co.ua/api/auth';
 const loginURL = 'https://questify.goit.co.ua/api/login';
 
 const filterDataDone = data => {
@@ -20,8 +17,6 @@ export const filterDataTime = data => {
   let tomorrow = [];
   let allTheRest = [];
   let done = [];
-
-  // console.log('data', data);
   const filtredData = data.reduce((acc, itemNew) => {
     const item = { ...itemNew, isEdit: false };
     const formatData = easydate('YMd', {
@@ -29,8 +24,6 @@ export const filterDataTime = data => {
       timeZone: 'utc',
     });
     let data = moment().calendar(`${formatData}`).slice(0, 6);
-    // const data1 = moment().calendar(`${formatData}`);
-    // console.log("data1", data1);
     const curData = Date.parse(new Date(itemNew.dueDate));
     const currentData = Date.now();
     const now = new Date();
@@ -41,9 +34,7 @@ export const filterDataTime = data => {
     const deltaTime = currentData - momentData - curData - 86400000;
     if (deltaTime > 0) {
       data = 'tooOld';
-  
-    } else console.log('tooOld ops', 'ooooops');
-
+    } 
 
     switch (data) {
       case 'Today ':
@@ -95,30 +86,21 @@ export const filterDataTime = data => {
 };
 
 export const getUser = nickname => (dispatch, getState) => {
-  console.log('nickname getUser', nickname);
   axios
     .post(loginURL, nickname)
     .then(response => {
-      console.log('response get User = ', response.data.data.tasks);
       dispatch(userSlice.actions.loginUser(response.data.data.user));
-      // const filterDone = filterDataDone(response.data.data.tasks);
       const filterTime = filterDataTime(response.data.data.tasks);
-      console.log('filterTime type :>> ',filterTime);
-      // dispatch(dashboardSlice.actions.filterCardReducer(filterDone));
       dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterTime));
     })
     .catch(err => console.log('error25 = ', err));
 };
 
 export const postUser = nickname => (dispatch, getState) => {
-  // const name = selectors.getUser(getState());
-  console.log(typeof nickname);
   axios
     .post(loginURL, { nickname: `${nickname}` })
     .then(response => {
-      // console.log(response);
       dispatch(userSlice.actions.loginUser(response.data.data.user));
-      // const filterDone = filterDataDone(response.data.data.tasks);
       const filterTime = filterDataTime(response.data.data.tasks);
       dispatch(dashboardSlice.actions.filterCardReducerTodayTemp(filterTime));
     })

@@ -24,7 +24,6 @@ export const dashboardSlice = createSlice({
     }),
 
     editCardReducer: (state, { payload }) => 
-    // console.log('editCardReducer :>> ', payload)
     ({
       ...state,
       today: [...state.today, ...payload.today],

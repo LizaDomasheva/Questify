@@ -16,12 +16,10 @@ const Header = ({ nickname, history, allTheRest, todayCard, tomorrow }) => {
     setClearUser(() => ({ nickname: '' }));
     history.push('/');
   };
-  // const showChallengeCard = () => {};
 
   let logoLetter = '';
 
   if (nickname !== null) {
-    // console.log('nickName :>> ', nickname);
     logoLetter = nickname.charAt(0).toUpperCase();
   }
 
@@ -51,7 +49,6 @@ const Header = ({ nickname, history, allTheRest, todayCard, tomorrow }) => {
             </div>
             <div className={css.iconsWrap}>
               <button
-                // onClick={showChallengeCard}
                 className={trophy}>
                   <p className={css.gotChallenge}>You've got new challenge!</p>
                 </button>

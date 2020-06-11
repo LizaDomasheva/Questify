@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Card from '../card/Card';
 import styled from '../card/card.module.css';
 import CardChallenge from '../card/CardChallenge';
-import CardEditing from '../card/cardEditing/CardEditing';
 
 const CardList = ({
   arr,
@@ -12,7 +11,7 @@ const CardList = ({
   startFlag,
   resetStartFlag,
   todayCard,
-  allTheRest
+  allTheRest,
 }) => {
   const findId = e => {
     if (!e.target.closest('li')) {
@@ -29,19 +28,15 @@ const CardList = ({
 
   return (
     <ul className={styled.card_list}>
-      {/* <ul className={styled.card_list} onClick={findId}> */}
+    
       {arr &&
         arr.map(card => {
           return (
             <li
               data-id={card._id}
               key={card._id}
-              // className={card.isEdit ? styled.card_active : styled.card_border}
-              // className={styled.card_border}
             >
-              {/* <CardEditing arr={card}/> */}
-              {/* {update && <CardEditing arr={card}/>} */}
-              {/* {!card.hasOwnProperty('challengeSendToUser') && <CardEditing arr={card} />} */}
+             
               {!card.hasOwnProperty('challengeSendToUser') && (
                 <Card
                   arr={card}

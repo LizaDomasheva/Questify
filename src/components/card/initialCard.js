@@ -51,15 +51,10 @@ const initialCard = () => {
               onSelectChange={onSelectChange}
               defaultSelectColor={cardState.defaultSelectColor}
               onSelectChange={event => onSelectChange(event.target.value)}
-              // onSelectChange={onSelectChange}
               group={cardState.group}
             />
           </div>
           <div className={styled.card_btn__create}>
-            {/* <button className={styled.delete}></button> 
-                        <div className={styled.strip}></div>              
-                        <button className={styled.start}>Start</button> */}
-
             <button onClick={updateCard} className={styled.save}></button>
             <div className={styled.strip}></div>
             <button

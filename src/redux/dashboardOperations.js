@@ -9,8 +9,6 @@ export const removeCard = _id => dispatch => {
   axios
     .delete(`https://questify.goit.co.ua/api/quests/${_id}`)
     .then(response => {
-      console.log('response-delete', response);
-
       if (response.data.success) {
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       }
@@ -63,7 +61,7 @@ export const filterDataTimeTest = data => {
     const deltaTime = currentData - momentData - curData - 86400000;
     if (deltaTime > 0) {
       data = 'tooOld';
-    } else console.log('ops tooOld', 'ooooops');
+    } 
 
     switch (data) {
       case 'Today ':
@@ -115,7 +113,6 @@ export const filterDataTimeTest = data => {
 };
 
 export const changeCard = (_id, correctCardData) => async dispatch => {
-  console.log('correctCardData :>> ', correctCardData);
   try {
     const res = await axios.put(
       `https://questify.goit.co.ua/api/quests/${_id}`,
@@ -123,7 +120,6 @@ export const changeCard = (_id, correctCardData) => async dispatch => {
     );
     let newArr = [res.data.quest];
     let filterData = filterDataTimeTest(newArr);
-    console.log('filterData', filterData);
     const dataForReducer = {
       today: [],
       tomorrow: [],
@@ -139,16 +135,12 @@ export const changeCard = (_id, correctCardData) => async dispatch => {
 };
 
 export const startChallenge = _id => async dispatch => {
-  console.log('111111', 111111);
-  console.log('challenge_id', _id);
-
   try {
-    const start = await axios
+     await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
         updateFields: { challengeSendToUser: true },
       })
       .then(response => {
-        console.log('responseStart', response.data.challenge);
         const startArr = [response.data.challenge];
         let filterData = filterDataTimeTest(startArr);
         const dataForReducer = {
@@ -167,18 +159,13 @@ export const startChallenge = _id => async dispatch => {
 };
 
 export const deleteChallenge = (_id, userId) => async dispatch => {
-  console.log('userId', userId);
-
-  console.log('helllo delCh', 'helllooooooo');
   try {
-    const start = await axios
+     await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
         updateFields: { challengeSendToUser: false },
         userId: `${userId}`,
       })
       .then(response => {
-        console.log('responseDelete', response.data.challenge);
-
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       });
   } catch (err) {
@@ -187,16 +174,14 @@ export const deleteChallenge = (_id, userId) => async dispatch => {
 };
 
 export const doneChallenge = (_id, userId) => async dispatch => {
-  console.log('userId', userId);
-  console.log('helllo doneCh', 'helllooooooo');
+
   try {
-    const start = await axios
+     await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
         updateFields: { challengeSendToUser: true, done: true },
         userId: `${userId}`,
       })
       .then(response => {
-        console.log('responseDone', response.data.challenge);
         const startArr = [response.data.challenge];
         let filterData = filterDataTimeTest(startArr);
         const dataForReducer = {
@@ -217,15 +202,10 @@ export const doneChallenge = (_id, userId) => async dispatch => {
 export const editChallenge = (
   _id,
   correctCardData,
-  //  dueDate,
   difficulty,
 ) => async dispatch => {
-  console.log('hello editCh', 'helllooooooo');
-  // console.log('dueDate :>> ', dueDate);
-  console.log('_id :>> ', _id);
-  console.log('difficulty :>> ', difficulty);
   try {
-    const start = await axios
+   await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
         updateFields: {
           difficulty: difficulty,
@@ -234,8 +214,6 @@ export const editChallenge = (
         },
       })
       .then(response => {
-        console.log('responseEditChallenge', response.data.challenge);
-
         const startArr = [response.data.challenge];
         let filterData = filterDataTimeTest(startArr);
         const dataForReducer = {
@@ -249,6 +227,6 @@ export const editChallenge = (
         dispatch(dashboardSlice.actions.editCardReducer(dataForReducer));
       });
   } catch (err) {
-    console.log('errChallenge :>> ', err);
+    console.log(err);
   }
 };

@@ -7,8 +7,6 @@ import { useDispatch } from 'react-redux';
 import easydate from 'easydate';
 import SelectCategory from './SelectCategory';
 import { removeCard, changeCard } from '../../redux/dashboardOperations';
-import DeleteQuestModal from './DeleteQuestModal';
-import { CompletedModal } from './CompletedModal';
 import Buttons from './Buttons';
 import ButtonsManipulate from './ButtonsManipulate';
 
@@ -36,7 +34,6 @@ function Card({
 
   const initialState = {
     name: name,
-    // .length > 25 ? name.slice(0, 25) + '...' : name,
     difficulty: difficulty,
     group: group,
     isPriority: isPriority,
@@ -73,21 +70,18 @@ function Card({
     setSelectState(prev => ({
       defaultSelectColor: value + '_category',
     }));
-    console.log('selectState', selectState);
     setCardState(prev => ({
       ...prev,
-
       group: value,
     }));
   };
 
   const handleChange = props => {
-    console.log('props :>> ', props);
     if (!cardState.isEdit) return;
     setCardState(prev => ({ ...prev, dueDate: props }));
   };
 
-  const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon; ///перепроверить
+  const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon; 
   const handleIsPriority = e => {
     if (!cardState.isEdit) return;
     setCardState(prev => ({ ...prev, isPriority: !prev.isPriority }));
@@ -108,16 +102,13 @@ function Card({
   };
 
   const updateCard = e => {
-    console.log('e :>> ', e.target);
     const correctCardData = {
       ...cardState,
       dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
     };
-
     dispatch(changeCard(_id, correctCardData));
     resetEditFlag();
     resetStartFlag();
-    // setCardState((prev) => ({ ...prev, isEdit: false }));
   };
 
   const saveCard = () => {
@@ -131,25 +122,17 @@ function Card({
   };
 
   const isTaskDone = () => {
-    console.log('done bird :>> ', done);
     setCardState(prev => ({ ...prev, done: true }));
-  };
-
-  const editState = () => {
-    setCardState(prev => ({ ...prev, isEdit: true }));
   };
 
   const changeIsEdit = e => {
     if (editFlag) return;
-    // if (done) {
-    //   console.log('cardState.done = ', done)
-    //   return};
     editStateTest(e);
     setCardState(prev => ({ ...prev, isEdit: true }));
 
     setEditFlagTrue();
   };
-  // const inFocus = cardState.isEdit && true;
+
   return (
     <>
       <div
@@ -180,8 +163,6 @@ function Card({
               placeholder="Enter quest name"
               name="name"
               value={cardState.name}
-              // autoFocus={inFocus}
-
               required
               onChange={changeName}
             />
@@ -191,10 +172,9 @@ function Card({
                 selected={cardState.dueDate}
                 value={cardState.dueDate}
                 onChange={handleChange}
-                // dateFormat="YYYY-MM-DD"
                 clearIcon={!cardState.isEdit && null}
                 disabled={!cardState.isEdit}
-                locale="en-GB"
+                locale="ua-GB"
               />
 
               {new Date(dueDate).getDate() === new Date(Date.now()).getDate() &&

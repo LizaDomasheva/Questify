@@ -5,19 +5,6 @@ import easy from '../../assets/images/icons/round/btn.svg';
 import normal from '../../assets/images/icons/round/green.svg';
 import hard from '../../assets/images/icons/round/red.svg';
 
-const getColor = (props = 'easy') => {
-  switch (props) {
-    case 'easy':
-      return 'easy_select';
-    case 'normal':
-      return 'normal_select';
-    case 'hard':
-      return 'hard_select';
-    default:
-      return 'easy_select';
-  }
-};
-
 const getRound = props => {
   switch (props) {
     case 'easy':
@@ -31,7 +18,7 @@ const getRound = props => {
   }
 };
 
-const image = '../../assets/images/icons/round/btn.svg';
+
 const Select = props => {
   const selectedOption = props.difficulty;
   const isDisabled = !props.isEdit && 'disabled';
@@ -47,7 +34,6 @@ const Select = props => {
         backgroundRepeat: 'no-repeat',
         backgroundSize: '10px',
         backgroundPosition: '5px',
-        width: '90px',
         height: '25px',
         paddingLeft: '20px',
         border: 'none',
@@ -56,13 +42,8 @@ const Select = props => {
         fontFamily: 'HelveticaNeueCyr,sans-serif',
         fontSize: '15px',
         color: '#7a7a7a',
-
         backgroundImage: getRound(props.difficulty),
-        // borderRadius: '50%',
-        // backgroundImage: "url('../../assets/images/icons/round/btn.svg')",
       }}
-      // className={getColor(selectedOption)}
-      // className={styled[props.defaultSelectGroupClr]}
       onChange={props.onSelectColor}
     >
 

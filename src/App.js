@@ -16,11 +16,6 @@ import('./pages/DashboardPage' /* webpackChunkName: 'dashboardpage-page' */),
 );
 
 class App extends Component {
-  // componentDidMount() {
-  //   this.props.refreshCurrentUser();
-  //   console.log(this.props.nickname);
-  // }
-
   render() {
     return (
       <div>

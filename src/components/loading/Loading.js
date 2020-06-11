@@ -3,15 +3,6 @@ import styled from './Loading.module.css';
 
 const Loading = () => {
   return (
-    // <div className={styled.wrapper}>
-    //   <div className={styled.yellow}></div>
-    //   <div className={styled.red}></div>
-    //   <div className={styled.blue}></div>
-    //   <div className={styled.violet}></div>
-    //   <div className={styled.light}></div>
-
-    // </div>
-
     <div className={styled.loader}>
   <h1> Loading Awesome</h1>
   <div className={styled.b1}></div>

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import chroma from "chroma-js";
-// import { css } from "emotion";
 import DatePicker from "react-date-picker";
 import Select from "../Select";
 import styled from "../card.module.css";
@@ -9,10 +7,7 @@ import easydate from "easydate";
 import SelectCategory from "../SelectCategory";
 import { removeCard, changeCard } from "../../../redux/dashboardOperations";
 import DeleteQuestModal from "../DeleteQuestModal";
-// import axios from "axios";
-// import moment from "moment";
 import { CompletedModal } from "../CompletedModal";
-import Buttons from "../Buttons";
 
 function CardEditing({ arr }) {
   const { dueDate, name, isPriority, group, difficulty, _id, isEdit } = arr;
@@ -21,27 +16,20 @@ function CardEditing({ arr }) {
     difficulty: difficulty,
     group: group,
     isPriority: isPriority,
-    // dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: dueDate }),
     dueDate: new Date(dueDate),
     isEdit: isEdit || null,
     defaultSelectColor: "card_category",
     defaultSelectGroupClr: "card_item",
   };
 
-  // const selectInitialState = {
-  //   defaultSelectColor: 'card_category',
-  //   defaultSelectGroupClr: 'card_item',
-  // };
+ 
 
   const [cardState, setCardState] = useState(initialState);
-  // const [selectState, setSelectState] = useState(selectInitialState);
   const changeName = ({ target: { name, value } }) => {
     setCardState((prev) => ({ ...prev, [name]: value }));
   };
 
   const onSelectColor = (value) => {
-    // console.log('valueColor :>> ', value);
-    // setSelectState(() => ({ defaultSelectGroupClr: value + '_select' }));
     setCardState((prev) => ({
       ...prev,
       defaultSelectGroupClr: value + "_select",
@@ -49,47 +37,14 @@ function CardEditing({ arr }) {
   };
 
   const onSelectChange = (value) => {
-    // console.log('value :>> ', value);
-    // setSelectState(() => ({ defaultSelectColor: value + '_category' }));
     setCardState((prev) => ({
       ...prev,
       defaultSelectColor: value + "_category",
     }));
   };
 
-  // const onSelectColor = value => {
-  //   console.log('valueColor :>> ', value);
-  //   setSelectState(() => ({ defaultSelectGroupClr: value + '_select' }));
-  //   setSelectState(prev => ({
-  //     ...prev,
-  //     // defaultSelectGroupClr: value + '_select',
-  //     group: value,
-  //   }));
-  // };
-
-  // const onSelectChange = value => {
-  //   console.log('value :>> ', value);
-  //   setSelectState(() => ({ defaultSelectColor: value + '_category' }));
-  //   setSelectState(prev => ({
-  //     ...prev,
-  //     // defaultSelectColor: value + '_category',
-  //     group: value,
-  //   }));
-  // };
-
-  // const onSelectChange = e => {
-  //   console.log('e.target.value', e.target.value);
-  //   setCardState(prev => ({ ...prev, group: e.target.value }));
-  // };
-
   const handleChange = (props) => {
     setCardState((prev) => ({ ...prev, dueDate: props }));
-    // console.log("dueDate", dueDate);
-    // console.log(
-    //   "dueDateEasy",
-    //   easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate })
-    // );
-    // console.log("props", props);
   };
 
   const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon; ///перепроверить
@@ -118,22 +73,13 @@ function CardEditing({ arr }) {
       dueDate: easydate("Y-M-dTh:m:s.000Z", { setDate: cardState.dueDate }),
       isEdit: false,
     };
-    // console.log("prepairData", correctCardData);
-
     dispatch(changeCard(_id, correctCardData));
   };
 
-  // const onSelectChange = (e) => {
-  //   // console.log("e.target.value", e.target.value);
-  //   setCardState((prev) => ({ ...prev, group: e.target.value }));
-  // };
-
   const isTaskDone = () => {
     setCardState((prev) => ({ ...prev, done: !prev.done }));
-    // console.log("cardState", cardState);
   };
 
-  // console.log("cardState", cardState);
   return (
     <>
       <div className={styled.card_header}>
@@ -144,11 +90,6 @@ function CardEditing({ arr }) {
             difficulty={difficulty}
           />
         </div>
-        {/* {isPriority ? (
-          <div className={styled.star_icon} onClick={handleIsPriority}></div>
-        ) : (
-          <div className={styled.nostar_icon} onClick={handleIsPriority}></div>
-        )} */}
 
         <div className={star} onClick={handleIsPriority}></div>
       </div>
@@ -184,7 +125,6 @@ function CardEditing({ arr }) {
               group={cardState.group}
             />
           </div>
-            {/* <Buttons deleteCard={deleteCard} showModal={showModal} id={_id}/> */}
           <div className={styled.card_btn__create}>
 
             <button onClick={updateCard} className={styled.save}></button>
@@ -215,12 +155,6 @@ function CardEditing({ arr }) {
       </div>
     </>
   );
-  {
-    /* <button className={styled.delete}></button> 
-  <div className={styled.strip}></div>              
-<button className={styled.start}>Start</button> */
-  }
-  // onSelectChange={onSelectChange}
 }
 
 export default CardEditing;
