@@ -17,10 +17,10 @@ export const dashboardSlice = createSlice({
     removeCardReducer: (state, { payload }) => 
     ({
       ...state,
-      today: state.today.filter(card => card._id !== payload),
-      tomorrow: state.tomorrow.filter(card => card._id !== payload),
-      done: state.done.filter(card => card._id !== payload),
-      allTheRest: state.allTheRest.filter(card => card._id !== payload),
+      today: state.today ? state.today.filter(card => card._id !== payload) : [],
+      tomorrow: state.tomorrow ? state.tomorrow.filter(card => card._id !== payload) : [],
+      done: state.done ? state.done.filter(card => card._id !== payload) : [],
+      allTheRest: state.allTheRest ? state.allTheRest.filter(card => card._id !== payload) : [],
     }),
 
     editCardReducer: (state, { payload }) => 
@@ -41,12 +41,15 @@ export const dashboardSlice = createSlice({
       allTheRest: payload.allTheRest,
       done: [...state.done, ...payload.doneNew],
     }),
-    filterCardReducerTodayTemp: (state, { payload }) => ({
+    filterCardReducerTodayTemp: (state, { payload = {} }) => 
+    // console.log('payload RED =', payload)
+    ({
       ...state,
       today: payload.today,
       tomorrow: payload.tomorrow,
       allTheRest: payload.allTheRest,
-      done: [...payload.done],
+      done: payload.done,
+      // done: [...payload.done],
     }),
     // filterCardReducerTodayTemp: (state, {payload}) => (console.log('payload', payload))
   },

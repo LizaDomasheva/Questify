@@ -118,7 +118,8 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
             </p>
             <div className={styled.doneLine}></div>
           </div>
-          {isDoneFigure && (
+          {done && isDoneFigure && (
+                      // {isDoneFigure && (
             <CardList
               arr={done}
               editFlag={editFlag}

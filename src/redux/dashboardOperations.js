@@ -1,39 +1,39 @@
-import axios from "axios";
-import { getUserId } from "../redux/selectors";
-import { dashboardSlice } from "../redux/reducers/dashboardReducer";
+import axios from 'axios';
+import { getUserId } from '../redux/selectors';
+import { dashboardSlice } from '../redux/reducers/dashboardReducer';
 // import { filterDataTime } from "./operations";
-import moment from "moment";
-import easydate from "easydate";
+import moment from 'moment';
+import easydate from 'easydate';
 
-export const removeCard = (_id) => (dispatch) => {
+export const removeCard = _id => dispatch => {
   axios
     .delete(`https://questify.goit.co.ua/api/quests/${_id}`)
-    .then((response) => {
-      console.log("response-delete", response);
+    .then(response => {
+      console.log('response-delete', response);
       if (response.data.success) {
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       }
     })
-    .catch((err) => console.warn(err));
+    .catch(err => console.warn(err));
 };
 
 export const createCard = () => (dispatch, getState) => {
   const userId = getUserId(getState());
   const newDate = new Date(Date.now());
   axios
-    .post("https://questify.goit.co.ua/api/quests", {
+    .post('https://questify.goit.co.ua/api/quests', {
       userId: userId,
-      name: " ",
-      group: "STUFF",
-      difficulty: "Easy",
+      name: ' ',
+      group: 'STUFF',
+      difficulty: 'Easy',
       dueDate: `${newDate}`,
       isPriority: true,
     })
-    .then((response) => {
+    .then(response => {
       const tempData = { ...response.data.quest, isEdit: true };
       dispatch(dashboardSlice.actions.addCardReducer(tempData));
     })
-    .catch((err) => console.warn("back not work", err));
+    .catch(err => console.warn('back not work', err));
 };
 
 export const filterDataTimeTest = data => {
@@ -60,9 +60,9 @@ export const filterDataTimeTest = data => {
     const momentData = hour * 3600 + minute * 60 + second;
     const deltaTime = currentData - momentData - curData - 86400000;
     if (deltaTime > 0) {
-      data = "tooOld";
+      data = 'tooOld';
       // console.log('data', data);
-    } else console.log("ops", "ooooops");
+    } else console.log('ops tooOld', 'ooooops');
     // console.log('deltaTime', deltaTime)
     // console.log('itemNew.dueDate :>> ', itemNew.dueDate);
     // console.log('dueData', dueDate)
@@ -81,7 +81,7 @@ export const filterDataTimeTest = data => {
           done.push(item);
           return (acc = { ...acc, done: done });
         }
-      case "Tomorr":
+      case 'Tomorr':
         if (!item.done) {
           item.done = true;
           done.push(item);
@@ -90,7 +90,7 @@ export const filterDataTimeTest = data => {
           done.push(item);
           return (acc = { ...acc, done: done });
         }
-      case "Yester":
+      case 'Yester':
         if (!item.done) {
           tomorrow.push(item);
           return (acc = { ...acc, tomorrow: tomorrow });
@@ -98,7 +98,7 @@ export const filterDataTimeTest = data => {
           done.push(item);
           return (acc = { ...acc, done: done });
         }
-      case "tooOld":
+      case 'tooOld':
         if (!item.done) {
           item.done = true;
           done.push(item);
@@ -141,18 +141,18 @@ export const filterDataTimeTest = data => {
 //     .catch((err) => console.warn(err));
 // };
 
-export const changeCard = (_id, correctCardData) => async (dispatch) => {
+export const changeCard = (_id, correctCardData) => async dispatch => {
   try {
     const res = await axios.put(
       `https://questify.goit.co.ua/api/quests/${_id}`,
-      correctCardData
+      correctCardData,
     );
     // console.log("correctCardData :>> ", correctCardData);
-    console.log("res edit :>> ", res);
+    console.log('res edit :>> ', res);
     let newArr = [res.data.quest];
     // console.log("type of", typeof newArr);
     let filterData = filterDataTimeTest(newArr);
-    // console.log("filterData", filterData);
+    console.log("filterData", filterData);
     const dataForReducer = {
       today: [],
       tomorrow: [],
@@ -167,17 +167,17 @@ export const changeCard = (_id, correctCardData) => async (dispatch) => {
   }
 };
 
-export const startChallenge = (_id) => async (dispatch) => {
-  console.log("111111", 111111);
-  console.log("challenge_id", _id);
+export const startChallenge = _id => async dispatch => {
+  console.log('111111', 111111);
+  console.log('challenge_id', _id);
 
   try {
     const start = await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
         updateFields: { challengeSendToUser: true },
       })
-      .then((response) => {
-        console.log("responseStart", response.data.challenge);
+      .then(response => {
+        console.log('responseStart', response.data.challenge);
         const startArr = [response.data.challenge];
         let filterData = filterDataTimeTest(startArr);
         const dataForReducer = {
@@ -195,16 +195,17 @@ export const startChallenge = (_id) => async (dispatch) => {
   }
 };
 
-export const deleteChallenge = (_id, userId) => async (dispatch) => {
-  console.log('userId', userId)
-  console.log("helllo delCh", "helllooooooo");
+export const deleteChallenge = (_id, userId) => async dispatch => {
+  console.log('userId', userId);
+  console.log('helllo delCh', 'helllooooooo');
   try {
     const start = await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
-        updateFields: { challengeSendToUser: false }, userId: `${userId}`, 
+        updateFields: { challengeSendToUser: false },
+        userId: `${userId}`,
       })
-      .then((response) => {
-        console.log("responseDelete", response.data.challenge);
+      .then(response => {
+        console.log('responseDelete', response.data.challenge);
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       });
   } catch (err) {
@@ -212,16 +213,17 @@ export const deleteChallenge = (_id, userId) => async (dispatch) => {
   }
 };
 
-export const doneChallenge = (_id, userId) => async (dispatch) => {
-  console.log('userId', userId)
-  console.log("helllo doneCh", "helllooooooo");
+export const doneChallenge = (_id, userId) => async dispatch => {
+  console.log('userId', userId);
+  console.log('helllo doneCh', 'helllooooooo');
   try {
     const start = await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
-        updateFields: { challengeSendToUser: true, done: true }, userId: `${userId}`, 
+        updateFields: { challengeSendToUser: true, done: true },
+        userId: `${userId}`,
       })
-      .then((response) => {
-        console.log("responseDone", response.data.challenge);
+      .then(response => {
+        console.log('responseDone', response.data.challenge);
         const startArr = [response.data.challenge];
         let filterData = filterDataTimeTest(startArr);
         const dataForReducer = {
@@ -252,7 +254,11 @@ export const editChallenge = (
   try {
     const start = await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
-          "updateFields": {"difficulty": difficulty, "challengeSendToUser": true, "dueDate": correctCardData}
+        updateFields: {
+          difficulty: difficulty,
+          challengeSendToUser: true,
+          dueDate: correctCardData,
+        },
       })
       .then(response => {
         console.log('responseEditChallenge', response.data.challenge);

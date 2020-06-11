@@ -86,11 +86,7 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
   };
 
   const saveCard = async () => {
-
-    const correctCardData = {
-      ...cardState,
-      dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
-    };
+    const correctCardData = easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate });
       dispatch(editChallenge(_id, correctCardData, cardState.difficulty));
 
     // dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
@@ -141,6 +137,8 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
             disabled={!cardState.isEdit}
             locale="ua-GB"
           />
+                        {new Date(dueDate).getDate() === new Date(Date.now()).getDate() &&
+                !cardState.isEdit && <div className={styled.fire} />}
         </div>
         <div className={styled.card_block}>
           <div className={styled.card_category}>
