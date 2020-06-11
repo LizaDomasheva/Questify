@@ -22,9 +22,17 @@ function Card({
   startFlag,
   resetStartFlag,
 }) {
-
-  const { dueDate, name, isPriority, group, difficulty, _id, isEdit, isQuest, done } = arr;
-
+  const {
+    dueDate,
+    name,
+    isPriority,
+    group,
+    difficulty,
+    _id,
+    isEdit,
+    isQuest,
+    done,
+  } = arr;
 
   const initialState = {
     name: name,
@@ -37,13 +45,10 @@ function Card({
   };
 
   const selectInitialState = {
-    
     defaultSelectColor: 'card_category',
 
     defaultSelectGroupClr: 'card_item',
   };
-
-  
 
   const [cardState, setCardState] = useState(initialState);
   const [selectState, setSelectState] = useState(selectInitialState);
@@ -52,8 +57,6 @@ function Card({
     setCardState(prev => ({ ...prev, [name]: value }));
   };
 
-  
-
   const onSelectColor = value => {
     setSelectState(prev => ({
       ...prev,
@@ -61,33 +64,28 @@ function Card({
     }));
     setCardState(prev => ({
       ...prev,
-      
+
       difficulty: value,
     }));
   };
 
   const onSelectChange = value => {
     setSelectState(prev => ({
-    
       defaultSelectColor: value + '_category',
     }));
     console.log('selectState', selectState);
     setCardState(prev => ({
       ...prev,
-     
+
       group: value,
     }));
   };
-
-  
 
   const handleChange = props => {
     console.log('props :>> ', props);
     if (!cardState.isEdit) return;
     setCardState(prev => ({ ...prev, dueDate: props }));
-    
   };
-
 
   const star = cardState.isPriority ? styled.star_icon : styled.nostar_icon; ///перепроверить
   const handleIsPriority = e => {
@@ -109,9 +107,7 @@ function Card({
     setIsModalOpen(true);
   };
 
-  
-
-  const updateCard = (e) => {
+  const updateCard = e => {
     console.log('e :>> ', e.target);
     const correctCardData = {
       ...cardState,
@@ -126,24 +122,21 @@ function Card({
 
   const saveCard = () => {
     const correctCardData = {
-      
+      ...cardState,
       dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
     };
-    console.log('beforeDispSave :>> ', correctCardData);
     dispatch(changeCard(_id, correctCardData));
     resetStartFlag();
     resetEditFlag();
   };
 
- 
-
   const isTaskDone = () => {
-    setCardState(prev => ({ ...prev, done: !prev.done }));
+    console.log('done bird :>> ', done);
+    setCardState(prev => ({ ...prev, done: true }));
   };
 
   const editState = () => {
     setCardState(prev => ({ ...prev, isEdit: true }));
-   
   };
 
   const changeIsEdit = e => {
@@ -153,7 +146,7 @@ function Card({
     //   return};
     editStateTest(e);
     setCardState(prev => ({ ...prev, isEdit: true }));
-    
+
     setEditFlagTrue();
   };
   // const inFocus = cardState.isEdit && true;
@@ -161,7 +154,8 @@ function Card({
     <>
       <div
         className={cardState.isEdit ? styled.card_active : styled.card_border}
-        onClick={changeIsEdit}>
+        onClick={changeIsEdit}
+      >
         <div className={styled.card_header}>
           <div className={styled.card_item}>
             <Select
@@ -204,7 +198,8 @@ function Card({
               />
 
               {new Date(dueDate).getDate() === new Date(Date.now()).getDate() &&
-                !cardState.isEdit && !done && <div className={styled.fire} />}
+                !cardState.isEdit &&
+                !done && <div className={styled.fire} />}
             </div>
           </div>
           <div className={styled.card_block}>
@@ -242,9 +237,7 @@ function Card({
     </>
   );
   {
-    
   }
- 
 }
 
 export default Card;

@@ -11,20 +11,8 @@ import styled from "./DashboardPage.module.css";
 import CardEditing from "../components/card/cardEditing/CardEditing";
 
 
-// const divStyle = {
-//   transform:[{rotate:"180deg"}]
-// }
-
 const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
-  // useEffect(() => {
-  //   window.scrollTo(
-  //     {
-  //       top: 0,
-  //       behavior: "smooth",
-  //     },
-  //     []
-  //   );
-  // });
+ 
 
   const history = useHistory();
   const [editFlag, seteditFlag] = useState(false);

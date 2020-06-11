@@ -101,11 +101,8 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
     // console.log('тиск дискетку')
   }; 
 
-  const isTaskDone = (e) => {
-  
-    console.log('e.targetTaskDone :>> ', e.target);
+  const isTaskDone = () => {
     setCardState((prev) => ({ ...prev, done: !prev.done }));
- 
   };
 
   const changeIsEdit = (e) => {
