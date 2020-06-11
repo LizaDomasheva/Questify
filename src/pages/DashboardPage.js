@@ -51,7 +51,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   
   const resetStartFlag = () => {
     setstartFlag(false);
-    resetEditFlag()
+    resetEditFlag();
   };
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
     <>
       <div className={styled.dashboard_wrapper}>
           {/* <Loading/> */}
-        <Header nickname={nickname} history={history} allTheRest={allTheRest}/>
+        <Header nickname={nickname} history={history} allTheRest={allTheRest} todayCard={todayCard} tomorrow={tomorrow} />
         <section className={styled.dashboard}>
           <p className={styled.title}>TODAY</p>
           {/* {editFlag && <CardEditing arr={todayCard}/>} */}
@@ -118,7 +118,10 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
             </p>
             <div className={styled.doneLine}></div>
           </div>
-          {done  && (
+
+          {done && isDoneFigure && (
+                      // {isDoneFigure && (
+
             <CardList
               arr={done}
               editFlag={editFlag}

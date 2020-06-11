@@ -1,16 +1,19 @@
 import axios from 'axios';
 import { getUserId } from '../redux/selectors';
 import { dashboardSlice } from '../redux/reducers/dashboardReducer';
+
 import moment from 'moment';
 import easydate from 'easydate';
 
 export const removeCard = _id => dispatch => {
-  console.log('_id delete', _id);
+
   axios
     .delete(`https://questify.goit.co.ua/api/quests/${_id}`)
     .then(response => {
       console.log('response-delete', response);
-      if (response.data.success && response.data.length >0) {
+
+      if (response.data.success) {
+
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       }
     })
@@ -59,9 +62,8 @@ export const filterDataTimeTest = data => {
     const deltaTime = currentData - momentData - curData - 86400000;
     if (deltaTime > 0) {
       data = 'tooOld';
-      // console.log('data', data);
-    } else console.log('ops', 'ooooops');
-   
+    } else console.log('ops tooOld', 'ooooops');
+
 
     switch (data) {
       case 'Today ':
@@ -112,6 +114,7 @@ export const filterDataTimeTest = data => {
   return filtredData;
 };
 
+
 export const changeCard = (_id, correctCardData) => async dispatch => {
   try {
     const res = await axios.put(
@@ -123,7 +126,7 @@ export const changeCard = (_id, correctCardData) => async dispatch => {
     let newArr = [res.data.quest];
     // console.log("type of", typeof newArr);
     let filterData = filterDataTimeTest(newArr);
-    // console.log("filterData", filterData);
+    console.log("filterData", filterData);
     const dataForReducer = {
       today: [],
       tomorrow: [],
@@ -168,15 +171,47 @@ export const startChallenge = _id => async dispatch => {
 
 export const deleteChallenge = (_id, userId) => async dispatch => {
   console.log('userId', userId);
-  console.log('helllooooooo', 'helllooooooo');
+
+  console.log('helllo delCh', 'helllooooooo');
   try {
     const start = await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
-        updateFields: { challengeSendToUser: false, userId: userId },
+        updateFields: { challengeSendToUser: false },
+        userId: `${userId}`,
       })
       .then(response => {
-        console.log('responseStart', response.data.challenge);
+        console.log('responseDelete', response.data.challenge);
+
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
+      });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+export const doneChallenge = (_id, userId) => async dispatch => {
+  console.log('userId', userId);
+  console.log('helllo doneCh', 'helllooooooo');
+  try {
+    const start = await axios
+      .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
+        updateFields: { challengeSendToUser: true, done: true },
+        userId: `${userId}`,
+      })
+      .then(response => {
+        console.log('responseDone', response.data.challenge);
+        const startArr = [response.data.challenge];
+        let filterData = filterDataTimeTest(startArr);
+        const dataForReducer = {
+          today: [],
+          tomorrow: [],
+          done: [],
+          allTheRest: [],
+          ...filterData,
+        };
+        dispatch(dashboardSlice.actions.removeCardReducer(_id));
+        dispatch(dashboardSlice.actions.editCardReducer(dataForReducer));
       });
   } catch (err) {
     console.log(err);
@@ -185,21 +220,25 @@ export const deleteChallenge = (_id, userId) => async dispatch => {
 
 export const editChallenge = (
   _id,
-  userId,
-  dueDate,
-  difficulty = 'easy',
+  correctCardData,
+  //  dueDate,
+  difficulty,
 ) => async dispatch => {
-  console.log('userId', userId);
-  console.log('helllooooooo', 'helllooooooo');
-  console.log('dueDate :>> ', dueDate);
+  console.log('hello editCh', 'helllooooooo');
+  // console.log('dueDate :>> ', dueDate);
   console.log('_id :>> ', _id);
+  console.log('difficulty :>> ', difficulty);
   try {
     const start = await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
-          "updateFields": {"difficulty": difficulty, "challengeSendToUser": true, "dueDate": "dueDate"}
+        updateFields: {
+          difficulty: difficulty,
+          challengeSendToUser: true,
+          dueDate: correctCardData,
+        },
       })
       .then(response => {
-        console.log('responseEdit', response.data.challenge);
+        console.log('responseEditChallenge', response.data.challenge);
 
         const startArr = [response.data.challenge];
         let filterData = filterDataTimeTest(startArr);

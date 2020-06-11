@@ -32,18 +32,19 @@ const getRound = props => {
 };
 
 const image = '../../assets/images/icons/round/btn.svg';
-
 const Select = props => {
   const selectedOption = props.difficulty;
-
   const isDisabled = !props.isEdit && 'disabled';
 
   return (
     <select
       disabled={isDisabled}
       value={selectedOption}
+
+     
       style={{
-        backgroundColor: 'transparent',
+        backgroundColor: "transparent",
+
         backgroundRepeat: 'no-repeat',
         backgroundSize: '10px',
         backgroundPosition: '5px',
@@ -52,10 +53,12 @@ const Select = props => {
         paddingLeft: '20px',
         border: 'none',
         outline: 'none',
-        // width: '110px',
+
+        width: '110px',
         fontFamily: 'HelveticaNeueCyr,sans-serif',
         fontSize: '15px',
-        color: '#b6c4ca',
+        color: '#B6C4CA',
+
         backgroundImage: getRound(props.difficulty),
         // borderRadius: '50%',
         // backgroundImage: "url('../../assets/images/icons/round/btn.svg')",
@@ -64,6 +67,7 @@ const Select = props => {
       // className={styled[props.defaultSelectGroupClr]}
       onChange={props.onSelectColor}
     >
+
       {props.isQuest===false ? (
         <option
           style={{ backgroundColor: '#20395a', border: '#20395a'}}
@@ -106,5 +110,5 @@ const Select = props => {
     </select>
   );
 };
-
 export default Select;
+

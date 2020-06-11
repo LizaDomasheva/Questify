@@ -5,12 +5,13 @@ import { CompletedModal } from "./CompletedModal";
 import { CompletedChallenge } from "./CompletedChallenge";
 
 const ButtonsManipulate = ({
-  updateCard,
+  saveCard,
   deleteCard,
   id,
   isTaskDone,
   cardState,
-  isQuest
+  isQuest,
+  userId,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -24,7 +25,7 @@ const ButtonsManipulate = ({
 
   return (
     <div className={styled.card_btn__create}>
-      <button onClick={updateCard} className={styled.save}></button>
+      <button onClick={saveCard} className={styled.save}></button>
       <div className={styled.strip}></div>
       <button onClick={showModal} className={styled.delete}></button>
       {isModalOpen && (
@@ -36,19 +37,20 @@ const ButtonsManipulate = ({
       )}
       <div className={styled.strip}></div>
       <button onClick={isTaskDone} className={styled.done}></button>
-      {cardState.done && isQuest && (
+      {cardState.done && isQuest &&(
         <CompletedModal
           title={cardState.name}
-          updateCard={updateCard}
+          updateCard={saveCard}
           id={id}
           cardState={cardState}
         />
-      ) }
+      )}
       {cardState.done && !isQuest && (
         <CompletedChallenge
         title={cardState.name}
-          updateCard={updateCard}
+          updateCard={saveCard}
           id={id}
+          userId={userId}
           cardState={cardState}
           />
       )

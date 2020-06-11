@@ -17,8 +17,8 @@ import { deleteChallenge } from "../../redux/dashboardOperations";
 import { editChallenge } from "../../redux/dashboardOperations";
 
 
-function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditFlagTrue }) {
-  const { dueDate, name, group, difficulty, _id, challengeSendToUser, isEdit, isQuest, userId} = arr;
+function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditFlagTrue, editFlag }) {
+  const { dueDate, name, group, difficulty, _id, challengeSendToUser, isEdit, isQuest, userId, done } = arr;
 
   const initialState = {
     name: name,
@@ -28,19 +28,16 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
     challengeSendToUser: false,
     isEdit: isEdit,
     isQuest: isQuest
-  };
 
+  };
   const selectInitialState = {
     defaultSelectColor: 'card_category',
     defaultSelectGroupClr: 'card_item',
   };
-
   const [cardState, setCardState] = useState(initialState);
   const [selectState, setSelectState] = useState(selectInitialState);
-
   const onSelectColor = value => {
     setSelectState(prev => ({
-
       ...prev,
       defaultSelectGroupClr: value + '_select',
     }));
@@ -60,34 +57,63 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
       group: value,
     }));
   };
-
   const dispatch = useDispatch();
 
   const handleChange = (props) => {
     setCardState((prev) => ({ ...prev, dueDate: props }));
   };
-
   const showModal = () => {
     setCardState(true);
   };
-
   const closeModal = () => {
     setCardState(false);
   };
 
-  const deleteCard = (_id, userId) => {
+
+  const deleteCard = () => {
     dispatch(deleteChallenge(_id, userId));
+    // resetEditFlag();
+    resetStartFlag();
+
+  };
+  const updateCard = async () => {
+
+
+    const correctCardData = {
+      ...cardState,
+      dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
+    };
+    dispatch(startChallenge(_id));
+    // dispatch(editChallenge(_id, correctCardData, cardState.difficulty));
+
+    // dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
+    setCardState((prev) => ({ ...prev, isEdit: false }));
+    resetStartFlag();
+    resetEditFlag();
+    // console.log('тиск дискетку')
+
   };
 
-  const updateCard = async () => {
-    dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
-  };
+  const saveCard = async () => {
+    const correctCardData = easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate });
+      dispatch(editChallenge(_id, correctCardData, cardState.difficulty));
+
+    // dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
+    setCardState((prev) => ({ ...prev, isEdit: false }));
+    resetStartFlag();
+    // resetEditFlag();
+    // console.log('тиск дискетку')
+  }; 
 
   const isTaskDone = () => {
     setCardState((prev) => ({ ...prev, done: !prev.done }));
   };
-
   const changeIsEdit = (e) => {
+
+    if (editFlag) return;
+    // if (done) {
+    //   console.log('cardState.done = ', done)
+    //   return};
     setCardState((prev) => ({ ...prev, isEdit: true }));
     setEditFlagTrue();
   };
@@ -105,7 +131,6 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
               isEdit={cardState.isEdit}
             />
           </div>
-
           <div className={styled.trophy_icon}></div>
         </div>
         <div className={styled.card_container}>
@@ -122,7 +147,12 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
             dateFormat="YYYY-MM-DD"
             clearIcon={!cardState.isEdit && null}
             disabled={!cardState.isEdit}
+
+            locale="ua-GB"
+
           />
+                        {new Date(dueDate).getDate() === new Date(Date.now()).getDate() &&
+                !cardState.isEdit && <div className={styled.fire} />}
         </div>
         <div className={styled.card_block}>
           <div className={styled.card_category}>
@@ -132,7 +162,7 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
               group={cardState.group}
             />
           </div>
-
+          {/* {!challengeSendToUser && !done && (         */}
           {!challengeSendToUser && (
             <Buttons
               updateCard={updateCard}
@@ -141,14 +171,15 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
               resetStartFlag={resetStartFlag}
             />
           )}
-
           {challengeSendToUser && cardState.isEdit && (
             <ButtonsManipulate
               cardState={cardState}
               deleteCard={deleteCard}
               showModal={showModal}
               id={_id}
-              updateCard={updateCard}
+              userId={userId}
+              // updateCard={updateCard}
+              saveCard={saveCard}
               isTaskDone={isTaskDone}
             />
           )}
@@ -157,5 +188,6 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
     </>
   );
 }
-
 export default CardChallenge;
+
+

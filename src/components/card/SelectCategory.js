@@ -51,7 +51,6 @@ const SelectCategory = props => {
   };
 
   const selectedOption = props.group.toLowerCase();
- 
   const isDisabled = !props.isEdit && 'disabled';
 
   return (
@@ -93,5 +92,6 @@ const SelectCategory = props => {
     </select>
   );
 };
-
 export default SelectCategory;
+
+

@@ -1,0 +1,32 @@
+{
+	"0": {
+		"dueDate": "2020-06-10T13:18:00.000Z",
+		"done": false,
+		"isQuest": true,
+		"isPriority": false,
+		"_id": "5edf8c08a1dd0864c4f57028",
+		"name": "Complete 3 quests",
+		"group": "Productivity",
+		"difficulty": "Hard",
+		"userId": "5edf8c08a1dd0864c4f57025",
+		"__v": 0,
+		"createdAt": "2020-06-09T13:18:00.862Z",
+		"updatedAt": "2020-06-09T18:25:59.351Z",
+		"isEdit": false
+	},
+	"1": {
+		"dueDate": "2020-06-16T15:18:11.859Z",
+		"done": true,
+		"isQuest": false,
+		"challengeSendToUser": true,
+		"_id": "5edf8c08a1dd0864c4f5704a",
+		"name": "Write a post about your last journey",
+		"group": "Social",
+		"difficulty": "Hard",
+		"userId": "5edf8c08a1dd0864c4f57025",
+		"__v": 0,
+		"createdAt": "2020-06-09T13:18:00.882Z",
+		"updatedAt": "2020-06-09T15:23:10.304Z",
+		"isEdit": false
+	}
+}

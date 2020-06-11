@@ -56,14 +56,10 @@ const CardList = ({
                   resetStartFlag={resetStartFlag}
                 />
               )}
-              {card.hasOwnProperty('challengeSendToUser') && (
-                <CardChallenge
-                  arr={card}
-                  resetEditFlag={resetEditFlag}
-                  resetStartFlag={resetStartFlag}
-                  startFlag={startFlag}
-                  setEditFlagTrue={setEditFlagTrue}
-                />
+
+              {card.hasOwnProperty("challengeSendToUser") && (
+                <CardChallenge arr={card} resetEditFlag={resetEditFlag} resetStartFlag={resetStartFlag} startFlag={startFlag} setEditFlagTrue={setEditFlagTrue} editFlag={editFlag} />
+
               )}
             </li>
           );
