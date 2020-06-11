@@ -22,7 +22,7 @@ function Card({
   startFlag,
   resetStartFlag,
 }) {
-  const { dueDate, name, isPriority, group, difficulty, _id, isEdit, isQuest } = arr;
+  const { dueDate, name, isPriority, group, difficulty, _id, isEdit, isQuest, done } = arr;
 
   const initialState = {
     name: name.length > 15 ? name.slice(0, 15) + '...' : name,
@@ -152,6 +152,15 @@ function Card({
     resetEditFlag();
   };
 
+  const saveCard = () => {
+    const correctCardData = {
+      ...cardState,
+      dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
+    };
+    dispatch(changeCard(_id, correctCardData));
+    resetEditFlag();
+  };
+
   // const onSelectChange = (e) => {
   //   // console.log("e.target.value", e.target.value);
   //   setCardState((prev) => ({ ...prev, group: e.target.value }));
@@ -168,6 +177,9 @@ function Card({
 
   const changeIsEdit = e => {
     if (editFlag) return;
+    // if (done) {
+    //   console.log('cardState.done = ', done)
+    //   return};
     editStateTest(e);
     setCardState(prev => ({ ...prev, isEdit: true }));
     // console.log("editFlagDiv", editFlag);
@@ -247,7 +259,7 @@ function Card({
                 deleteCard={deleteCard}
                 showModal={showModal}
                 id={_id}
-                updateCard={updateCard}
+                saveCard={saveCard}
                 title={cardState.name}
                 cardState={cardState}
                 isTaskDone={isTaskDone}

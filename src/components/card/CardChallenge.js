@@ -15,8 +15,9 @@ import Buttons from "./Buttons";
 import ButtonsManipulate from "./ButtonsManipulate";
 import { deleteChallenge } from "../../redux/dashboardOperations";
 import { editChallenge } from "../../redux/dashboardOperations";
+
 function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditFlagTrue, editFlag }) {
-  const { dueDate, name, group, difficulty, _id, challengeSendToUser, isEdit, isQuest, userId } = arr;
+  const { dueDate, name, group, difficulty, _id, challengeSendToUser, isEdit, isQuest, userId, done } = arr;
   const initialState = {
     name: name,
     difficulty: difficulty,
@@ -62,21 +63,51 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
   const closeModal = () => {
     setCardState(false);
   };
+
   const deleteCard = () => {
     dispatch(deleteChallenge(_id, userId));
+    // resetEditFlag();
+    resetStartFlag();
   };
   const updateCard = async () => {
-    dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
+
+    const correctCardData = {
+      ...cardState,
+      dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
+    };
+    dispatch(startChallenge(_id));
+    // dispatch(editChallenge(_id, correctCardData, cardState.difficulty));
+
+    // dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
+    setCardState((prev) => ({ ...prev, isEdit: false }));
+    resetStartFlag();
+    resetEditFlag();
+    // console.log('тиск дискетку')
+  };
+
+  const saveCard = async () => {
+
+    const correctCardData = {
+      ...cardState,
+      dueDate: easydate('Y-M-dTh:m:s.000Z', { setDate: cardState.dueDate }),
+    };
+      dispatch(editChallenge(_id, correctCardData, cardState.difficulty));
+
+    // dispatch(editChallenge(_id, cardState.dueDate, cardState.difficulty));
     setCardState((prev) => ({ ...prev, isEdit: false }));
     resetStartFlag();
     // resetEditFlag();
     // console.log('тиск дискетку')
-  };
+  }; 
+
   const isTaskDone = () => {
     setCardState((prev) => ({ ...prev, done: !prev.done }));
   };
   const changeIsEdit = (e) => {
     if (editFlag) return;
+    // if (done) {
+    //   console.log('cardState.done = ', done)
+    //   return};
     setCardState((prev) => ({ ...prev, isEdit: true }));
     setEditFlagTrue();
   };
@@ -108,6 +139,7 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
             dateFormat="YYYY-MM-DD"
             clearIcon={!cardState.isEdit && null}
             disabled={!cardState.isEdit}
+            locale="ua-GB"
           />
         </div>
         <div className={styled.card_block}>
@@ -118,6 +150,7 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
               group={cardState.group}
             />
           </div>
+          {/* {!challengeSendToUser && !done && (         */}
           {!challengeSendToUser && (
             <Buttons
               updateCard={updateCard}
@@ -133,7 +166,8 @@ function CardChallenge({ arr, resetEditFlag, resetStartFlag, startFlag, setEditF
               showModal={showModal}
               id={_id}
               userId={userId}
-              updateCard={updateCard}
+              // updateCard={updateCard}
+              saveCard={saveCard}
               isTaskDone={isTaskDone}
             />
           )}

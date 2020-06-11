@@ -204,7 +204,7 @@ export const deleteChallenge = (_id, userId) => async (dispatch) => {
         updateFields: { challengeSendToUser: false }, userId: `${userId}`, 
       })
       .then((response) => {
-        console.log("responseStart", response.data.challenge);
+        console.log("responseDelete", response.data.challenge);
         dispatch(dashboardSlice.actions.removeCardReducer(_id));
       });
   } catch (err) {
@@ -241,17 +241,18 @@ export const doneChallenge = (_id, userId) => async (dispatch) => {
 
 export const editChallenge = (
   _id,
-   dueDate,
+  correctCardData,
+  //  dueDate,
   difficulty,
 ) => async dispatch => {
   console.log('hello editCh', 'helllooooooo');
-  console.log('dueDate :>> ', dueDate);
+  // console.log('dueDate :>> ', dueDate);
   console.log('_id :>> ', _id);
   console.log('difficulty :>> ', difficulty);
   try {
     const start = await axios
       .put(`https://questify.goit.co.ua/api/challenges/${_id}`, {
-          "updateFields": {"difficulty": difficulty, "challengeSendToUser": true, "dueDate": dueDate}
+          "updateFields": {"difficulty": difficulty, "challengeSendToUser": true, "dueDate": correctCardData}
       })
       .then(response => {
         console.log('responseEditChallenge', response.data.challenge);

@@ -51,7 +51,7 @@ const DashboardPage = ({ nickname, todayCard, allTheRest, tomorrow, done }) => {
   
   const resetStartFlag = () => {
     setstartFlag(false);
-    resetEditFlag()
+    resetEditFlag();
   };
 
   useEffect(() => {
