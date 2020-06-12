@@ -15,7 +15,7 @@ export const CompletedModal = ({ title, updateCard }) => {
               </a>
             </p>
             <button onClick={updateCard} className={styled.card_act}>
-              <div className={styled.card_arrow}></div>
+            Continue<div className={styled.card_arrow}></div>
             </button>
           </div>
         </li>
