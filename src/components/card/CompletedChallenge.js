@@ -14,7 +14,7 @@ export const CompletedChallenge = ({ title, id, userId }) => {
         <>
         <div className={styled.card_item__challenge}>
             <div className={styled.card_header__challenge}>
-                <p className={styled.card_title__challenge}>Completed:
+                <p className={styled.card_title__challenge}>Completed: &nbsp;
                     <a href="#" className={styled.title_ref}>{title}</a>
                 </p>
 

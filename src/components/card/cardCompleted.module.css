@@ -76,7 +76,7 @@
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    line-height: 1;
+    line-height: 1.2;
     letter-spacing: 0.9px;
     color: rgb(40, 40, 40);
 }
@@ -91,7 +91,7 @@
     font-weight: normal;
     font-style: normal;
     font-stretch: normal;
-    line-height: 1;
+    line-height: 1.2;
     letter-spacing: 0.9px;
     color: #ffff;
 }
