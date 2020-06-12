@@ -93,7 +93,7 @@
   width: 250px;
   text-align: center;
   font-family: HelveticaNeueCyr, sans-serif;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 28px;
   margin-bottom: 1rem;
@@ -108,7 +108,7 @@
   width: 250px;
   text-align: center;
   font-family: HelveticaNeueCyr, sans-serif;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 700;
   line-height: 28px;
   margin-bottom: 1rem;
@@ -478,21 +478,21 @@
 
 
 
-@media (min-width: 1740px) {
+@media (min-width: 1650px) {
   .container {
       width: 85%;
   }
 
   .card_list li {
-      margin-right: 85px;
+      margin-right: 88px;
   }
 
   .card_list li:nth-child(2n) {
-      margin-right: 85px;
+      margin-right: 88px;
   }
 
   .card_list li:nth-child(3n) {
-      margin-right: 85px;
+      margin-right: 88px;
   }
 
   .card_list li:nth-child(4n) {
